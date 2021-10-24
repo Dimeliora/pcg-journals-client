@@ -5,3 +5,8 @@ export interface UserState {
 	isAuth: boolean;
 	user: User | null;
 }
+
+export interface LoginData {
+	accessToken: string;
+	user: User;
+}

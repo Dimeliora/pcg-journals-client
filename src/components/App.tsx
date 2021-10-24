@@ -1,5 +1,8 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import { Switch, Route } from "react-router-dom";
+
+import { useAppDispatch } from "../store/hooks/store.hooks";
+import { userAuth } from "../store/reducers/user.reducer";
 
 import PrivateRoute from "./PrivateRoute/PrivateRoute";
 import Login from "../pages/Login";
@@ -11,6 +14,12 @@ import Layout from "./Layout/Layout";
 import { Roles } from "../interfaces/roles.enum";
 
 const App: FC = () => {
+	const dispatch = useAppDispatch();
+
+	useEffect(() => {
+		dispatch(userAuth());
+	}, [dispatch]);
+
 	return (
 		<Switch>
 			<Route path="/login" component={Login} />
