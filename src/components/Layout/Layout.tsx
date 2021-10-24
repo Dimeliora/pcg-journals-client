@@ -2,7 +2,7 @@ import { FC } from "react";
 import { Drawer } from "@mui/material";
 import { Link } from "react-router-dom";
 
-import SidebarMenu from "../SidebarMenu/SidebarMenu";
+import Sidebar from "../Sidebar/Sidebar";
 
 import { useStyles } from "./Layout.styles";
 
@@ -25,7 +25,7 @@ const Layout: FC = ({ children }) => {
 						className={classes.logoImage}
 					/>
 				</Link>
-				<SidebarMenu />
+				<Sidebar />
 			</Drawer>
 
 			<div className={classes.content}>{children}</div>

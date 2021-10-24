@@ -9,11 +9,11 @@ import {
 
 import cn from "classnames";
 
-import { useStyles } from "./SidebarMenu.styles";
+import { useStyles } from "./Sidebar.styles";
 
-import { MENU_ITEMS } from "./SidebarMenu.constants";
+import { MENU_ITEMS } from "./Sidebar.constants";
 
-const SidebarMenu: FC = () => {
+const Sidebar: FC = () => {
 	const history = useHistory();
 
 	const location = useLocation();
@@ -40,4 +40,4 @@ const SidebarMenu: FC = () => {
 	);
 };
 
-export default SidebarMenu;
+export default Sidebar;
