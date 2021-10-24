@@ -5,7 +5,6 @@ export const useStyles = makeStyles({
 	root: {
 		display: "flex",
 		height: "100%",
-		backgroundColor: "#f9f9f9",
 	},
 	sidebar: {
 		width: SIDEBAR_WIDTH,

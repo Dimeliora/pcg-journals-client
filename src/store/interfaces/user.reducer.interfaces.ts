@@ -1,12 +1,12 @@
-import { User } from "../../interfaces/user.interface";
+import { IUser } from "../../interfaces/user.interface";
 
-export interface UserState {
+export interface IUserState {
 	isLoading: boolean;
 	isAuth: boolean;
-	user: User | null;
+	user: IUser | null;
 }
 
-export interface LoginData {
+export interface ILoginData {
 	accessToken: string;
-	user: User;
+	user: IUser;
 }

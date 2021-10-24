@@ -5,7 +5,7 @@ import { useAppDispatch } from "../store/hooks/store.hooks";
 import { userAuth } from "../store/reducers/user.reducer";
 
 import PrivateRoute from "./PrivateRoute/PrivateRoute";
-import Login from "../pages/Login";
+import Login from "../pages/Login/Login";
 import Home from "../pages/Home";
 import Computers from "../pages/Computers";
 import Dashboard from "../pages/Dashboard";
