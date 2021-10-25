@@ -8,7 +8,9 @@ import { useStyles } from "./Login.styles";
 import { useAppDispatch, useAppSelector } from "../../store/hooks/store.hooks";
 import { userLogin } from "../../store/reducers/user.reducer";
 
-import { IFromLocation, ILoginFormValues } from "./Login.interfaces";
+import { LOGIN_FORM_INITIAL_VALUES } from "./Login.constants";
+
+import { IFromLocation } from "./Login.interfaces";
 
 const Login: FC = () => {
 	const history = useHistory();
@@ -29,11 +31,6 @@ const Login: FC = () => {
 		}
 	}, [isAuth, history, location]);
 
-	const initialFormValues: ILoginFormValues = {
-		username: "",
-		password: "",
-	};
-
 	return (
 		<div className={classes.root}>
 			<Paper className={classes.wrapper}>
@@ -46,7 +43,7 @@ const Login: FC = () => {
 					Вход
 				</Typography>
 				<Formik
-					initialValues={initialFormValues}
+					initialValues={LOGIN_FORM_INITIAL_VALUES}
 					onSubmit={({ username, password }) => {
 						dispatch(userLogin(username.trim(), password));
 					}}
