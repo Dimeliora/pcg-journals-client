@@ -32,8 +32,8 @@ const Login: FC = () => {
 	}, [isAuth, history, location]);
 
 	return (
-		<div className={classes.root}>
-			<Paper className={classes.wrapper}>
+		<div className={classes.loginRoot}>
+			<Paper className={classes.loginWrapper}>
 				<Typography
 					variant="h5"
 					component="h2"
@@ -49,8 +49,8 @@ const Login: FC = () => {
 					}}
 				>
 					{({ values, handleChange, handleBlur }) => (
-						<Form noValidate className={classes.form}>
-							<Box className={classes.input}>
+						<Form noValidate className={classes.loginForm}>
+							<Box className={classes.loginFormField}>
 								<TextField
 									variant="standard"
 									size="small"
@@ -64,7 +64,7 @@ const Login: FC = () => {
 									fullWidth
 								/>
 							</Box>
-							<Box className={classes.input}>
+							<Box className={classes.loginFormField}>
 								<TextField
 									type="password"
 									variant="standard"

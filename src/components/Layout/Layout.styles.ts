@@ -2,7 +2,7 @@ import { makeStyles } from "@mui/styles";
 import { SIDEBAR_WIDTH } from "./Layout.constants";
 
 export const useStyles = makeStyles({
-	root: {
+	layoutRoot: {
 		display: "flex",
 		height: "100%",
 	},
@@ -22,7 +22,8 @@ export const useStyles = makeStyles({
 		height: "100%",
 		objectFit: "cover",
 	},
-	content: {
+	layoutContent: {
+		flexGrow: 1,
 		height: "100%",
 	},
 });

@@ -5,30 +5,35 @@ import { Link } from "react-router-dom";
 import Sidebar from "../Sidebar/Sidebar";
 
 import { useStyles } from "./Layout.styles";
+import { useAppSelector } from "../../store/hooks/store.hooks";
 
-import logoImage from "../../assets/images/logo.gif";
+import logoImage from "../../assets/images/logo.png";
 
 const Layout: FC = ({ children }) => {
 	const classes = useStyles();
 
-	return (
-		<div className={classes.root}>
-			<Drawer
-				className={classes.sidebar}
-				variant="permanent"
-				classes={{ paper: classes.sidebarPaper }}
-			>
-				<Link to="/" className={classes.logoLink}>
-					<img
-						src={logoImage}
-						alt="Логотип ДГК"
-						className={classes.logoImage}
-					/>
-				</Link>
-				<Sidebar />
-			</Drawer>
+	const { isAuth } = useAppSelector(({ user }) => user);
 
-			<div className={classes.content}>{children}</div>
+	return (
+		<div className={classes.layoutRoot}>
+			{isAuth && (
+				<Drawer
+					className={classes.sidebar}
+					variant="permanent"
+					classes={{ paper: classes.sidebarPaper }}
+				>
+					<Link to="/" className={classes.logoLink}>
+						<img
+							src={logoImage}
+							alt="Логотип АО ДГК"
+							className={classes.logoImage}
+						/>
+					</Link>
+					<Sidebar />
+				</Drawer>
+			)}
+
+			<div className={classes.layoutContent}>{children}</div>
 		</div>
 	);
 };
