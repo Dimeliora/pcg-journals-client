@@ -1,24 +1,27 @@
 import { FC } from "react";
+import { Box } from "@mui/material";
 
-import "./Spinner.css";
+import { useStyles } from "./Spinner.styles";
 
 const Spinner: FC = () => {
+	const classes = useStyles();
+
 	return (
-		<div className="spinner">
-			<div className="spinner__outer">
-				<div className="spinner__inner">
-					<div>
-						<div />
-						<div />
-						<div />
-						<div />
-						<div />
-						<div />
-						<div />
-					</div>
-				</div>
-			</div>
-		</div>
+		<Box className={classes.spinner}>
+			<Box className={classes.spinnerOuter}>
+				<Box className={classes.spinnerInner}>
+					<Box>
+						<Box />
+						<Box />
+						<Box />
+						<Box />
+						<Box />
+						<Box />
+						<Box />
+					</Box>
+				</Box>
+			</Box>
+		</Box>
 	);
 };
 

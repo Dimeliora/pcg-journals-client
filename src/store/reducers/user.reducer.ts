@@ -4,8 +4,8 @@ import axios, { AxiosResponse } from "axios";
 import { BASE_URL, getAuthConfig } from "../../configs/axios.configs";
 
 import {
-	ILoginPayloadData,
 	ILoginRequestData,
+	ILoginResponseData,
 	IUserState,
 	AxiosErrorMessage,
 } from "../interfaces/user.reducer.interfaces";
@@ -50,7 +50,7 @@ export const { setLoading, resetLoading, resetAuth, setUser, logout } =
 export const userAuth = (): AppThunk => async (dispatch) => {
 	try {
 		const config = getAuthConfig();
-		const { data } = await axios.get<ILoginRequestData>(
+		const { data } = await axios.get<ILoginResponseData>(
 			`${BASE_URL}/auth`,
 			config
 		);
@@ -75,8 +75,8 @@ export const userLogin =
 			dispatch(setLoading());
 
 			const { data } = await axios.post<
-				ILoginPayloadData,
-				AxiosResponse<ILoginRequestData>
+				ILoginRequestData,
+				AxiosResponse<ILoginResponseData>
 			>(`${BASE_URL}/auth/login`, {
 				username,
 				password,

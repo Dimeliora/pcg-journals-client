@@ -12,12 +12,12 @@ export interface IUserState {
 	user: IUser | null;
 }
 
-export interface ILoginPayloadData {
+export interface ILoginRequestData {
 	username: string;
 	password: string;
 }
 
-export interface ILoginRequestData {
+export interface ILoginResponseData {
 	access_token: string;
 	user: IUser;
 }
