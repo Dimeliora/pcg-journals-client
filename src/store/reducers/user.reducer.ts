@@ -1,9 +1,14 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import axios from "axios";
+import axios, { AxiosResponse, AxiosError } from "axios";
 
 import { BASE_URL, getAuthConfig } from "../../configs/axios.configs";
 
-import { IUserState, ILoginData } from "../interfaces/user.reducer.interfaces";
+import {
+	ILoginPayloadData,
+	ILoginRequestData,
+	IUserState,
+	AxiosErrorMessage,
+} from "../interfaces/user.reducer.interfaces";
 import { IUser } from "../../interfaces/user.interface";
 import { AppThunk } from "../interfaces/store.types";
 
@@ -45,7 +50,10 @@ export const { setLoading, resetLoading, resetAuth, setUser, logout } =
 export const userAuth = (): AppThunk => async (dispatch) => {
 	try {
 		const config = getAuthConfig();
-		const { data } = await axios.get<ILoginData>(`${BASE_URL}/auth`, config);
+		const { data } = await axios.get<ILoginRequestData>(
+			`${BASE_URL}/auth`,
+			config
+		);
 
 		localStorage.setItem("access_token", data.access_token);
 
@@ -55,8 +63,34 @@ export const userAuth = (): AppThunk => async (dispatch) => {
 
 		dispatch(resetAuth());
 
-		console.log(error);
+		const axiosError = error as AxiosErrorMessage;
+		console.log(axiosError.response?.data.message);
 	}
 };
+
+export const userLogin =
+	(username: string, password: string): AppThunk =>
+	async (dispatch) => {
+		try {
+			dispatch(setLoading());
+
+			const { data } = await axios.post<
+				ILoginPayloadData,
+				AxiosResponse<ILoginRequestData>
+			>(`${BASE_URL}/auth/login`, {
+				username,
+				password,
+			});
+
+			localStorage.setItem("access_token", data.access_token);
+
+			dispatch(setUser(data.user));
+		} catch (error) {
+			dispatch(resetLoading());
+
+			const axiosError = error as AxiosErrorMessage;
+			console.log(axiosError.response?.data.message);
+		}
+	};
 
 export default userReducer.reducer;
