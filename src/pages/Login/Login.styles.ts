@@ -9,7 +9,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
 		height: "100%",
 	},
 	wrapper: {
-		minWidth: "20%",
+		minWidth: 400,
 		padding: theme.spacing(3),
 	},
 	form: {

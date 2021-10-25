@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC } from "react";
 import { Paper, Box, Typography, TextField, Button } from "@mui/material";
 import { Send } from "@mui/icons-material";
 
@@ -6,9 +6,6 @@ import { useStyles } from "./Login.styles";
 
 const Login: FC = () => {
 	const classes = useStyles();
-
-	const [username, setUsername] = useState<string>("");
-	const [password, setPassword] = useState<string>("");
 
 	return (
 		<div className={classes.root}>
@@ -43,7 +40,6 @@ const Login: FC = () => {
 							fullWidth
 						/>
 					</Box>
-
 					<Button variant="contained" endIcon={<Send />}>
 						Войти
 					</Button>

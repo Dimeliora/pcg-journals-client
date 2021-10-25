@@ -8,8 +8,8 @@ import { IUser } from "../../interfaces/user.interface";
 import { AppThunk } from "../interfaces/store.types";
 
 const initialState: IUserState = {
-	isLoading: true,
-	isAuth: false,
+	isLoading: false,
+	isAuth: null,
 	user: null,
 };
 
@@ -22,6 +22,9 @@ const userReducer = createSlice({
 		},
 		resetLoading(state) {
 			state.isLoading = false;
+		},
+		resetAuth(state) {
+			state.isAuth = false;
 		},
 		setUser(state, action: PayloadAction<IUser>) {
 			state.isLoading = false;
@@ -36,26 +39,21 @@ const userReducer = createSlice({
 	},
 });
 
-export const { setLoading, resetLoading, setUser, logout } =
+export const { setLoading, resetLoading, resetAuth, setUser, logout } =
 	userReducer.actions;
 
 export const userAuth = (): AppThunk => async (dispatch) => {
 	try {
-		dispatch(setLoading());
-
 		const config = getAuthConfig();
-		const { data } = await axios.get<ILoginData>(
-			`${BASE_URL}/auth`,
-			config
-		);
+		const { data } = await axios.get<ILoginData>(`${BASE_URL}/auth`, config);
 
-		localStorage.setItem("access_token", data.accessToken);
+		localStorage.setItem("access_token", data.access_token);
 
 		dispatch(setUser(data.user));
 	} catch (error) {
 		localStorage.removeItem("access_token");
 
-		dispatch(resetLoading());
+		dispatch(resetAuth());
 
 		console.log(error);
 	}
