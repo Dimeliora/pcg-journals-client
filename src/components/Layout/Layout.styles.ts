@@ -1,15 +1,25 @@
+import { Theme } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { SIDEBAR_WIDTH } from "./Layout.constants";
 
-export const useStyles = makeStyles({
+export const useStyles = makeStyles((theme: Theme) => ({
 	layoutRoot: {
 		display: "flex",
 		height: "100%",
 	},
+	header: {
+		width: `calc(100% - ${SIDEBAR_WIDTH}px)`,
+	},
+	username: {
+		color: theme.palette.text.secondary,
+	},
+	logoutButton: {
+		marginLeft: "auto",
+	},
 	sidebar: {
 		width: SIDEBAR_WIDTH,
 	},
-	sidebarPaper: {
+	sidebarWrapper: {
 		width: SIDEBAR_WIDTH,
 	},
 	logoLink: {
@@ -22,8 +32,9 @@ export const useStyles = makeStyles({
 		height: "100%",
 		objectFit: "cover",
 	},
+	layoutContentPaddingTopBox: theme.mixins.toolbar,
 	layoutContent: {
 		flexGrow: 1,
 		height: "100%",
 	},
-});
+}));

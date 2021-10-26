@@ -1,8 +1,8 @@
+import { Theme } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 
-
-export const useStyles = makeStyles({
+export const useStyles = makeStyles((theme: Theme) => ({
 	activeLink: {
-		backgroundColor: "#f4f4f4 !important",
+		backgroundColor: theme.palette.grey["100"],
 	},
-});
+}));

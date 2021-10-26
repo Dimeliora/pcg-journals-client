@@ -93,4 +93,10 @@ export const userLogin =
 		}
 	};
 
+export const userLogout = (): AppThunk => (dispatch) => {
+	localStorage.removeItem("access_token");
+
+	dispatch(logout());
+};
+
 export default userReducer.reducer;

@@ -32,7 +32,7 @@ const Login: FC = () => {
 	}, [isAuth, history, location]);
 
 	return (
-		<div className={classes.loginRoot}>
+		<Box className={classes.loginRoot}>
 			<Paper className={classes.loginWrapper}>
 				<Typography
 					variant="h5"
@@ -91,7 +91,7 @@ const Login: FC = () => {
 					)}
 				</Formik>
 			</Paper>
-		</div>
+		</Box>
 	);
 };
 

@@ -2,6 +2,7 @@ import { render } from "react-dom";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import { ThemeProvider } from "@mui/material";
+import { StyledEngineProvider } from "@mui/material/styles";
 
 import App from "./components/App";
 
@@ -12,11 +13,13 @@ import "./css/index.css";
 
 render(
 	<Provider store={store}>
-		<ThemeProvider theme={theme}>
-			<BrowserRouter>
-				<App />
-			</BrowserRouter>
-		</ThemeProvider>
+		<StyledEngineProvider injectFirst>
+			<ThemeProvider theme={theme}>
+				<BrowserRouter>
+					<App />
+				</BrowserRouter>
+			</ThemeProvider>
+		</StyledEngineProvider>
 	</Provider>,
 	document.getElementById("root")
 );

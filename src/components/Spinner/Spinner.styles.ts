@@ -3,18 +3,17 @@ import { makeStyles } from "@mui/styles";
 
 export const useStyles = makeStyles((theme: Theme) => ({
 	spinner: {
-		display: "flex",
-		alignItems: "center",
-		justifyContent: "center",
-		width: "100vw",
-		height: "100vh",
+		position: "absolute",
+		top: "50%",
+		left: "50%",
+		transform: "translate(-50%, -50%)",
 	},
 	spinnerOuter: {
 		width: 201,
 		height: 201,
 		display: "inline-block",
 		overflow: "hidden",
-		background: "#f4f4f4",
+		background: theme.palette.grey["100"],
 	},
 	spinnerInner: {
 		width: "100%",
@@ -34,7 +33,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
 			position: "absolute",
 			width: 22.11,
 			height: 152.76,
-			background: theme.palette.primary.main,
+			background: theme.palette.primary.light,
 			left: 100.49999999999999,
 			top: 100.49999999999999,
 			transform: "translate(-50%, -50%)",
@@ -47,7 +46,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
 		"& > div div:nth-child(7)": {
 			width: 80.39999999999999,
 			height: 80.39999999999999,
-			background: "#f4f4f4",
+			background: theme.palette.grey["100"],
 			borderRadius: "50%",
 		},
 		"& > div div:nth-child(3)": {
