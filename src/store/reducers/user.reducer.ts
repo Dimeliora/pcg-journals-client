@@ -3,6 +3,8 @@ import axios, { AxiosResponse } from "axios";
 
 import { BASE_URL, getAuthConfig } from "../../configs/axios.configs";
 
+import { showAlert } from "./ui.reducer";
+
 import {
 	ILoginRequestData,
 	ILoginResponseData,
@@ -62,9 +64,6 @@ export const userAuth = (): AppThunk => async (dispatch) => {
 		localStorage.removeItem("access_token");
 
 		dispatch(resetAuth());
-
-		const axiosError = error as AxiosErrorMessage;
-		console.log(axiosError.response?.data.message);
 	}
 };
 
@@ -89,7 +88,9 @@ export const userLogin =
 			dispatch(resetLoading());
 
 			const axiosError = error as AxiosErrorMessage;
-			console.log(axiosError.response?.data.message);
+			if (axiosError.response) {
+				dispatch(showAlert(axiosError.response.data.message));
+			}
 		}
 	};
 
