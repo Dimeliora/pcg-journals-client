@@ -36,5 +36,6 @@ export const useStyles = makeStyles((theme: Theme) => ({
 	layoutContent: {
 		flexGrow: 1,
 		height: "100%",
+		paddingTop: theme.spacing(3),
 	},
 }));
