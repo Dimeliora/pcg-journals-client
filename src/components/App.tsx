@@ -1,6 +1,7 @@
 import { FC } from "react";
 import { Switch, Route } from "react-router-dom";
 
+import Alerts from "./Alerts/Alerts";
 import Layout from "./Layout/Layout";
 import PrivateRoute from "./PrivateRoute/PrivateRoute";
 import Login from "../pages/Login/Login";
@@ -13,6 +14,7 @@ import { Roles } from "../interfaces/roles.enum";
 const App: FC = () => {
 	return (
 		<Layout>
+			<Alerts />
 			<Switch>
 				<Route path="/login" component={Login} />
 				<PrivateRoute
