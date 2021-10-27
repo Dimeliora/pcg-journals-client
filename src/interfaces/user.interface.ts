@@ -6,7 +6,7 @@ interface UserRole {
 }
 
 export interface IUser {
-	id: string;
+	_id: string;
 	username: string;
 	roles: UserRole[];
 }

@@ -1,44 +1,56 @@
-import { FC, FormEvent } from "react";
+import { FC } from "react";
+import { Formik, Form } from "formik";
+
 import { Box, TextField, Button } from "@mui/material";
 import { Edit, PersonRemove } from "@mui/icons-material";
 
 import { useStyles } from "./UserTableControl.styles";
+
+import { USER_TABLE_CONTROL_FORM_VALUE } from "./UserTableControl.constants";
+import { UserTableControlFormValidation } from "./UserTableControl.validation";
 
 import { IUserTableControlProps } from "./UserTableControl.interfaces";
 
 const UserTableControl: FC<IUserTableControlProps> = ({ isAdmin }) => {
 	const classes = useStyles();
 
-	const changePasswordSubmitHandler = (e: FormEvent): void => {
-		e.preventDefault();
-	};
-
 	const deleteUserClickHandler = (): void => {};
 
 	return (
 		<Box className={classes.userTableControl}>
-			<Box
-				component="form"
-				className={classes.userTableForm}
-				onSubmit={changePasswordSubmitHandler}
+			<Formik
+				initialValues={USER_TABLE_CONTROL_FORM_VALUE}
+				validationSchema={UserTableControlFormValidation}
+				onSubmit={(values) => {
+					console.log(values.password);
+				}}
 			>
-				<TextField
-					type="password"
-					size="small"
-					variant="standard"
-					label="Изменить пароль"
-					className={classes.userTablePasswordInput}
-				/>
-				<Button
-					type="submit"
-					size="small"
-					color="info"
-					variant="contained"
-					endIcon={<Edit />}
-				>
-					Изменить
-				</Button>
-			</Box>
+				{({ values, touched, errors, handleChange }) => (
+					<Form className={classes.userTableForm}>
+						<TextField
+							type="password"
+							name="password"
+							value={values.password}
+							label="Новый пароль"
+							size="small"
+							variant="standard"
+							className={classes.userTablePasswordInput}
+							error={touched.password && Boolean(errors.password)}
+							helperText={touched.password && errors.password}
+							onChange={handleChange}
+						/>
+						<Button
+							type="submit"
+							size="small"
+							color="info"
+							variant="contained"
+							endIcon={<Edit />}
+						>
+							Изменить
+						</Button>
+					</Form>
+				)}
+			</Formik>
 			{!isAdmin && (
 				<Button
 					size="small"

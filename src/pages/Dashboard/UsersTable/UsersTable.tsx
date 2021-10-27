@@ -23,7 +23,7 @@ const UsersTable: FC<IUsersTableProps> = ({ users }) => {
 			</TableHead>
 			<TableBody>
 				{users.map((user) => (
-					<UserTableRow key={user.id} user={user} />
+					<UserTableRow key={user._id} user={user} />
 				))}
 			</TableBody>
 		</Table>

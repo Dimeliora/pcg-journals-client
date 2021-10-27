@@ -20,10 +20,7 @@ const UserTableRow: FC<IUserTableRowProps> = ({ user }) => {
 
 	return (
 		<>
-			<TableRow
-				key={user.id}
-				className={classes.tableRow}
-			>
+			<TableRow className={classes.tableRow}>
 				<TableCell>{user.username}</TableCell>
 				<TableCell>
 					{user.roles.map((role) => role.description).join(", ")}

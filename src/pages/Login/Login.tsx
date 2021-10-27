@@ -81,6 +81,7 @@ const Login: FC = () => {
 							</Box>
 							<Button
 								type="submit"
+								size="small"
 								variant="contained"
 								endIcon={<Send />}
 								disabled={isLoading}

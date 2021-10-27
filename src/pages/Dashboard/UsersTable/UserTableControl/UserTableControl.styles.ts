@@ -6,13 +6,14 @@ export const useStyles = makeStyles((theme: Theme) => ({
 		display: "flex",
 		alignItems: "center",
 		padding: theme.spacing(2),
-		paddingTop: 0,
+		paddingTop: theme.spacing(1),
 	},
 	userTableForm: {
 		display: "flex",
 		alignItems: "center",
 	},
 	userTablePasswordInput: {
+		minWidth: 300,
 		marginRight: theme.spacing(3),
 	},
 	userTableRemoveButton: {
