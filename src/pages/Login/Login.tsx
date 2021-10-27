@@ -6,7 +6,7 @@ import { Send } from "@mui/icons-material";
 
 import { useStyles } from "./Login.styles";
 import { useAppDispatch, useAppSelector } from "../../store/hooks/store.hooks";
-import { userLogin } from "../../store/reducers/user.reducer";
+import { userLogin } from "../../store/reducers/auth.reducer";
 
 import { LOGIN_FORM_INITIAL_VALUES } from "./Login.constants";
 
@@ -21,7 +21,7 @@ const Login: FC = () => {
 
 	const dispatch = useAppDispatch();
 
-	const { isAuth, isLoading } = useAppSelector(({ user }) => user);
+	const { isAuth, isLoading } = useAppSelector(({ auth }) => auth);
 
 	useEffect(() => {
 		const from = location.state?.from || { pathname: "/" };

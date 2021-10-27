@@ -14,7 +14,7 @@ import Sidebar from "../Sidebar/Sidebar";
 import { useStyles } from "./Layout.styles";
 import { useAppSelector, useAppDispatch } from "../../store/hooks/store.hooks";
 
-import { userLogout } from "../../store/reducers/user.reducer";
+import { userLogout } from "../../store/reducers/auth.reducer";
 
 import logoImage from "../../assets/images/logo.png";
 
@@ -23,7 +23,7 @@ const Layout: FC = ({ children }) => {
 
 	const dispatch = useAppDispatch();
 
-	const { isAuth, user } = useAppSelector(({ user }) => user);
+	const { isAuth, user } = useAppSelector(({ auth }) => auth);
 
 	const logoutButtonHandler = (): void => {
 		dispatch(userLogout());

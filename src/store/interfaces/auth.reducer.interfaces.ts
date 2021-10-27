@@ -6,7 +6,7 @@ interface IErrorMessage {
 	message: string;
 }
 
-export interface IUserState {
+export interface IAuthState {
 	isLoading: boolean;
 	isAuth: boolean | null;
 	user: IUser | null;

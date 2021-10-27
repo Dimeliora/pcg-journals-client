@@ -8,20 +8,20 @@ import { showAlert } from "./ui.reducer";
 import {
 	ILoginRequestData,
 	ILoginResponseData,
-	IUserState,
+	IAuthState,
 	AxiosErrorMessage,
-} from "../interfaces/user.reducer.interfaces";
+} from "../interfaces/auth.reducer.interfaces";
 import { IUser } from "../../interfaces/user.interface";
 import { AppThunk } from "../interfaces/store.types";
 
-const initialState: IUserState = {
+const initialState: IAuthState = {
 	isLoading: false,
 	isAuth: null,
 	user: null,
 };
 
-const userReducer = createSlice({
-	name: "user",
+const authReducer = createSlice({
+	name: "auth",
 	initialState,
 	reducers: {
 		setLoading(state) {
@@ -47,7 +47,7 @@ const userReducer = createSlice({
 });
 
 export const { setLoading, resetLoading, resetAuth, setUser, logout } =
-	userReducer.actions;
+	authReducer.actions;
 
 export const userAuth = (): AppThunk => async (dispatch) => {
 	try {
@@ -100,4 +100,4 @@ export const userLogout = (): AppThunk => (dispatch) => {
 	dispatch(logout());
 };
 
-export default userReducer.reducer;
+export default authReducer.reducer;

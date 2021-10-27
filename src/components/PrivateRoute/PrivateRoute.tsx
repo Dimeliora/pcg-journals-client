@@ -2,7 +2,7 @@ import { FC, useEffect } from "react";
 import { Route, Redirect } from "react-router-dom";
 
 import { useAppSelector, useAppDispatch } from "../../store/hooks/store.hooks";
-import { userAuth } from "../../store/reducers/user.reducer";
+import { userAuth } from "../../store/reducers/auth.reducer";
 
 import Spinner from "../Spinner/Spinner";
 
@@ -16,7 +16,7 @@ const PrivateRoute: FC<PrivateRouteProps> = ({
 }) => {
 	const dispatch = useAppDispatch();
 
-	const { isAuth, user } = useAppSelector(({ user }) => user);
+	const { isAuth, user } = useAppSelector(({ auth }) => auth);
 
 	useEffect(() => {
 		if (isAuth === null) {
