@@ -17,7 +17,7 @@ const UsersTable: FC<IUsersTableProps> = ({ users }) => {
 	const classes = useStyles();
 
 	return (
-		<Table aria-label="Users table">
+		<Table aria-label="Users table" size="small">
 			<TableHead>
 				<TableRow>
 					<TableCell>Имя пользователя</TableCell>

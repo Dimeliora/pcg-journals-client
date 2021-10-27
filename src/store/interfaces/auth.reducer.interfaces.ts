@@ -1,10 +1,4 @@
-import { AxiosError } from "axios";
-
 import { IUser } from "../../interfaces/user.interface";
-
-interface IErrorMessage {
-	message: string;
-}
 
 export interface IAuthState {
 	isLoading: boolean;
@@ -21,5 +15,3 @@ export interface ILoginResponseData {
 	access_token: string;
 	user: IUser;
 }
-
-export type AxiosErrorMessage = AxiosError<IErrorMessage>;

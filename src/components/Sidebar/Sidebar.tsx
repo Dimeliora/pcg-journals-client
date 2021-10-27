@@ -15,12 +15,15 @@ import { MENU_ITEMS } from "./Sidebar.constants";
 const Sidebar: FC = () => {
 	const classes = useStyles();
 
-	const { user } = useAppSelector(({ user }) => user);
+	const { user } = useAppSelector(({ auth }) => auth);
 
 	return (
 		<List>
 			{MENU_ITEMS.map(({ title, href, allowedRole, icon: Icon }) => {
-				if (user && user.roles.every((role) => role.value !== allowedRole)) {
+				if (
+					user &&
+					user.roles.every((role) => role.value !== allowedRole)
+				) {
 					return null;
 				}
 

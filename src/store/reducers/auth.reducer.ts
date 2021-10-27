@@ -9,8 +9,8 @@ import {
 	ILoginRequestData,
 	ILoginResponseData,
 	IAuthState,
-	AxiosErrorMessage,
 } from "../interfaces/auth.reducer.interfaces";
+import { AxiosErrorMessage } from "../../interfaces/axios.interfaces";
 import { IUser } from "../../interfaces/user.interface";
 import { AppThunk } from "../interfaces/store.types";
 
