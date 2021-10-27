@@ -8,6 +8,7 @@ import {
 	Button,
 } from "@mui/material";
 import { Link } from "react-router-dom";
+import { Logout } from "@mui/icons-material";
 
 import Sidebar from "../Sidebar/Sidebar";
 
@@ -44,6 +45,7 @@ const Layout: FC = ({ children }) => {
 						<Button
 							variant="contained"
 							size="small"
+							endIcon={<Logout />}
 							className={classes.logoutButton}
 							onClick={logoutButtonHandler}
 						>

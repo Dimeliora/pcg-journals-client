@@ -7,39 +7,23 @@ import {
 	TableCell,
 } from "@mui/material";
 
-import UsersTableMenu from "./UsersTableMenu/UsersTableMenu";
-
-import { useStyles } from "./UsersTable.styles";
+import UserTableRow from "./UserTableRow/UserTableRow";
 
 import { IUsersTableProps } from "./UsersTable.interfaces";
 
 const UsersTable: FC<IUsersTableProps> = ({ users }) => {
-	const classes = useStyles();
-
 	return (
 		<Table aria-label="Users table" size="small">
 			<TableHead>
 				<TableRow>
 					<TableCell>Имя пользователя</TableCell>
 					<TableCell>Роли пользователя</TableCell>
-					<TableCell align="right">
-						Управление пользователем
-					</TableCell>
+					<TableCell align="right">Управление пользователем</TableCell>
 				</TableRow>
 			</TableHead>
 			<TableBody>
 				{users.map((user) => (
-					<TableRow key={user.id} className={classes.tableRow}>
-						<TableCell>{user.username}</TableCell>
-						<TableCell>
-							{user.roles
-								.map((role) => role.description)
-								.join(", ")}
-						</TableCell>
-						<TableCell align="right">
-							<UsersTableMenu />
-						</TableCell>
-					</TableRow>
+					<UserTableRow key={user.id} user={user} />
 				))}
 			</TableBody>
 		</Table>
