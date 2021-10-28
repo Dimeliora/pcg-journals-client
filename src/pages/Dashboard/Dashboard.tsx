@@ -13,7 +13,7 @@ const Dashboard: FC = () => {
 
 	const dispatch = useAppDispatch();
 
-	const { users } = useAppSelector(({ admin }) => admin);
+	const { isLoading, users } = useAppSelector(({ admin }) => admin);
 
 	useEffect(() => {
 		dispatch(getUsers());
@@ -23,13 +23,10 @@ const Dashboard: FC = () => {
 		<Box component="section">
 			<Container maxWidth="xl">
 				<Paper className={classes.dashboardUsers}>
-					<Typography
-						variant="h4"
-						component="h2"
-					>
+					<Typography variant="h4" component="h2">
 						Пользователи
 					</Typography>
-					<UsersTable users={users} />
+					<UsersTable isLoading={isLoading} users={users} />
 				</Paper>
 			</Container>
 		</Box>

@@ -5,14 +5,33 @@ import {
 	TableBody,
 	TableRow,
 	TableCell,
+	Stack,
+	Skeleton,
 } from "@mui/material";
 
 import UserTableRow from "./UserTableRow/UserTableRow";
 
+import { useStyles } from "./UserTable.styles";
+
 import { IUsersTableProps } from "./UsersTable.interfaces";
 
-const UsersTable: FC<IUsersTableProps> = ({ users }) => {
-	return (
+const UsersTable: FC<IUsersTableProps> = ({ isLoading, users }) => {
+	const classes = useStyles();
+
+	return isLoading ? (
+		<Stack>
+			<Skeleton
+				height={36.5}
+				animation="wave"
+				className={classes.tablePlaceholder}
+			></Skeleton>
+			<Skeleton
+				height={46.5 * 3}
+				animation="wave"
+				className={classes.tablePlaceholder}
+			></Skeleton>
+		</Stack>
+	) : (
 		<Table aria-label="Users table" size="small">
 			<TableHead>
 				<TableRow>
