@@ -5,18 +5,19 @@ import { BASE_URL, getAuthConfig } from "../../configs/axios.configs";
 import { showAlert } from "./ui.reducer";
 
 import { AppThunk } from "../interfaces/store.types";
+import { IUser } from "../../interfaces/user.interfaces";
 import {
 	IAdminState,
 	IChangePasswordRequestData,
 } from "../interfaces/admin.reducer.interfaces";
-import { IUser } from "../../interfaces/user.interface";
 import {
 	AxiosErrorMessage,
 	IResponseMessage,
 } from "../../interfaces/axios.interfaces";
 
 const initialState: IAdminState = {
-	isLoading: true,
+	isUsersFetching: false,
+	isLoading: false,
 	users: [],
 };
 
@@ -24,6 +25,12 @@ const adminReducer = createSlice({
 	name: "admin",
 	initialState,
 	reducers: {
+		setUserFetching(state) {
+			state.isUsersFetching = true;
+		},
+		resetUserFetching(state) {
+			state.isUsersFetching = false;
+		},
 		setLoading(state) {
 			state.isLoading = true;
 		},
@@ -31,24 +38,35 @@ const adminReducer = createSlice({
 			state.isLoading = false;
 		},
 		setUsers(state, action: PayloadAction<IUser[]>) {
-			state.isLoading = false;
+			state.isUsersFetching = false;
 			state.users = action.payload;
+		},
+		deleteUser(state, action: PayloadAction<string>) {
+			state.isLoading = false;
+			state.users = state.users.filter((user) => user._id !== action.payload);
 		},
 	},
 });
 
-export const { setLoading, resetLoading, setUsers } = adminReducer.actions;
+const {
+	setUserFetching,
+	resetUserFetching,
+	setLoading,
+	resetLoading,
+	setUsers,
+	deleteUser,
+} = adminReducer.actions;
 
 export const getUsers = (): AppThunk => async (dispatch) => {
 	try {
-		dispatch(setLoading());
+		dispatch(setUserFetching());
 
 		const config = getAuthConfig();
 		const { data } = await axios.get<IUser[]>(`${BASE_URL}/users`, config);
 
 		dispatch(setUsers(data));
 	} catch (error) {
-		dispatch(resetLoading());
+		dispatch(resetUserFetching());
 
 		const axiosError = error as AxiosErrorMessage;
 		if (axiosError.response) {
@@ -70,6 +88,30 @@ export const changeUserPassword =
 			>(`${BASE_URL}/users/${userId}`, { password }, config);
 
 			dispatch(resetLoading());
+			dispatch(showAlert(data.message, "success"));
+		} catch (error) {
+			dispatch(resetLoading());
+
+			const axiosError = error as AxiosErrorMessage;
+			if (axiosError.response) {
+				dispatch(showAlert(axiosError.response.data.message, "error"));
+			}
+		}
+	};
+
+export const deleteUserRequest =
+	(userId: string): AppThunk =>
+	async (dispatch) => {
+		try {
+			dispatch(setLoading());
+
+			const config = getAuthConfig();
+			const { data } = await axios.delete<IResponseMessage>(
+				`${BASE_URL}/users/${userId}`,
+				config
+			);
+
+			dispatch(deleteUser(userId));
 			dispatch(showAlert(data.message, "success"));
 		} catch (error) {
 			dispatch(resetLoading());

@@ -18,7 +18,10 @@ import {
 	useAppSelector,
 } from "../../../../store/hooks/store.hooks";
 
-import { changeUserPassword } from "../../../../store/reducers/admin.reducer";
+import {
+	changeUserPassword,
+	deleteUserRequest,
+} from "../../../../store/reducers/admin.reducer";
 
 import { USER_TABLE_CONTROL_FORM_VALUE } from "./UserTableControl.constants";
 import { UserTableControlFormValidation } from "./UserTableControl.validation";
@@ -45,7 +48,7 @@ const UserTableControl: FC<IUserTableControlProps> = ({ user }) => {
 
 	const DeleteUserHandler = (): void => {
 		setIsDeleteOpened(false);
-		console.log("Deleted");
+		dispatch(deleteUserRequest(user._id));
 	};
 
 	const isAdmin = user.roles.some((role) => role.value === Roles.ADMIN);

@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import {
 	Table,
 	TableHead,
@@ -12,15 +12,25 @@ import {
 import UserTableRow from "./UserTableRow/UserTableRow";
 
 import { useStyles } from "./UserTable.styles";
+import {
+	useAppSelector,
+	useAppDispatch,
+} from "../../../store/hooks/store.hooks";
 
-import { IUsersTableProps } from "./UsersTable.interfaces";
+import { getUsers } from "../../../store/reducers/admin.reducer";
 
-const UsersTable: FC<IUsersTableProps> = ({ isLoading, users }) => {
+const UsersTable: FC = () => {
 	const classes = useStyles();
 
-	const areUsersFetching = isLoading && users.length === 0;
+	const dispatch = useAppDispatch();
 
-	return areUsersFetching ? (
+	const { isUsersFetching, users } = useAppSelector(({ admin }) => admin);
+
+	useEffect(() => {
+		dispatch(getUsers());
+	}, [dispatch]);
+
+	return isUsersFetching ? (
 		<Stack>
 			<Skeleton
 				height={36.5}
@@ -28,7 +38,7 @@ const UsersTable: FC<IUsersTableProps> = ({ isLoading, users }) => {
 				className={classes.tablePlaceholder}
 			></Skeleton>
 			<Skeleton
-				height={46.5 * 3}
+				height={46.5 * 5}
 				animation="wave"
 				className={classes.tablePlaceholder}
 			></Skeleton>

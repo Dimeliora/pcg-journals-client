@@ -1,4 +1,4 @@
-import { IUser } from "../../interfaces/user.interface";
+import { IUser } from "../../interfaces/user.interfaces";
 
 export interface IAuthState {
 	isLoading: boolean;

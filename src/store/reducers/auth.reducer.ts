@@ -11,7 +11,7 @@ import {
 	IAuthState,
 } from "../interfaces/auth.reducer.interfaces";
 import { AxiosErrorMessage } from "../../interfaces/axios.interfaces";
-import { IUser } from "../../interfaces/user.interface";
+import { IUser } from "../../interfaces/user.interfaces";
 import { AppThunk } from "../interfaces/store.types";
 
 const initialState: IAuthState = {
@@ -46,7 +46,7 @@ const authReducer = createSlice({
 	},
 });
 
-export const { setLoading, resetLoading, resetAuth, setUser, logout } =
+const { setLoading, resetLoading, resetAuth, setUser, logout } =
 	authReducer.actions;
 
 export const userAuth = (): AppThunk => async (dispatch) => {

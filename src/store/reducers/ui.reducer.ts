@@ -25,7 +25,7 @@ const uiReducer = createSlice({
 	},
 });
 
-export const { setAlert, resetAlert } = uiReducer.actions;
+const { setAlert, resetAlert } = uiReducer.actions;
 
 export const showAlert =
 	(message: string, severity: AlertSeverity): AppThunk =>
