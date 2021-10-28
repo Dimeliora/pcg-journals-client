@@ -1,7 +1,16 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import { Formik, Form } from "formik";
 
-import { Box, TextField, Button } from "@mui/material";
+import {
+	Box,
+	TextField,
+	Button,
+	Dialog,
+	DialogTitle,
+	DialogContent,
+	DialogContentText,
+	DialogActions,
+} from "@mui/material";
 import { Edit, PersonRemove } from "@mui/icons-material";
 
 import { useStyles } from "./UserTableControl.styles";
@@ -10,11 +19,27 @@ import { USER_TABLE_CONTROL_FORM_VALUE } from "./UserTableControl.constants";
 import { UserTableControlFormValidation } from "./UserTableControl.validation";
 
 import { IUserTableControlProps } from "./UserTableControl.interfaces";
+import { Roles } from "../../../../interfaces/roles.enum";
 
-const UserTableControl: FC<IUserTableControlProps> = ({ isAdmin }) => {
+const UserTableControl: FC<IUserTableControlProps> = ({ user }) => {
 	const classes = useStyles();
 
-	const deleteUserClickHandler = (): void => {};
+	const [isDeleteOpened, setIsDeleteOpened] = useState<boolean>(false);
+
+	const openDeleteDialogHandler = (): void => {
+		setIsDeleteOpened(true);
+	};
+
+	const closeDeleteDialogHandler = (): void => {
+		setIsDeleteOpened(false);
+	};
+
+	const DeleteUserHandler = (): void => {
+		setIsDeleteOpened(false);
+		console.log("Deleted");
+	};
+
+	const isAdmin = user.roles.some((role) => role.value === Roles.ADMIN);
 
 	return (
 		<Box className={classes.userTableControl}>
@@ -52,16 +77,52 @@ const UserTableControl: FC<IUserTableControlProps> = ({ isAdmin }) => {
 				)}
 			</Formik>
 			{!isAdmin && (
-				<Button
-					size="small"
-					color="error"
-					variant="contained"
-					className={classes.userTableRemoveButton}
-					endIcon={<PersonRemove />}
-					onClick={deleteUserClickHandler}
-				>
-					Удалить
-				</Button>
+				<>
+					<Button
+						size="small"
+						color="error"
+						variant="contained"
+						className={classes.userTableRemoveButton}
+						endIcon={<PersonRemove />}
+						onClick={openDeleteDialogHandler}
+					>
+						Удалить
+					</Button>
+					<Dialog
+						open={isDeleteOpened}
+						onClose={closeDeleteDialogHandler}
+						aria-labelledby="delete-user-alert-title"
+						aria-describedby="delete-user-alert-description"
+					>
+						<DialogTitle id="delete-user-alert-title">
+							Удаление пользователя
+						</DialogTitle>
+						<DialogContent>
+							<DialogContentText id="delete-user-alert-description">
+								Пользователь {user.username} будет удалён.
+							</DialogContentText>
+						</DialogContent>
+						<DialogActions>
+							<Button
+								variant="contained"
+								size="small"
+								color="error"
+								onClick={DeleteUserHandler}
+							>
+								Удалить
+							</Button>
+							<Button
+								variant="contained"
+								size="small"
+								color="info"
+								onClick={closeDeleteDialogHandler}
+								autoFocus
+							>
+								Отмена
+							</Button>
+						</DialogActions>
+					</Dialog>
+				</>
 			)}
 		</Box>
 	);

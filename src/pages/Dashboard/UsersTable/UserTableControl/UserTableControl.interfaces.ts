@@ -1,5 +1,7 @@
+import { IUser } from "../../../../interfaces/user.interface";
+
 export interface IUserTableControlProps {
-	isAdmin: boolean;
+	user: IUser;
 }
 
 export interface IUserTableControlFormValue {

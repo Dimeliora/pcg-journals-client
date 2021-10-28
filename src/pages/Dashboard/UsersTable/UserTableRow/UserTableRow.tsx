@@ -7,7 +7,6 @@ import UserTableControl from "../UserTableControl/UserTableControl";
 import { useStyles } from "./UsersTableRow.styles";
 
 import { IUserTableRowProps } from "./UserTableRow.interfaces";
-import { Roles } from "../../../../interfaces/roles.enum";
 
 const UserTableRow: FC<IUserTableRowProps> = ({ user }) => {
 	const classes = useStyles();
@@ -38,9 +37,7 @@ const UserTableRow: FC<IUserTableRowProps> = ({ user }) => {
 			<TableRow className={classes.tableRowCollapse}>
 				<TableCell colSpan={3}>
 					<Collapse in={isExpanded} timeout="auto" unmountOnExit>
-						<UserTableControl
-							isAdmin={user.roles.some((role) => role.value === Roles.ADMIN)}
-						/>
+						<UserTableControl user={user} />
 					</Collapse>
 				</TableCell>
 			</TableRow>
