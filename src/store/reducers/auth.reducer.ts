@@ -89,7 +89,7 @@ export const userLogin =
 
 			const axiosError = error as AxiosErrorMessage;
 			if (axiosError.response) {
-				dispatch(showAlert(axiosError.response.data.message));
+				dispatch(showAlert(axiosError.response.data.message, "error"));
 			}
 		}
 	};

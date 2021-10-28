@@ -3,6 +3,7 @@ import { v4 } from "uuid";
 
 import { AppThunk } from "./../interfaces/store.types";
 import { IAlert, IUIState } from "./../interfaces/ui.reducer.interfaces";
+import { AlertSeverity } from "../../interfaces/alert.types";
 
 const SHOW_ALERT_DELAY = 5000;
 const initialState: IUIState = {
@@ -27,11 +28,11 @@ const uiReducer = createSlice({
 export const { setAlert, resetAlert } = uiReducer.actions;
 
 export const showAlert =
-	(message: string): AppThunk =>
+	(message: string, severity: AlertSeverity): AppThunk =>
 	(dispatch) => {
 		const id = v4();
 
-		dispatch(setAlert({ id, message }));
+		dispatch(setAlert({ id, message, severity }));
 
 		setTimeout(() => {
 			dispatch(resetAlert(id));

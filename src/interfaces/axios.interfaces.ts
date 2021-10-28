@@ -1,7 +1,7 @@
 import { AxiosError } from "axios";
 
-interface IErrorMessage {
+export interface IResponseMessage {
 	message: string;
 }
 
-export type AxiosErrorMessage = AxiosError<IErrorMessage>;
+export type AxiosErrorMessage = AxiosError<IResponseMessage>;

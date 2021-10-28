@@ -4,3 +4,7 @@ export interface IAdminState {
 	isLoading: boolean;
 	users: IUser[];
 }
+
+export interface IChangePasswordRequestData {
+	password: string;
+}

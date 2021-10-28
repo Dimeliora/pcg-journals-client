@@ -18,7 +18,9 @@ import { IUsersTableProps } from "./UsersTable.interfaces";
 const UsersTable: FC<IUsersTableProps> = ({ isLoading, users }) => {
 	const classes = useStyles();
 
-	return isLoading ? (
+	const areUsersFetching = isLoading && users.length === 0;
+
+	return areUsersFetching ? (
 		<Stack>
 			<Skeleton
 				height={36.5}

@@ -14,7 +14,7 @@ const Alerts: FC = () => {
 			{alerts.map((alert) => (
 				<Alert
 					key={alert.id}
-					severity="error"
+					severity={alert.severity}
 					classes={{ root: classes.alertsItem }}
 				>
 					{alert.message}

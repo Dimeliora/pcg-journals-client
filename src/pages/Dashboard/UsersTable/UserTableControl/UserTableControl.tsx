@@ -1,6 +1,5 @@
 import { FC, useState } from "react";
 import { Formik, Form } from "formik";
-
 import {
 	Box,
 	TextField,
@@ -14,6 +13,12 @@ import {
 import { Edit, PersonRemove } from "@mui/icons-material";
 
 import { useStyles } from "./UserTableControl.styles";
+import {
+	useAppDispatch,
+	useAppSelector,
+} from "../../../../store/hooks/store.hooks";
+
+import { changeUserPassword } from "../../../../store/reducers/admin.reducer";
 
 import { USER_TABLE_CONTROL_FORM_VALUE } from "./UserTableControl.constants";
 import { UserTableControlFormValidation } from "./UserTableControl.validation";
@@ -23,6 +28,10 @@ import { Roles } from "../../../../interfaces/roles.enum";
 
 const UserTableControl: FC<IUserTableControlProps> = ({ user }) => {
 	const classes = useStyles();
+
+	const dispatch = useAppDispatch();
+
+	const { isLoading } = useAppSelector(({ admin }) => admin);
 
 	const [isDeleteOpened, setIsDeleteOpened] = useState<boolean>(false);
 
@@ -47,7 +56,8 @@ const UserTableControl: FC<IUserTableControlProps> = ({ user }) => {
 				initialValues={USER_TABLE_CONTROL_FORM_VALUE}
 				validationSchema={UserTableControlFormValidation}
 				onSubmit={(values) => {
-					console.log(values.password);
+					dispatch(changeUserPassword(user._id, values.password));
+					values.password = "";
 				}}
 			>
 				{({ values, touched, errors, handleChange }) => (
@@ -63,6 +73,7 @@ const UserTableControl: FC<IUserTableControlProps> = ({ user }) => {
 							error={touched.password && Boolean(errors.password)}
 							helperText={touched.password && errors.password}
 							onChange={handleChange}
+							disabled={isLoading}
 						/>
 						<Button
 							type="submit"
@@ -70,6 +81,7 @@ const UserTableControl: FC<IUserTableControlProps> = ({ user }) => {
 							color="info"
 							variant="contained"
 							endIcon={<Edit />}
+							disabled={isLoading}
 						>
 							Изменить
 						</Button>
@@ -84,6 +96,7 @@ const UserTableControl: FC<IUserTableControlProps> = ({ user }) => {
 						variant="contained"
 						className={classes.userTableRemoveButton}
 						endIcon={<PersonRemove />}
+						disabled={isLoading}
 						onClick={openDeleteDialogHandler}
 					>
 						Удалить
