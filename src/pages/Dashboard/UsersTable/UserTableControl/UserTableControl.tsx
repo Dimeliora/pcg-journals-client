@@ -24,10 +24,10 @@ import {
 } from "../../../../store/reducers/admin.reducer";
 
 import { USER_TABLE_CONTROL_FORM_VALUE } from "./UserTableControl.constants";
-import { UserTableControlFormValidation } from "./UserTableControl.validation";
+import { userTableControlFormValidation } from "./UserTableControl.validation";
 
 import { IUserTableControlProps } from "./UserTableControl.interfaces";
-import { Roles } from "../../../../interfaces/roles.enum";
+import { Roles } from "../../../../interfaces/user.interfaces";
 
 const UserTableControl: FC<IUserTableControlProps> = ({ user }) => {
 	const classes = useStyles();
@@ -57,14 +57,14 @@ const UserTableControl: FC<IUserTableControlProps> = ({ user }) => {
 		<Box className={classes.userTableControl}>
 			<Formik
 				initialValues={USER_TABLE_CONTROL_FORM_VALUE}
-				validationSchema={UserTableControlFormValidation}
+				validationSchema={userTableControlFormValidation}
 				onSubmit={(values) => {
 					dispatch(changeUserPassword(user._id, values.password));
 					values.password = "";
 				}}
 			>
 				{({ values, touched, errors, handleChange }) => (
-					<Form className={classes.userTableForm}>
+					<Form className={classes.userTableForm} noValidate>
 						<TextField
 							type="password"
 							name="password"

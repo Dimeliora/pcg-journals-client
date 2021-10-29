@@ -1,6 +1,6 @@
 import { Storage, AdminPanelSettings } from "@mui/icons-material";
 
-import { Roles } from "../../interfaces/roles.enum";
+import { Roles } from "../../interfaces/user.interfaces";
 
 export const MENU_ITEMS = [
 	{

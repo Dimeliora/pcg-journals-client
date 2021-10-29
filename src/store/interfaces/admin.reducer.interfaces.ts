@@ -3,9 +3,13 @@ import { IUser } from "../../interfaces/user.interfaces";
 export interface IAdminState {
 	isUsersFetching: boolean;
 	isLoading: boolean;
+	isError: boolean;
 	users: IUser[];
 }
 
-export interface IChangePasswordRequestData {
+export interface IAddUserRequestData {
+	username: string;
 	password: string;
 }
+
+export type IChangePasswordRequestData = Pick<IAddUserRequestData, "password">;

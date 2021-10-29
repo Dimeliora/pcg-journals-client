@@ -1,5 +1,7 @@
-import { FC, useEffect } from "react";
+import { FC, useLayoutEffect } from "react";
 import {
+	Box,
+	Typography,
 	Table,
 	TableHead,
 	TableBody,
@@ -26,11 +28,11 @@ const UsersTable: FC = () => {
 
 	const { isUsersFetching, users } = useAppSelector(({ admin }) => admin);
 
-	useEffect(() => {
+	useLayoutEffect(() => {
 		dispatch(getUsers());
 	}, [dispatch]);
 
-	return isUsersFetching ? (
+	let usersTableContent: JSX.Element = (
 		<Stack>
 			<Skeleton
 				height={36.5}
@@ -43,21 +45,39 @@ const UsersTable: FC = () => {
 				className={classes.tablePlaceholder}
 			></Skeleton>
 		</Stack>
-	) : (
-		<Table aria-label="Users table" size="small">
-			<TableHead>
-				<TableRow>
-					<TableCell>Имя пользователя</TableCell>
-					<TableCell>Роли пользователя</TableCell>
-					<TableCell align="right">Управление пользователем</TableCell>
-				</TableRow>
-			</TableHead>
-			<TableBody>
-				{users.map((user) => (
-					<UserTableRow key={user._id} user={user} />
-				))}
-			</TableBody>
-		</Table>
+	);
+
+	if (!isUsersFetching) {
+		usersTableContent = (
+			<Table aria-label="Users table" size="small">
+				<TableHead>
+					<TableRow>
+						<TableCell>Имя пользователя</TableCell>
+						<TableCell>Роли пользователя</TableCell>
+						<TableCell align="right">Управление пользователем</TableCell>
+					</TableRow>
+				</TableHead>
+				<TableBody>
+					{users.map((user) => (
+						<UserTableRow key={user._id} user={user} />
+					))}
+				</TableBody>
+			</Table>
+		);
+	}
+
+	return (
+		<Box>
+			<Typography
+				variant="h5"
+				component="h3"
+				className={classes.usersTableHeading}
+			>
+				Список пользователей
+			</Typography>
+
+			{usersTableContent}
+		</Box>
 	);
 };
 

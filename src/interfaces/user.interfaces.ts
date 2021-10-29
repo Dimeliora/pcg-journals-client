@@ -1,8 +1,12 @@
-import { Roles } from "./roles.enum";
-
 interface UserRole {
 	value: Roles;
 	description: string;
+}
+
+export enum Roles {
+	USER = "USER",
+	SUPERVISOR = "SUPERVISOR",
+	ADMIN = "ADMIN",
 }
 
 export interface IUser {

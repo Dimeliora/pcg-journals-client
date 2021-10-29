@@ -8,6 +8,7 @@ import { AppThunk } from "../interfaces/store.types";
 import { IUser } from "../../interfaces/user.interfaces";
 import {
 	IAdminState,
+	IAddUserRequestData,
 	IChangePasswordRequestData,
 } from "../interfaces/admin.reducer.interfaces";
 import {
@@ -18,6 +19,7 @@ import {
 const initialState: IAdminState = {
 	isUsersFetching: false,
 	isLoading: false,
+	isError: false,
 	users: [],
 };
 
@@ -28,18 +30,24 @@ const adminReducer = createSlice({
 		setUserFetching(state) {
 			state.isUsersFetching = true;
 		},
-		resetUserFetching(state) {
-			state.isUsersFetching = false;
-		},
 		setLoading(state) {
 			state.isLoading = true;
 		},
 		resetLoading(state) {
 			state.isLoading = false;
 		},
+		setError(state) {
+			state.isUsersFetching = false;
+			state.isLoading = false;
+			state.isError = true;
+		},
 		setUsers(state, action: PayloadAction<IUser[]>) {
 			state.isUsersFetching = false;
 			state.users = action.payload;
+		},
+		addUser(state, action: PayloadAction<IUser>) {
+			state.isLoading = false;
+			state.users.push(action.payload);
 		},
 		deleteUser(state, action: PayloadAction<string>) {
 			state.isLoading = false;
@@ -50,10 +58,11 @@ const adminReducer = createSlice({
 
 const {
 	setUserFetching,
-	resetUserFetching,
 	setLoading,
 	resetLoading,
+	setError,
 	setUsers,
+	addUser,
 	deleteUser,
 } = adminReducer.actions;
 
@@ -66,7 +75,7 @@ export const getUsers = (): AppThunk => async (dispatch) => {
 
 		dispatch(setUsers(data));
 	} catch (error) {
-		dispatch(resetUserFetching());
+		dispatch(setError());
 
 		const axiosError = error as AxiosErrorMessage;
 		if (axiosError.response) {
@@ -74,6 +83,36 @@ export const getUsers = (): AppThunk => async (dispatch) => {
 		}
 	}
 };
+
+export const addUserRequest =
+	(username: string, password: string): AppThunk =>
+	async (dispatch) => {
+		try {
+			dispatch(setLoading());
+
+			const config = getAuthConfig();
+			const { data } = await axios.post<
+				IAddUserRequestData,
+				AxiosResponse<IUser>
+			>(
+				`${BASE_URL}/auth/register`,
+				{
+					username,
+					password,
+				},
+				config
+			);
+
+			dispatch(addUser(data));
+		} catch (error) {
+			dispatch(setError());
+
+			const axiosError = error as AxiosErrorMessage;
+			if (axiosError.response) {
+				dispatch(showAlert(axiosError.response.data.message, "error"));
+			}
+		}
+	};
 
 export const changeUserPassword =
 	(userId: string, password: string): AppThunk =>
@@ -90,7 +129,7 @@ export const changeUserPassword =
 			dispatch(resetLoading());
 			dispatch(showAlert(data.message, "success"));
 		} catch (error) {
-			dispatch(resetLoading());
+			dispatch(setError());
 
 			const axiosError = error as AxiosErrorMessage;
 			if (axiosError.response) {
@@ -114,7 +153,7 @@ export const deleteUserRequest =
 			dispatch(deleteUser(userId));
 			dispatch(showAlert(data.message, "success"));
 		} catch (error) {
-			dispatch(resetLoading());
+			dispatch(setError());
 
 			const axiosError = error as AxiosErrorMessage;
 			if (axiosError.response) {

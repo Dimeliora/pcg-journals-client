@@ -9,7 +9,7 @@ import Home from "../pages/Home/Home";
 import Computers from "../pages/Computers/Computers";
 import Dashboard from "../pages/Dashboard/Dashboard";
 
-import { Roles } from "../interfaces/roles.enum";
+import { Roles } from "../interfaces/user.interfaces";
 
 const App: FC = () => {
 	return (

@@ -2,6 +2,7 @@ import { FC } from "react";
 import { Box, Container, Paper, Typography } from "@mui/material";
 
 import UsersTable from "./UsersTable/UsersTable";
+import AddUserForm from "./AddUserForm/AddUserForm";
 
 import { useStyles } from "./Dashboard.styles";
 
@@ -15,6 +16,8 @@ const Dashboard: FC = () => {
 					<Typography variant="h4" component="h2">
 						Пользователи
 					</Typography>
+
+					<AddUserForm />
 					<UsersTable />
 				</Paper>
 			</Container>
