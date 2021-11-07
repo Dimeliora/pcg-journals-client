@@ -12,7 +12,7 @@ import {
 } from "@mui/material";
 import { Edit, PersonRemove } from "@mui/icons-material";
 
-import { useStyles } from "./UserTableControl.styles";
+import { useStyles } from "./UsersTableControl.styles";
 import {
 	useAppDispatch,
 	useAppSelector,
@@ -23,13 +23,13 @@ import {
 	deleteUserRequest,
 } from "../../../../store/reducers/admin.reducer";
 
-import { USER_TABLE_CONTROL_FORM_VALUE } from "./UserTableControl.constants";
-import { userTableControlFormValidation } from "./UserTableControl.validation";
+import { USERS_TABLE_CONTROL_FORM_VALUE } from "./UsersTableControl.constants";
+import { usersTableControlFormValidation } from "./UsersTableControl.validation";
 
-import { IUserTableControlProps } from "./UserTableControl.interfaces";
+import { IUsersTableControlProps } from "./UsersTableControl.interfaces";
 import { Roles } from "../../../../interfaces/user.interfaces";
 
-const UserTableControl: FC<IUserTableControlProps> = ({ user }) => {
+const UsersTableControl: FC<IUsersTableControlProps> = ({ user }) => {
 	const classes = useStyles();
 
 	const dispatch = useAppDispatch();
@@ -54,17 +54,17 @@ const UserTableControl: FC<IUserTableControlProps> = ({ user }) => {
 	const isAdmin = user.roles.some((role) => role.value === Roles.ADMIN);
 
 	return (
-		<Box className={classes.userTableControl}>
+		<Box className={classes.usersTableControl}>
 			<Formik
-				initialValues={USER_TABLE_CONTROL_FORM_VALUE}
-				validationSchema={userTableControlFormValidation}
+				initialValues={USERS_TABLE_CONTROL_FORM_VALUE}
+				validationSchema={usersTableControlFormValidation}
 				onSubmit={(values) => {
 					dispatch(changeUserPassword(user._id, values.password));
 					values.password = "";
 				}}
 			>
 				{({ values, touched, errors, handleChange }) => (
-					<Form className={classes.userTableForm} noValidate>
+					<Form className={classes.usersTableForm} noValidate>
 						<TextField
 							type="password"
 							name="password"
@@ -72,7 +72,7 @@ const UserTableControl: FC<IUserTableControlProps> = ({ user }) => {
 							label="Новый пароль"
 							size="small"
 							variant="standard"
-							className={classes.userTablePasswordInput}
+							className={classes.usersTablePasswordInput}
 							error={touched.password && Boolean(errors.password)}
 							helperText={touched.password && errors.password}
 							onChange={handleChange}
@@ -97,7 +97,7 @@ const UserTableControl: FC<IUserTableControlProps> = ({ user }) => {
 						size="small"
 						color="error"
 						variant="contained"
-						className={classes.userTableRemoveButton}
+						className={classes.usersTableRemoveButton}
 						endIcon={<PersonRemove />}
 						disabled={isLoading}
 						onClick={openDeleteDialogHandler}
@@ -144,4 +144,4 @@ const UserTableControl: FC<IUserTableControlProps> = ({ user }) => {
 	);
 };
 
-export default UserTableControl;
+export default UsersTableControl;

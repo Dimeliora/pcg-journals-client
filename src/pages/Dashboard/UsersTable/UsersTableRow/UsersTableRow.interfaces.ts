@@ -1,5 +1,5 @@
 import { IUser } from "../../../../interfaces/user.interfaces";
 
-export interface IUserTableRowProps {
+export interface IUsersTableRowProps {
 	user: IUser;
 }

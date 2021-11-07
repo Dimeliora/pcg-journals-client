@@ -11,9 +11,9 @@ import {
 	Skeleton,
 } from "@mui/material";
 
-import UserTableRow from "./UserTableRow/UserTableRow";
+import UsersTableRow from "./UsersTableRow/UsersTableRow";
 
-import { useStyles } from "./UserTable.styles";
+import { useStyles } from "./UsersTable.styles";
 import {
 	useAppSelector,
 	useAppDispatch,
@@ -37,12 +37,12 @@ const UsersTable: FC = () => {
 			<Skeleton
 				height={36.5}
 				animation="wave"
-				className={classes.tablePlaceholder}
+				className={classes.usersTablePlaceholder}
 			></Skeleton>
 			<Skeleton
 				height={46.5 * 5}
 				animation="wave"
-				className={classes.tablePlaceholder}
+				className={classes.usersTablePlaceholder}
 			></Skeleton>
 		</Stack>
 	);
@@ -59,7 +59,7 @@ const UsersTable: FC = () => {
 				</TableHead>
 				<TableBody>
 					{users.map((user) => (
-						<UserTableRow key={user._id} user={user} />
+						<UsersTableRow key={user._id} user={user} />
 					))}
 				</TableBody>
 			</Table>

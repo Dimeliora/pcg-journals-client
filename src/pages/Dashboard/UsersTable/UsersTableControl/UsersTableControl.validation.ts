@@ -1,6 +1,6 @@
 import * as yup from "yup";
 
-export const userTableControlFormValidation = yup.object().shape({
+export const usersTableControlFormValidation = yup.object().shape({
 	password: yup
 		.string()
 		.required("Поле обязательно для заполнения")

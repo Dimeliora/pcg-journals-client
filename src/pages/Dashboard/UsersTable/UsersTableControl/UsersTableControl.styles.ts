@@ -2,21 +2,21 @@ import { Theme } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 
 export const useStyles = makeStyles((theme: Theme) => ({
-	userTableControl: {
+	usersTableControl: {
 		display: "flex",
 		alignItems: "center",
 		padding: theme.spacing(2),
 		paddingTop: theme.spacing(1),
 	},
-	userTableForm: {
+	usersTableForm: {
 		display: "flex",
 		alignItems: "center",
 	},
-	userTablePasswordInput: {
+	usersTablePasswordInput: {
 		minWidth: 300,
 		marginRight: theme.spacing(3),
 	},
-	userTableRemoveButton: {
+	usersTableRemoveButton: {
 		marginLeft: theme.spacing(5),
 	},
 }));

@@ -5,7 +5,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
 	usersTableHeading: {
 		marginBottom: theme.spacing(1),
 	},
-	tablePlaceholder: {
+	usersTablePlaceholder: {
 		transform: "scale(1, 0.9)",
 	},
 }));

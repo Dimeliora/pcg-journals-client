@@ -2,13 +2,13 @@ import { FC, useState } from "react";
 import { TableCell, TableRow, Collapse, IconButton } from "@mui/material";
 import { ExpandMoreRounded, ExpandLessRounded } from "@mui/icons-material";
 
-import UserTableControl from "../UserTableControl/UserTableControl";
+import UsersTableControl from "../UsersTableControl/UsersTableControl";
 
 import { useStyles } from "./UsersTableRow.styles";
 
-import { IUserTableRowProps } from "./UserTableRow.interfaces";
+import { IUsersTableRowProps } from "./UsersTableRow.interfaces";
 
-const UserTableRow: FC<IUserTableRowProps> = ({ user }) => {
+const UserTableRow: FC<IUsersTableRowProps> = ({ user }) => {
 	const classes = useStyles();
 
 	const [isExpanded, setIsExpanded] = useState<boolean>(false);
@@ -37,7 +37,7 @@ const UserTableRow: FC<IUserTableRowProps> = ({ user }) => {
 			<TableRow className={classes.tableRowCollapse}>
 				<TableCell colSpan={3}>
 					<Collapse in={isExpanded} timeout="auto" unmountOnExit>
-						<UserTableControl user={user} />
+						<UsersTableControl user={user} />
 					</Collapse>
 				</TableCell>
 			</TableRow>

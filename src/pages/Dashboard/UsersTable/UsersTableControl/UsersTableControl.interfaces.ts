@@ -1,9 +1,9 @@
 import { IUser } from "../../../../interfaces/user.interfaces";
 
-export interface IUserTableControlProps {
+export interface IUsersTableControlProps {
 	user: IUser;
 }
 
-export interface IUserTableControlFormValue {
+export interface IUsersTableControlFormValue {
 	password: string;
 }
