@@ -8,10 +8,13 @@ import { ReactComponent as ServerIcon } from "../../../../assets/icons/server.sv
 
 import { useStyles } from "./ComputersTableRow.styles";
 
+import {
+	ONE_DAY_IN_MS,
+	DAYS_TO_BACKUP_OUTDATE,
+} from "./ComputersTableRow.constants";
+
 import { IComputersTableRowProps } from "./ComputersTableRow.interfaces";
 import { ComputerTypes } from "../../../../interfaces/computer.interface";
-
-const ONE_DAY = 1000 * 60 * 60 * 24;
 
 const ComputersTableRow: FC<IComputersTableRowProps> = ({ computer }) => {
 	const classes = useStyles();
@@ -32,7 +35,9 @@ const ComputersTableRow: FC<IComputersTableRowProps> = ({ computer }) => {
 	let isBackupOutdated = false;
 	if (lastBackup) {
 		lastBackupDate = lastBackup.toLocaleDateString();
-		isBackupOutdated = Date.now() - lastBackup.getTime() > ONE_DAY * 365;
+		isBackupOutdated =
+			Date.now() - lastBackup.getTime() >
+			ONE_DAY_IN_MS * DAYS_TO_BACKUP_OUTDATE;
 	}
 
 	return (
@@ -43,10 +48,13 @@ const ComputersTableRow: FC<IComputersTableRowProps> = ({ computer }) => {
 			<TableCell>{computer.pcName}</TableCell>
 			<TableCell>{computer.pcPurpose}</TableCell>
 			<TableCell>{computer.os}</TableCell>
-			<TableCell className={cn({ [classes.outdated]: isBackupOutdated })}>
+			<TableCell
+				align="center"
+				className={cn({ [classes.outdated]: isBackupOutdated })}
+			>
 				{lastBackupDate}
 			</TableCell>
-			<TableCell>
+			<TableCell align="center">
 				{updateDate} ({computer.lastModifier.username})
 			</TableCell>
 		</TableRow>

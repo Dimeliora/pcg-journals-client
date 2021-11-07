@@ -44,8 +44,8 @@ const ComputersTable: FC = () => {
 						<TableCell>Наименование</TableCell>
 						<TableCell>Назначение</TableCell>
 						<TableCell>Операционная система</TableCell>
-						<TableCell>Последний бэкап</TableCell>
-						<TableCell>Последние изменения</TableCell>
+						<TableCell align="center">Последний бэкап</TableCell>
+						<TableCell align="center">Последние изменения</TableCell>
 					</TableRow>
 				</TableHead>
 				<TableBody>
