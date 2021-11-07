@@ -1,5 +1,7 @@
-import { FC, useEffect } from "react";
+import { FC, useLayoutEffect } from "react";
 import { Box, Container, Paper, Typography } from "@mui/material";
+
+import ComputersTable from "./ComputersTable/ComputersTable";
 
 import { useAppDispatch } from "../../store/hooks/store.hooks";
 import { useStyles } from "./Computers.styles";
@@ -11,7 +13,7 @@ const Computers: FC = () => {
 
 	const classes = useStyles();
 
-	useEffect(() => {
+	useLayoutEffect(() => {
 		dispatch(getAllComputers());
 	}, [dispatch]);
 
@@ -22,6 +24,7 @@ const Computers: FC = () => {
 					<Typography variant="h4" component="h2">
 						АРМ / Серверы
 					</Typography>
+					<ComputersTable />
 				</Paper>
 			</Container>
 		</Box>

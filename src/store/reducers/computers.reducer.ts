@@ -47,7 +47,6 @@ export const getAllComputers = (): AppThunk => async (dispatch) => {
 			`${BASE_URL}/computers`,
 			config
 		);
-		console.log(data);
 
 		dispatch(setComputers(data));
 	} catch (error) {
