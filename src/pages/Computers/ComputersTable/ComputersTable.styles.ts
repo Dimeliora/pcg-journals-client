@@ -8,4 +8,8 @@ export const useStyles = makeStyles((theme: Theme) => ({
 	computersTablePlaceholder: {
 		transform: "scale(1, 0.9)",
 	},
+	computersTableSearch: {
+		width: "33%",
+		marginBottom: theme.spacing(3),
+	},
 }));

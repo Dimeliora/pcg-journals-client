@@ -22,7 +22,7 @@ const Computers: FC = () => {
 			<Container maxWidth="xl">
 				<Paper className={classes.computersSection}>
 					<Typography variant="h4" component="h2">
-						АРМ / Серверы
+						Серверы и АРМ
 					</Typography>
 					<ComputersTable />
 				</Paper>

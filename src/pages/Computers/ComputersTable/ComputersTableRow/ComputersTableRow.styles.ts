@@ -10,9 +10,9 @@ export const useStyles = makeStyles((theme: Theme) => ({
 		"&:nth-child(2n)": {
 			backgroundColor: colors.blue["50"],
 		},
-		"&:hover": {
-			transform: "scale(1.015)",
-		},
+		// "&:hover": {
+		// 	transform: "scale(1.015)",
+		// },
 	},
 	outdated: {
 		color: colors.red["900"],
