@@ -35,6 +35,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
 	layoutContentPaddingTopBox: theme.mixins.toolbar,
 	layoutContent: {
 		flexGrow: 1,
+		width: `calc(100% - ${SIDEBAR_WIDTH}px)`,
 		height: "100%",
 		paddingTop: theme.spacing(3),
 	},

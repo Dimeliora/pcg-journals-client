@@ -92,7 +92,7 @@ const ComputersTable: FC = () => {
 		computersTableContent = (
 			<>
 				<TableContainer>
-					<Table sx={{ minWidth: 992 }} aria-label="Computers table">
+					<Table sx={{ minWidth: 1050 }} aria-label="Computers table">
 						<TableHead>
 							<TableRow>
 								<TableCell sx={{ width: "5%" }}></TableCell>

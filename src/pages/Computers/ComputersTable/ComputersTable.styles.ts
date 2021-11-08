@@ -10,6 +10,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
 	},
 	computersTableSearch: {
 		width: "33%",
+		minWidth: 315,
 		marginBottom: theme.spacing(3),
 	},
 }));
