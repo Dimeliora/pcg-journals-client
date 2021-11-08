@@ -92,17 +92,23 @@ const ComputersTable: FC = () => {
 		computersTableContent = (
 			<>
 				<TableContainer>
-					<Table aria-label="Computers table">
+					<Table sx={{ minWidth: 992 }} aria-label="Computers table">
 						<TableHead>
 							<TableRow>
-								<TableCell></TableCell>
-								<TableCell>Наименование</TableCell>
-								<TableCell>Назначение</TableCell>
-								<TableCell>Операционная система</TableCell>
-								<TableCell align="center">
+								<TableCell sx={{ width: "5%" }}></TableCell>
+								<TableCell sx={{ width: "10%" }}>
+									Наименование
+								</TableCell>
+								<TableCell sx={{ width: "25%" }}>
+									Назначение
+								</TableCell>
+								<TableCell sx={{ width: "25%" }}>
+									Операционная система
+								</TableCell>
+								<TableCell align="center" sx={{ width: "15%" }}>
 									Последний бэкап
 								</TableCell>
-								<TableCell align="center">
+								<TableCell align="center" sx={{ width: "20%" }}>
 									Последние изменения
 								</TableCell>
 							</TableRow>

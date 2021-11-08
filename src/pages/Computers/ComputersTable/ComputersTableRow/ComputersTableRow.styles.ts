@@ -14,6 +14,10 @@ export const useStyles = makeStyles((theme: Theme) => ({
 		// 	transform: "scale(1.015)",
 		// },
 	},
+	pcTypeIcon: {
+		width: 25,
+		height: 25,
+	},
 	outdated: {
 		color: colors.red["900"],
 		fontWeight: 700,

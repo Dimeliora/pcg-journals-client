@@ -40,10 +40,13 @@ const ComputersTableRow: FC<IComputersTableRowProps> = ({ computer }) => {
 			ONE_DAY_IN_MS * DAYS_TO_BACKUP_OUTDATE;
 	}
 
+	const PCTypeIcon =
+		computer.pcType === ComputerTypes.PC ? PCIcon : ServerIcon;
+
 	return (
 		<TableRow className={classes.tableRow} onClick={rowClickHandler}>
-			<TableCell>
-				{computer.pcType === ComputerTypes.PC ? <PCIcon /> : <ServerIcon />}
+			<TableCell align="center">
+				<PCTypeIcon className={classes.pcTypeIcon} />
 			</TableCell>
 			<TableCell>{computer.pcName}</TableCell>
 			<TableCell>{computer.pcPurpose}</TableCell>
