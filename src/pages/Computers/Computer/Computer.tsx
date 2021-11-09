@@ -1,14 +1,20 @@
 import { FC } from "react";
 import { useParams } from "react-router-dom";
-import { Box, Typography, Divider } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 
+import ComputerInfoSection from "./ComputerInfoSection/ComputerInfoSection";
 import { ReactComponent as CommonInfoIcon } from "../../../assets/icons/common-info.svg";
 import { ReactComponent as CPUIcon } from "../../../assets/icons/cpu.svg";
 import { ReactComponent as RAMIcon } from "../../../assets/icons/ram.svg";
 import { ReactComponent as HDDIcon } from "../../../assets/icons/hdd.svg";
+import { ReactComponent as BackupIcon } from "../../../assets/icons/backup.svg";
+import { ReactComponent as ToolsIcon } from "../../../assets/icons/tools.svg";
+import { ReactComponent as CommentIcon } from "../../../assets/icons/comment.svg";
 
 import { useStyles } from "./Computer.styles";
 import { useAppSelector } from "../../../store/hooks/store.hooks";
+
+import { COMMON_INFO_TERMS, CPU_INFO_TERMS } from "./Computer.constants";
 
 import { IdRouteParam } from "../../../interfaces/id.param.type";
 
@@ -30,28 +36,20 @@ const Computer: FC = () => {
 				{currComputer.pcName} / {currComputer.pcPurpose}
 			</Typography>
 			<Box className={classes.computerInfo}>
-				<Box className={classes.computerInfoSection}>
-					<Typography
-						variant="h6"
-						component="h3"
-						className={classes.computerSubheading}
-					>
-						<CommonInfoIcon className={classes.computerSubheadingIcon} />
-						Общая информация
-					</Typography>
-					<Divider />
-				</Box>
-				<Box className={classes.computerInfoSection}>
-					<Typography
-						variant="h6"
-						component="h3"
-						className={classes.computerSubheading}
-					>
-						<CPUIcon className={classes.computerSubheadingIcon} />
-						Центральный процессор
-					</Typography>
-					<Divider />
-				</Box>
+				<ComputerInfoSection
+					title="Общая информация"
+					icon={CommonInfoIcon}
+					computer={currComputer}
+					terms={COMMON_INFO_TERMS}
+				/>
+				<ComputerInfoSection
+					title="Центральный процессор"
+					icon={CPUIcon}
+					computer={currComputer}
+					terms={CPU_INFO_TERMS}
+				/>
+
+				{/* 
 				<Box className={classes.computerInfoSection}>
 					<Typography
 						variant="h6"
@@ -74,6 +72,43 @@ const Computer: FC = () => {
 					</Typography>
 					<Divider />
 				</Box>
+				<Box className={classes.computerInfoSection}>
+					<Typography
+						variant="h6"
+						component="h3"
+						className={classes.computerSubheading}
+					>
+						<BackupIcon
+							className={classes.computerSubheadingIcon}
+						/>
+						Резервные копии
+					</Typography>
+					<Divider />
+				</Box>
+				<Box className={classes.computerInfoSection}>
+					<Typography
+						variant="h6"
+						component="h3"
+						className={classes.computerSubheading}
+					>
+						<ToolsIcon className={classes.computerSubheadingIcon} />
+						Возможности модернизации
+					</Typography>
+					<Divider />
+				</Box>
+				<Box className={classes.computerInfoSection}>
+					<Typography
+						variant="h6"
+						component="h3"
+						className={classes.computerSubheading}
+					>
+						<CommentIcon
+							className={classes.computerSubheadingIcon}
+						/>
+						Комментарии
+					</Typography>
+					<Divider />
+				</Box> */}
 			</Box>
 		</Box>
 	);

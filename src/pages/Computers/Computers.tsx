@@ -38,7 +38,9 @@ const Computers: FC = () => {
 		setPage(newPage);
 	};
 
-	const rowsPerPageChangeHandler = (e: ChangeEvent<HTMLInputElement>): void => {
+	const rowsPerPageChangeHandler = (
+		e: ChangeEvent<HTMLInputElement>
+	): void => {
 		setRowsPerPage(Number(e.target.value));
 		setPage(0);
 	};
@@ -59,7 +61,9 @@ const Computers: FC = () => {
 									rowsPerPage={rowsPerPage}
 									search={search}
 									onPageChange={changePageHandler}
-									onRowsPerPageChange={rowsPerPageChangeHandler}
+									onRowsPerPageChange={
+										rowsPerPageChangeHandler
+									}
 									onSearchChange={searchChangeHandler}
 								/>
 							)}
@@ -70,7 +74,6 @@ const Computers: FC = () => {
 							path="/computers/:id"
 							component={Computer}
 							allowedRole={Roles.USER}
-							exact
 						/>
 					</Switch>
 				</Paper>

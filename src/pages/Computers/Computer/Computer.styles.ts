@@ -8,16 +8,4 @@ export const useStyles = makeStyles((theme: Theme) => ({
 	computerInfo: {
 		marginTop: theme.spacing(2),
 	},
-	computerInfoSection: {
-		padding: `${theme.spacing(3)} 0`,
-	},
-	computerSubheading: {
-		display: "flex",
-		alignItems: "center",
-	},
-	computerSubheadingIcon: {
-		width: 24,
-		height: 24,
-		marginRight: theme.spacing(2),
-	},
 }));
