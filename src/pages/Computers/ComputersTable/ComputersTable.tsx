@@ -1,4 +1,4 @@
-import { FC, ChangeEvent, useState } from "react";
+import { FC } from "react";
 import {
 	Box,
 	TableContainer,
@@ -18,37 +18,24 @@ import SearchField from "../../../components/SearchField/SearchField";
 import { useStyles } from "./ComputersTable.styles";
 import { useAppSelector } from "../../../store/hooks/store.hooks";
 
-import { COMPUTERS_PER_PAGE_OPTIONS } from "./ComputersTable.constants";
+import { COMPUTERS_PER_PAGE_OPTIONS } from "../Computers.constants";
 
 import { IComputer } from "../../../interfaces/computer.interface";
+import { IComputersTableProps } from "./ComputersTable.interfaces";
 
-const ComputersTable: FC = () => {
+const ComputersTable: FC<IComputersTableProps> = (props) => {
+	const {
+		page,
+		rowsPerPage,
+		search,
+		onPageChange,
+		onRowsPerPageChange,
+		onSearchChange,
+	} = props;
+
 	const classes = useStyles();
 
-	const { isLoading, computers } = useAppSelector(
-		({ computers }) => computers
-	);
-
-	const [search, setSearch] = useState<string>("");
-	const [page, setPage] = useState<number>(0);
-	const [rowsPerPage, setRowsPerPage] = useState<number>(
-		COMPUTERS_PER_PAGE_OPTIONS[0]
-	);
-
-	const searchChangeHandler = (value: string): void => {
-		setSearch(value);
-	};
-
-	const changePageHandler = (e: unknown, newPage: number): void => {
-		setPage(newPage);
-	};
-
-	const rowsPerPageChangeHandler = (
-		e: ChangeEvent<HTMLInputElement>
-	): void => {
-		setRowsPerPage(Number(e.target.value));
-		setPage(0);
-	};
+	const { isLoading, computers } = useAppSelector(({ computers }) => computers);
 
 	const filterComputers = (): IComputer[] => {
 		const searchTemplate = search.trim().toLowerCase();
@@ -96,12 +83,8 @@ const ComputersTable: FC = () => {
 						<TableHead>
 							<TableRow>
 								<TableCell sx={{ width: "5%" }}></TableCell>
-								<TableCell sx={{ width: "10%" }}>
-									Наименование
-								</TableCell>
-								<TableCell sx={{ width: "25%" }}>
-									Назначение
-								</TableCell>
+								<TableCell sx={{ width: "10%" }}>Наименование</TableCell>
+								<TableCell sx={{ width: "25%" }}>Назначение</TableCell>
 								<TableCell sx={{ width: "25%" }}>
 									Операционная система
 								</TableCell>
@@ -114,14 +97,9 @@ const ComputersTable: FC = () => {
 							</TableRow>
 						</TableHead>
 						<TableBody>
-							{getComputersSlice(filteredComputers).map(
-								(computer) => (
-									<ComputersTableRow
-										key={computer._id}
-										computer={computer}
-									/>
-								)
-							)}
+							{getComputersSlice(filteredComputers).map((computer) => (
+								<ComputersTableRow key={computer._id} computer={computer} />
+							))}
 						</TableBody>
 					</Table>
 				</TableContainer>
@@ -132,8 +110,8 @@ const ComputersTable: FC = () => {
 					rowsPerPage={rowsPerPage}
 					page={page}
 					labelRowsPerPage="Показывать по:"
-					onPageChange={changePageHandler}
-					onRowsPerPageChange={rowsPerPageChangeHandler}
+					onPageChange={onPageChange}
+					onRowsPerPageChange={onRowsPerPageChange}
 				/>
 			</>
 		);
@@ -145,7 +123,7 @@ const ComputersTable: FC = () => {
 				value={search}
 				label="Искать по имени / назначению"
 				className={classes.computersTableSearch}
-				onChange={searchChangeHandler}
+				onChange={onSearchChange}
 			/>
 			{computersTableContent}
 		</Box>

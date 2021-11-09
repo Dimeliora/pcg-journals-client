@@ -6,8 +6,8 @@ import Layout from "./Layout/Layout";
 import PrivateRoute from "./PrivateRoute/PrivateRoute";
 import Login from "../pages/Login/Login";
 import Home from "../pages/Home/Home";
-import Computers from "../pages/Computers/Computers";
 import Dashboard from "../pages/Dashboard/Dashboard";
+import Computers from "../pages/Computers/Computers";
 
 import { Roles } from "../interfaces/user.interfaces";
 
@@ -24,14 +24,14 @@ const App: FC = () => {
 					exact
 				/>
 				<PrivateRoute
-					allowedRole={Roles.USER}
-					path="/computers"
-					component={Computers}
-				/>
-				<PrivateRoute
 					allowedRole={Roles.ADMIN}
 					path="/dashboard"
 					component={Dashboard}
+				/>
+				<PrivateRoute
+					allowedRole={Roles.USER}
+					path="/computers"
+					component={Computers}
 				/>
 			</Switch>
 		</Layout>
