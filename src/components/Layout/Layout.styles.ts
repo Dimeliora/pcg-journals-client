@@ -5,7 +5,6 @@ import { SIDEBAR_WIDTH } from "./Layout.constants";
 export const useStyles = makeStyles((theme: Theme) => ({
 	layoutRoot: {
 		display: "flex",
-		height: "100%",
 	},
 	header: {
 		width: `calc(100% - ${SIDEBAR_WIDTH}px)`,
@@ -24,7 +23,6 @@ export const useStyles = makeStyles((theme: Theme) => ({
 	},
 	logoLink: {
 		display: "block",
-
 		padding: 10,
 	},
 	logoImage: {
@@ -36,6 +34,8 @@ export const useStyles = makeStyles((theme: Theme) => ({
 	layoutContent: {
 		flexGrow: 1,
 		width: `calc(100% - ${SIDEBAR_WIDTH}px)`,
-		height: "100%",
+	},
+	layoutContentSection: {
+		padding: `${theme.spacing(3)} 0`,
 	},
 }));

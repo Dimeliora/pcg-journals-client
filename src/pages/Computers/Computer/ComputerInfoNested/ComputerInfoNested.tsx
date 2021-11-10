@@ -12,29 +12,32 @@ const ComputerInfoNestedList = <T extends object>(
 
 	const classes = useStyles();
 
+	const hasItems = items.length > 0;
+
 	return (
 		<>
-			{items.map((item, idx) => (
-				<Box key={idx} className={classes.computerInfoNested}>
-					<Typography
-						variant="h6"
-						component="h4"
-						className={classes.computerInfoNestedSubheading}
-					>
-						{title} #{idx + 1}
-					</Typography>
-					<List className={classes.computerInfoNestedList}>
-						{Object.entries(terms).map(([term, description]) => (
-							<ListItem key={term}>
-								<ListItemText
-									primary={description}
-									secondary={item[term as keyof T] || "н/д"}
-								/>
-							</ListItem>
-						))}
-					</List>
-				</Box>
-			))}
+			{hasItems &&
+				items.map((item, idx) => (
+					<Box key={idx} className={classes.computerInfoNested}>
+						<Typography
+							variant="h6"
+							component="h4"
+							className={classes.computerInfoNestedSubheading}
+						>
+							{title} #{idx + 1}
+						</Typography>
+						<List className={classes.computerInfoNestedList}>
+							{Object.entries(terms).map(([term, description]) => (
+								<ListItem key={term}>
+									<ListItemText
+										primary={description}
+										secondary={item[term as keyof T] || "н/д"}
+									/>
+								</ListItem>
+							))}
+						</List>
+					</Box>
+				))}
 		</>
 	);
 };

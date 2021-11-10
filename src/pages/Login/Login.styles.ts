@@ -9,6 +9,10 @@ export const useStyles = makeStyles((theme: Theme) => ({
 		height: "100%",
 	},
 	loginWrapper: {
+		position: "absolute",
+		top: "50%",
+		left: "50%",
+		transform: "translate(-50%, -50%)",
 		minWidth: 400,
 		padding: theme.spacing(3),
 	},

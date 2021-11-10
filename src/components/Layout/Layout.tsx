@@ -72,7 +72,9 @@ const Layout: FC = ({ children }) => {
 			)}
 			<Box className={classes.layoutContent}>
 				{isAuth && <Box className={classes.layoutContentPaddingTopBox} />}
-				{children}
+				<Box component="section" className={classes.layoutContentSection}>
+					{children}
+				</Box>
 			</Box>
 		</Box>
 	);

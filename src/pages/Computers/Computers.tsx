@@ -1,6 +1,6 @@
 import { FC, ChangeEvent, useState, useLayoutEffect } from "react";
 import { Switch } from "react-router-dom";
-import { Box, Container, Paper, Typography } from "@mui/material";
+import { Container, Paper, Typography } from "@mui/material";
 
 import PrivateRoute from "../../components/PrivateRoute/PrivateRoute";
 import ComputersTable from "./ComputersTable/ComputersTable";
@@ -44,37 +44,35 @@ const Computers: FC = () => {
 	};
 
 	return (
-		<Box component="section" className={classes.computers}>
-			<Container maxWidth="xl">
-				<Paper className={classes.computersSection}>
-					<Typography variant="h4" component="h2">
-						Серверы и АРМ
-					</Typography>
-					<Switch>
-						<PrivateRoute
-							path="/computers"
-							render={() => (
-								<ComputersTable
-									page={page}
-									rowsPerPage={rowsPerPage}
-									search={search}
-									onPageChange={changePageHandler}
-									onRowsPerPageChange={rowsPerPageChangeHandler}
-									onSearchChange={searchChangeHandler}
-								/>
-							)}
-							allowedRole={Roles.USER}
-							exact
-						/>
-						<PrivateRoute
-							path="/computers/:id"
-							component={Computer}
-							allowedRole={Roles.USER}
-						/>
-					</Switch>
-				</Paper>
-			</Container>
-		</Box>
+		<Container maxWidth="xl">
+			<Paper className={classes.computersSection}>
+				<Typography variant="h4" component="h2">
+					Серверы и АРМ
+				</Typography>
+				<Switch>
+					<PrivateRoute
+						path="/computers"
+						render={() => (
+							<ComputersTable
+								page={page}
+								rowsPerPage={rowsPerPage}
+								search={search}
+								onPageChange={changePageHandler}
+								onRowsPerPageChange={rowsPerPageChangeHandler}
+								onSearchChange={searchChangeHandler}
+							/>
+						)}
+						allowedRole={Roles.USER}
+						exact
+					/>
+					<PrivateRoute
+						path="/computers/:id"
+						component={Computer}
+						allowedRole={Roles.USER}
+					/>
+				</Switch>
+			</Paper>
+		</Container>
 	);
 };
 
