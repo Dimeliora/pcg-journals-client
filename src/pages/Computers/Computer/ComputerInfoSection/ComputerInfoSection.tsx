@@ -29,16 +29,18 @@ const ComputerInfoSection: FC<IComputerInfoSectionProps> = (props) => {
 				{title}
 			</Typography>
 			<Divider />
-			<List className={classes.computerInfoList}>
-				{Object.entries(terms).map(([term, descripion]) => (
-					<ListItem key={term}>
-						<ListItemText
-							primary={descripion}
-							secondary={computer[term as keyof IComputer] || "н/д"}
-						/>
-					</ListItem>
-				))}
-			</List>
+			{computer && terms && (
+				<List className={classes.computerInfoList}>
+					{Object.entries(terms).map(([term, descripion]) => (
+						<ListItem key={term}>
+							<ListItemText
+								primary={descripion}
+								secondary={computer[term as keyof IComputer]}
+							/>
+						</ListItem>
+					))}
+				</List>
+			)}
 			{children}
 		</Box>
 	);

@@ -24,6 +24,9 @@ import {
 	HDD_INFO_TERMS,
 	DISKS,
 	HDD_DISK_INFO_TERMS,
+	BACKUPS,
+	BACKUP_INFO_TERMS,
+	UPGRADE_INFO_TERMS,
 } from "./Computer.constants";
 
 import { IdRouteParam } from "../../../interfaces/id.param.type";
@@ -52,12 +55,14 @@ const Computer: FC = () => {
 					computer={currComputer}
 					terms={COMMON_INFO_TERMS}
 				/>
+
 				<ComputerInfoSection
 					title="Центральный процессор"
 					icon={CPUIcon}
 					computer={currComputer}
 					terms={CPU_INFO_TERMS}
 				/>
+
 				<ComputerInfoSection
 					title="Оперативная память"
 					icon={RAMIcon}
@@ -70,6 +75,7 @@ const Computer: FC = () => {
 						terms={RAM_MODULE_INFO_TERMS}
 					/>
 				</ComputerInfoSection>
+
 				<ComputerInfoSection
 					title="Жёсткие диски"
 					icon={HDDIcon}
@@ -83,46 +89,22 @@ const Computer: FC = () => {
 					/>
 				</ComputerInfoSection>
 
-				{/*		
-				<Box className={classes.computerInfoSection}>
-					<Typography
-						variant="h6"
-						component="h3"
-						className={classes.computerSubheading}
-					>
-						<BackupIcon
-							className={classes.computerSubheadingIcon}
-						/>
-						Резервные копии
-					</Typography>
-					<Divider />
-				</Box>
+				<ComputerInfoSection title="Резервные копии" icon={BackupIcon}>
+					<ComputerInfoNested
+						title="Копия"
+						items={currComputer[BACKUPS]}
+						terms={BACKUP_INFO_TERMS}
+					/>
+				</ComputerInfoSection>
 
-				<Box className={classes.computerInfoSection}>
-					<Typography
-						variant="h6"
-						component="h3"
-						className={classes.computerSubheading}
-					>
-						<ToolsIcon className={classes.computerSubheadingIcon} />
-						Возможности модернизации
-					</Typography>
-					<Divider />
-				</Box>
+				<ComputerInfoSection
+					title="Возможности модернизации"
+					icon={ToolsIcon}
+					computer={currComputer}
+					terms={UPGRADE_INFO_TERMS}
+				/>
 
-				<Box className={classes.computerInfoSection}>
-					<Typography
-						variant="h6"
-						component="h3"
-						className={classes.computerSubheading}
-					>
-						<CommentIcon
-							className={classes.computerSubheadingIcon}
-						/>
-						Комментарии
-					</Typography>
-					<Divider />
-				</Box> */}
+				<ComputerInfoSection title="Комментарии" icon={CommentIcon} />
 			</Box>
 		</Box>
 	);

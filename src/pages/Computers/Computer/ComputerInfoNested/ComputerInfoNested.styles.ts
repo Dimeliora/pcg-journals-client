@@ -4,7 +4,7 @@ import { makeStyles } from "@mui/styles";
 export const useStyles = makeStyles((theme: Theme) => ({
 	computerInfoNested: {
 		display: "flex",
-		alignItems: "center",
+		alignItems: "baseline",
 		padding: `0 ${theme.spacing(2)}`,
 	},
 	computerInfoNestedSubheading: {

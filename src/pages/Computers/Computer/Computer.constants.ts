@@ -31,25 +31,33 @@ export const RAM_INFO_TERMS = {
 export const RAM_MODULES = "ramModules";
 
 export const RAM_MODULE_INFO_TERMS = {
-	ramModuleSize: "Объём модуля, Гб",
+	ramModuleSize: "Объём, Гб",
 };
 
 export const HDD_INFO_TERMS = {
 	raidMode: "Режим RAID",
-	totalDiskSpace: "Суммарный объем, Гб",
+	totalDiskSpace: "Суммарный объём, Гб",
 };
 
 export const DISKS = "disks";
 
 export const HDD_DISK_INFO_TERMS = {
-	hddModel: "Модель диска",
-	hddSize: "Объём диска, Гб",
-	hddFormFactor: "Форм-фактор диска",
+	hddModel: "Модель",
+	hddSize: "Объём, Гб",
+	hddFormFactor: "Форм-фактор",
 	SMART: "Статус S.M.A.R.T.",
+};
+
+export const BACKUPS = "pcBackups";
+
+export const BACKUP_INFO_TERMS = {
+	backupDate: "Дата",
+	backupSize: "Размер, Гб",
+	backupStorage: "Расположение",
 };
 
 export const UPGRADE_INFO_TERMS = {
 	cpuUpgrade: "Центральный процессор",
 	ramUpgrade: "Оперативная память",
-	hddUpgrade: "Жесткие диски",
+	hddUpgrade: "Жёсткие диски",
 };

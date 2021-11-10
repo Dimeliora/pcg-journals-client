@@ -9,6 +9,6 @@ export interface IComputerInfoSectionProps {
 			title?: string | undefined;
 		}
 	>;
-	computer: IComputer;
-	terms: { [key: string]: string };
+	computer?: IComputer;
+	terms?: { [key: string]: string };
 }
