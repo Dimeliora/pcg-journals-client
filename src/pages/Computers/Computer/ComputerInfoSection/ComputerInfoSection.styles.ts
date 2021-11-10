@@ -16,6 +16,6 @@ export const useStyles = makeStyles((theme: Theme) => ({
 	},
 	computerInfoList: {
 		display: "grid",
-		gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
+		gridTemplateColumns: "repeat(auto-fill, minmax(250px, 1fr))",
 	},
 }));

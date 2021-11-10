@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { Box, Typography } from "@mui/material";
 
 import ComputerInfoSection from "./ComputerInfoSection/ComputerInfoSection";
+import ComputerInfoNested from "./ComputerInfoNested/ComputerInfoNested";
 import { ReactComponent as CommonInfoIcon } from "../../../assets/icons/common-info.svg";
 import { ReactComponent as CPUIcon } from "../../../assets/icons/cpu.svg";
 import { ReactComponent as RAMIcon } from "../../../assets/icons/ram.svg";
@@ -14,7 +15,16 @@ import { ReactComponent as CommentIcon } from "../../../assets/icons/comment.svg
 import { useStyles } from "./Computer.styles";
 import { useAppSelector } from "../../../store/hooks/store.hooks";
 
-import { COMMON_INFO_TERMS, CPU_INFO_TERMS } from "./Computer.constants";
+import {
+	COMMON_INFO_TERMS,
+	CPU_INFO_TERMS,
+	RAM_INFO_TERMS,
+	RAM_MODULES,
+	RAM_MODULE_INFO_TERMS,
+	HDD_INFO_TERMS,
+	DISKS,
+	HDD_DISK_INFO_TERMS,
+} from "./Computer.constants";
 
 import { IdRouteParam } from "../../../interfaces/id.param.type";
 
@@ -48,30 +58,32 @@ const Computer: FC = () => {
 					computer={currComputer}
 					terms={CPU_INFO_TERMS}
 				/>
+				<ComputerInfoSection
+					title="Оперативная память"
+					icon={RAMIcon}
+					computer={currComputer}
+					terms={RAM_INFO_TERMS}
+				>
+					<ComputerInfoNested
+						title="Модуль"
+						items={currComputer[RAM_MODULES]}
+						terms={RAM_MODULE_INFO_TERMS}
+					/>
+				</ComputerInfoSection>
+				<ComputerInfoSection
+					title="Жёсткие диски"
+					icon={HDDIcon}
+					computer={currComputer}
+					terms={HDD_INFO_TERMS}
+				>
+					<ComputerInfoNested
+						title="Диск"
+						items={currComputer[DISKS]}
+						terms={HDD_DISK_INFO_TERMS}
+					/>
+				</ComputerInfoSection>
 
-				{/* 
-				<Box className={classes.computerInfoSection}>
-					<Typography
-						variant="h6"
-						component="h3"
-						className={classes.computerSubheading}
-					>
-						<RAMIcon className={classes.computerSubheadingIcon} />
-						Оперативная память
-					</Typography>
-					<Divider />
-				</Box>
-				<Box className={classes.computerInfoSection}>
-					<Typography
-						variant="h6"
-						component="h3"
-						className={classes.computerSubheading}
-					>
-						<HDDIcon className={classes.computerSubheadingIcon} />
-						Жёсткие диски
-					</Typography>
-					<Divider />
-				</Box>
+				{/*		
 				<Box className={classes.computerInfoSection}>
 					<Typography
 						variant="h6"
@@ -85,6 +97,7 @@ const Computer: FC = () => {
 					</Typography>
 					<Divider />
 				</Box>
+
 				<Box className={classes.computerInfoSection}>
 					<Typography
 						variant="h6"
@@ -96,6 +109,7 @@ const Computer: FC = () => {
 					</Typography>
 					<Divider />
 				</Box>
+
 				<Box className={classes.computerInfoSection}>
 					<Typography
 						variant="h6"

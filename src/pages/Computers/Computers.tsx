@@ -38,15 +38,13 @@ const Computers: FC = () => {
 		setPage(newPage);
 	};
 
-	const rowsPerPageChangeHandler = (
-		e: ChangeEvent<HTMLInputElement>
-	): void => {
+	const rowsPerPageChangeHandler = (e: ChangeEvent<HTMLInputElement>): void => {
 		setRowsPerPage(Number(e.target.value));
 		setPage(0);
 	};
 
 	return (
-		<Box component="section">
+		<Box component="section" className={classes.computers}>
 			<Container maxWidth="xl">
 				<Paper className={classes.computersSection}>
 					<Typography variant="h4" component="h2">
@@ -61,9 +59,7 @@ const Computers: FC = () => {
 									rowsPerPage={rowsPerPage}
 									search={search}
 									onPageChange={changePageHandler}
-									onRowsPerPageChange={
-										rowsPerPageChangeHandler
-									}
+									onRowsPerPageChange={rowsPerPageChangeHandler}
 									onSearchChange={searchChangeHandler}
 								/>
 							)}

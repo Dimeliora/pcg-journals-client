@@ -14,7 +14,7 @@ import { IComputerInfoSectionProps } from "./ComputerInfoSection.interfaces";
 import { IComputer } from "../../../../interfaces/computer.interface";
 
 const ComputerInfoSection: FC<IComputerInfoSectionProps> = (props) => {
-	const { title, icon: Icon, computer, terms } = props;
+	const { title, icon: Icon, computer, terms, children } = props;
 
 	const classes = useStyles();
 
@@ -34,13 +34,12 @@ const ComputerInfoSection: FC<IComputerInfoSectionProps> = (props) => {
 					<ListItem key={term}>
 						<ListItemText
 							primary={descripion}
-							secondary={
-								computer[term as keyof IComputer] || "н/д"
-							}
+							secondary={computer[term as keyof IComputer] || "н/д"}
 						/>
 					</ListItem>
 				))}
 			</List>
+			{children}
 		</Box>
 	);
 };

@@ -10,7 +10,7 @@ const Dashboard: FC = () => {
 	const classes = useStyles();
 
 	return (
-		<Box component="section">
+		<Box component="section" className={classes.dashboard}>
 			<Container maxWidth="xl">
 				<Paper className={classes.dashboardUsers}>
 					<Typography variant="h4" component="h2">

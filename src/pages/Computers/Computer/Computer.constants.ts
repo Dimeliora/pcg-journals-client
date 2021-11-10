@@ -28,9 +28,24 @@ export const RAM_INFO_TERMS = {
 	ramTotalModules: "Макс. число модулей",
 };
 
+export const RAM_MODULES = "ramModules";
+
+export const RAM_MODULE_INFO_TERMS = {
+	ramModuleSize: "Объём модуля, Гб",
+};
+
 export const HDD_INFO_TERMS = {
 	raidMode: "Режим RAID",
 	totalDiskSpace: "Суммарный объем, Гб",
+};
+
+export const DISKS = "disks";
+
+export const HDD_DISK_INFO_TERMS = {
+	hddModel: "Модель диска",
+	hddSize: "Объём диска, Гб",
+	hddFormFactor: "Форм-фактор диска",
+	SMART: "Статус S.M.A.R.T.",
 };
 
 export const UPGRADE_INFO_TERMS = {
