@@ -5,6 +5,9 @@ export const useStyles = makeStyles((theme: Theme) => ({
 	computer: {
 		marginTop: theme.spacing(2),
 	},
+	computerPlaceholder: {
+		transform: "scale(1, 0.9)",
+	},
 	computerInfo: {
 		marginTop: theme.spacing(2),
 	},

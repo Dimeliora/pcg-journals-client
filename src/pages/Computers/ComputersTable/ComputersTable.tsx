@@ -35,18 +35,20 @@ const ComputersTable: FC<IComputersTableProps> = (props) => {
 
 	const classes = useStyles();
 
-	const { isLoading, computers } = useAppSelector(({ computers }) => computers);
+	const { isLoading, computers } = useAppSelector(
+		({ computers }) => computers
+	);
 
-		const changePageHandler = (e: unknown, newPage: number): void => {
-			onPageChange(newPage);
-		};
+	const changePageHandler = (e: unknown, newPage: number): void => {
+		onPageChange(newPage);
+	};
 
-		const rowsPerPageChangeHandler = (
-			e: ChangeEvent<HTMLInputElement>
-		): void => {
-			onRowsPerPageChange(Number(e.target.value));
-			onPageChange(0);
-		};  
+	const rowsPerPageChangeHandler = (
+		e: ChangeEvent<HTMLInputElement>
+	): void => {
+		onRowsPerPageChange(Number(e.target.value));
+		onPageChange(0);
+	};
 
 	const filterComputers = (): IComputer[] => {
 		const searchTemplate = search.trim().toLowerCase();
@@ -77,12 +79,12 @@ const ComputersTable: FC<IComputersTableProps> = (props) => {
 				height={56.5}
 				animation="wave"
 				className={classes.computersTablePlaceholder}
-			></Skeleton>
+			/>
 			<Skeleton
 				height={56.5 * rowsPerPage}
 				animation="wave"
 				className={classes.computersTablePlaceholder}
-			></Skeleton>
+			/>
 		</Stack>
 	);
 
@@ -94,8 +96,12 @@ const ComputersTable: FC<IComputersTableProps> = (props) => {
 						<TableHead>
 							<TableRow>
 								<TableCell sx={{ width: "5%" }}></TableCell>
-								<TableCell sx={{ width: "10%" }}>Наименование</TableCell>
-								<TableCell sx={{ width: "25%" }}>Назначение</TableCell>
+								<TableCell sx={{ width: "10%" }}>
+									Наименование
+								</TableCell>
+								<TableCell sx={{ width: "25%" }}>
+									Назначение
+								</TableCell>
 								<TableCell sx={{ width: "25%" }}>
 									Операционная система
 								</TableCell>
@@ -108,9 +114,14 @@ const ComputersTable: FC<IComputersTableProps> = (props) => {
 							</TableRow>
 						</TableHead>
 						<TableBody>
-							{getComputersSlice(filteredComputers).map((computer) => (
-								<ComputersTableRow key={computer._id} computer={computer} />
-							))}
+							{getComputersSlice(filteredComputers).map(
+								(computer) => (
+									<ComputersTableRow
+										key={computer._id}
+										computer={computer}
+									/>
+								)
+							)}
 						</TableBody>
 					</Table>
 				</TableContainer>

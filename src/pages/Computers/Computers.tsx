@@ -5,6 +5,7 @@ import { Container, Paper, Typography } from "@mui/material";
 import PrivateRoute from "../../components/PrivateRoute/PrivateRoute";
 import ComputersTable from "./ComputersTable/ComputersTable";
 import Computer from "./Computer/Computer";
+import ComputerForm from "./ComputerForm/ComputerForm";
 
 import { useAppDispatch } from "../../store/hooks/store.hooks";
 import { useStyles } from "./Computers.styles";
@@ -68,6 +69,12 @@ const Computers: FC = () => {
 					<PrivateRoute
 						path="/computers/:id"
 						component={Computer}
+						allowedRole={Roles.USER}
+						exact
+					/>
+					<PrivateRoute
+						path="/computers/edit/:id"
+						component={ComputerForm}
 						allowedRole={Roles.USER}
 					/>
 				</Switch>
