@@ -25,6 +25,12 @@ export interface IBackups {
 	backupStorage: string;
 }
 
+export interface IComment {
+	commentUsername: string;
+	commentDate: string;
+	commentText: string;
+}
+
 export interface ILastModifier {
 	username: string;
 }
@@ -63,7 +69,7 @@ export interface IComputer {
 	ramUpgrade: string;
 	hddUpgrade: string;
 	pcBackups: IBackups[];
-	pcComments: string;
+	pcComments: IComment[];
 	updatedAt: string;
 	lastModifier: ILastModifier;
 }

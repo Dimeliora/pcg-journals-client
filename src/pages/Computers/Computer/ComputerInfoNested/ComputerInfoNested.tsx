@@ -31,7 +31,7 @@ const ComputerInfoNestedList = <T extends object>(
 								<ListItem key={term}>
 									<ListItemText
 										primary={description}
-										secondary={item[term as keyof T]}
+										secondary={item[term as keyof T] || "н/д"}
 									/>
 								</ListItem>
 							))}

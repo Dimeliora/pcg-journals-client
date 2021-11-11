@@ -4,6 +4,7 @@ import { Box, Typography } from "@mui/material";
 
 import ComputerInfoSection from "./ComputerInfoSection/ComputerInfoSection";
 import ComputerInfoNested from "./ComputerInfoNested/ComputerInfoNested";
+import ComputerInfoComments from "./ComputerInfoComments/ComputerInfoComments";
 import { ReactComponent as CommonInfoIcon } from "../../../assets/icons/common-info.svg";
 import { ReactComponent as CPUIcon } from "../../../assets/icons/cpu.svg";
 import { ReactComponent as RAMIcon } from "../../../assets/icons/ram.svg";
@@ -27,6 +28,7 @@ import {
 	BACKUPS,
 	BACKUP_INFO_TERMS,
 	UPGRADE_INFO_TERMS,
+	COMMENTS,
 } from "./Computer.constants";
 
 import { IdRouteParam } from "../../../interfaces/id.param.type";
@@ -104,7 +106,9 @@ const Computer: FC = () => {
 					terms={UPGRADE_INFO_TERMS}
 				/>
 
-				<ComputerInfoSection title="Комментарии" icon={CommentIcon} />
+				<ComputerInfoSection title="Комментарии" icon={CommentIcon}>
+					<ComputerInfoComments comments={currComputer[COMMENTS]} />
+				</ComputerInfoSection>
 			</Box>
 		</Box>
 	);

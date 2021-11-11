@@ -61,3 +61,11 @@ export const UPGRADE_INFO_TERMS = {
 	ramUpgrade: "Оперативная память",
 	hddUpgrade: "Жёсткие диски",
 };
+
+export const COMMENTS = "pcComments";
+
+export const COMMENTS_INFO_TERMS = {
+	commentUsername: "Автор",
+	commentDate: "Дата",
+	commentText: "Комментарий",
+};
