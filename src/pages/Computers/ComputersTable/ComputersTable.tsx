@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, ChangeEvent } from "react";
 import {
 	Box,
 	TableContainer,
@@ -36,6 +36,17 @@ const ComputersTable: FC<IComputersTableProps> = (props) => {
 	const classes = useStyles();
 
 	const { isLoading, computers } = useAppSelector(({ computers }) => computers);
+
+		const changePageHandler = (e: unknown, newPage: number): void => {
+			onPageChange(newPage);
+		};
+
+		const rowsPerPageChangeHandler = (
+			e: ChangeEvent<HTMLInputElement>
+		): void => {
+			onRowsPerPageChange(Number(e.target.value));
+			onPageChange(0);
+		};  
 
 	const filterComputers = (): IComputer[] => {
 		const searchTemplate = search.trim().toLowerCase();
@@ -110,8 +121,8 @@ const ComputersTable: FC<IComputersTableProps> = (props) => {
 					rowsPerPage={rowsPerPage}
 					page={page}
 					labelRowsPerPage="Показывать по:"
-					onPageChange={onPageChange}
-					onRowsPerPageChange={onRowsPerPageChange}
+					onPageChange={changePageHandler}
+					onRowsPerPageChange={rowsPerPageChangeHandler}
 				/>
 			</>
 		);

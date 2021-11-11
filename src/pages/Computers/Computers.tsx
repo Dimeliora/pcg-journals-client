@@ -1,4 +1,4 @@
-import { FC, ChangeEvent, useState, useLayoutEffect } from "react";
+import { FC, useState, useLayoutEffect } from "react";
 import { Switch } from "react-router-dom";
 import { Container, Paper, Typography } from "@mui/material";
 
@@ -34,12 +34,12 @@ const Computers: FC = () => {
 		setSearch(value);
 	};
 
-	const changePageHandler = (e: unknown, newPage: number): void => {
-		setPage(newPage);
+	const changePageHandler = (value: number): void => {
+		setPage(value);
 	};
 
-	const rowsPerPageChangeHandler = (e: ChangeEvent<HTMLInputElement>): void => {
-		setRowsPerPage(Number(e.target.value));
+	const rowsPerPageChangeHandler = (value: number): void => {
+		setRowsPerPage(value);
 		setPage(0);
 	};
 
