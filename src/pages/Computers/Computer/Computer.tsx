@@ -5,6 +5,7 @@ import { Box, Typography } from "@mui/material";
 import ComputerInfoSection from "./ComputerInfoSection/ComputerInfoSection";
 import ComputerInfoNested from "./ComputerInfoNested/ComputerInfoNested";
 import ComputerInfoComments from "./ComputerInfoComments/ComputerInfoComments";
+import ComputerInfoControls from "./ComputerInfoControls/ComputerInfoControls";
 import { ReactComponent as CommonInfoIcon } from "../../../assets/icons/common-info.svg";
 import { ReactComponent as CPUIcon } from "../../../assets/icons/cpu.svg";
 import { ReactComponent as RAMIcon } from "../../../assets/icons/ram.svg";
@@ -50,6 +51,9 @@ const Computer: FC = () => {
 			<Typography variant="h5" component="h2">
 				{currComputer.pcName} / {currComputer.pcPurpose}
 			</Typography>
+
+			<ComputerInfoControls />
+
 			<Box className={classes.computerInfo}>
 				<ComputerInfoSection
 					title="Общая информация"

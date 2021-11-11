@@ -3,10 +3,14 @@ import { makeStyles } from "@mui/styles";
 
 export const useStyles = makeStyles((theme: Theme) => ({
 	computerInfoComments: {
+		marginTop: theme.spacing(2),
 		padding: `0 ${theme.spacing(2)}`,
 	},
 	computerInfoCommentsItem: {
-		marginTop: theme.spacing(2),
+		marginBottom: theme.spacing(3),
+		"&:last-child": {
+			marginBottom: 0,
+		},
 	},
 	computerInfoCommentsHead: {
 		fontWeight: 700,
