@@ -46,7 +46,7 @@ const UsersTableControl: FC<IUsersTableControlProps> = ({ user }) => {
 		setIsDeleteOpened(false);
 	};
 
-	const DeleteUserHandler = (): void => {
+	const deleteUserHandler = (): void => {
 		setIsDeleteOpened(false);
 		dispatch(deleteUserRequest(user._id));
 	};
@@ -123,7 +123,7 @@ const UsersTableControl: FC<IUsersTableControlProps> = ({ user }) => {
 								variant="contained"
 								size="small"
 								color="error"
-								onClick={DeleteUserHandler}
+								onClick={deleteUserHandler}
 							>
 								Удалить
 							</Button>

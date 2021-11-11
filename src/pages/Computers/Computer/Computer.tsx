@@ -52,7 +52,7 @@ const Computer: FC = () => {
 				{currComputer.pcName} / {currComputer.pcPurpose}
 			</Typography>
 
-			<ComputerInfoControls />
+			<ComputerInfoControls computer={currComputer} />
 
 			<Box className={classes.computerInfo}>
 				<ComputerInfoSection
