@@ -19,17 +19,17 @@ import {
 	useAppDispatch,
 } from "../../../store/hooks/store.hooks";
 
-import { getUsers } from "../../../store/reducers/admin.reducer";
+import { getUsersRequest } from "../../../store/reducers/admin.reducer";
 
 const UsersTable: FC = () => {
 	const classes = useStyles();
 
 	const dispatch = useAppDispatch();
 
-	const { isUsersFetching, users } = useAppSelector(({ admin }) => admin);
+	const { isLoading, users } = useAppSelector(({ admin }) => admin);
 
 	useLayoutEffect(() => {
-		dispatch(getUsers());
+		dispatch(getUsersRequest());
 	}, [dispatch]);
 
 	let usersTableContent: JSX.Element = (
@@ -38,23 +38,25 @@ const UsersTable: FC = () => {
 				height={36.5}
 				animation="wave"
 				className={classes.usersTablePlaceholder}
-			></Skeleton>
+			/>
 			<Skeleton
-				height={46.5 * 5}
+				height={250}
 				animation="wave"
 				className={classes.usersTablePlaceholder}
-			></Skeleton>
+			/>
 		</Stack>
 	);
 
-	if (!isUsersFetching) {
+	if (!isLoading) {
 		usersTableContent = (
 			<Table aria-label="Users table" size="small">
 				<TableHead>
 					<TableRow>
 						<TableCell>Имя пользователя</TableCell>
 						<TableCell>Роли пользователя</TableCell>
-						<TableCell align="right">Управление пользователем</TableCell>
+						<TableCell align="right">
+							Управление пользователем
+						</TableCell>
 					</TableRow>
 				</TableHead>
 				<TableBody>

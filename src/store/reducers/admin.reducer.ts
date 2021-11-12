@@ -17,7 +17,6 @@ import {
 } from "../../interfaces/axios.interfaces";
 
 const initialState: IAdminState = {
-	isUsersFetching: false,
 	isLoading: false,
 	isError: false,
 	users: [],
@@ -27,9 +26,6 @@ const adminReducer = createSlice({
 	name: "admin",
 	initialState,
 	reducers: {
-		setUserFetching(state) {
-			state.isUsersFetching = true;
-		},
 		setLoading(state) {
 			state.isLoading = true;
 		},
@@ -37,38 +33,21 @@ const adminReducer = createSlice({
 			state.isLoading = false;
 		},
 		setError(state) {
-			state.isUsersFetching = false;
 			state.isLoading = false;
 			state.isError = true;
 		},
 		setUsers(state, action: PayloadAction<IUser[]>) {
-			state.isUsersFetching = false;
+			state.isLoading = false;
 			state.users = action.payload;
-		},
-		addUser(state, action: PayloadAction<IUser>) {
-			state.isLoading = false;
-			state.users.push(action.payload);
-		},
-		deleteUser(state, action: PayloadAction<string>) {
-			state.isLoading = false;
-			state.users = state.users.filter((user) => user._id !== action.payload);
 		},
 	},
 });
 
-const {
-	setUserFetching,
-	setLoading,
-	resetLoading,
-	setError,
-	setUsers,
-	addUser,
-	deleteUser,
-} = adminReducer.actions;
+const { setLoading, resetLoading, setError, setUsers } = adminReducer.actions;
 
-export const getUsers = (): AppThunk => async (dispatch) => {
+export const getUsersRequest = (): AppThunk => async (dispatch) => {
 	try {
-		dispatch(setUserFetching());
+		dispatch(setLoading());
 
 		const config = getAuthConfig();
 		const { data } = await axios.get<IUser[]>(`${BASE_URL}/users`, config);
@@ -103,7 +82,10 @@ export const addUserRequest =
 				config
 			);
 
-			dispatch(addUser(data));
+			dispatch(getUsersRequest());
+			dispatch(
+				showAlert(`Пользователь ${data.username} добавлен`, "success")
+			);
 		} catch (error) {
 			dispatch(setError());
 
@@ -114,7 +96,7 @@ export const addUserRequest =
 		}
 	};
 
-export const changeUserPassword =
+export const changeUserPasswordRequest =
 	(userId: string, password: string): AppThunk =>
 	async (dispatch) => {
 		try {
@@ -150,7 +132,7 @@ export const deleteUserRequest =
 				config
 			);
 
-			dispatch(deleteUser(userId));
+			dispatch(getUsersRequest());
 			dispatch(showAlert(data.message, "success"));
 		} catch (error) {
 			dispatch(setError());

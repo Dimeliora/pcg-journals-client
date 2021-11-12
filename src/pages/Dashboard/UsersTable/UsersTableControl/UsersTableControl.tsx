@@ -13,13 +13,10 @@ import {
 import { Edit, PersonRemove } from "@mui/icons-material";
 
 import { useStyles } from "./UsersTableControl.styles";
-import {
-	useAppDispatch,
-	useAppSelector,
-} from "../../../../store/hooks/store.hooks";
+import { useAppDispatch } from "../../../../store/hooks/store.hooks";
 
 import {
-	changeUserPassword,
+	changeUserPasswordRequest,
 	deleteUserRequest,
 } from "../../../../store/reducers/admin.reducer";
 
@@ -33,8 +30,6 @@ const UsersTableControl: FC<IUsersTableControlProps> = ({ user }) => {
 	const classes = useStyles();
 
 	const dispatch = useAppDispatch();
-
-	const { isLoading } = useAppSelector(({ admin }) => admin);
 
 	const [isDeleteOpened, setIsDeleteOpened] = useState<boolean>(false);
 
@@ -59,7 +54,9 @@ const UsersTableControl: FC<IUsersTableControlProps> = ({ user }) => {
 				initialValues={USERS_TABLE_CONTROL_FORM_VALUE}
 				validationSchema={usersTableControlFormValidation}
 				onSubmit={(values) => {
-					dispatch(changeUserPassword(user._id, values.password));
+					dispatch(
+						changeUserPasswordRequest(user._id, values.password)
+					);
 					values.password = "";
 				}}
 			>
@@ -76,7 +73,6 @@ const UsersTableControl: FC<IUsersTableControlProps> = ({ user }) => {
 							error={touched.password && Boolean(errors.password)}
 							helperText={touched.password && errors.password}
 							onChange={handleChange}
-							disabled={isLoading}
 						/>
 						<Button
 							type="submit"
@@ -84,7 +80,6 @@ const UsersTableControl: FC<IUsersTableControlProps> = ({ user }) => {
 							color="info"
 							variant="contained"
 							endIcon={<Edit />}
-							disabled={isLoading}
 						>
 							Изменить
 						</Button>
@@ -99,7 +94,6 @@ const UsersTableControl: FC<IUsersTableControlProps> = ({ user }) => {
 						variant="contained"
 						className={classes.usersTableRemoveButton}
 						endIcon={<PersonRemove />}
-						disabled={isLoading}
 						onClick={openDeleteDialogHandler}
 					>
 						Удалить
