@@ -5,10 +5,11 @@ import { BASE_URL, getAuthConfig } from "../../configs/axios.configs";
 
 import { showAlert } from "./ui.reducer";
 
+import { IComputersState } from "../interfaces/computers.reducer.interface";
 import {
-	IComputersState,
-} from "../interfaces/computers.reducer.interface";
-import { AxiosErrorMessage } from "../../interfaces/axios.interfaces";
+	AxiosErrorMessage,
+	IResponseMessage,
+} from "../../interfaces/axios.interfaces";
 import { IComputer } from "../../interfaces/computer.interface";
 import { AppThunk } from "../interfaces/store.types";
 
@@ -58,5 +59,29 @@ export const getAllComputers = (): AppThunk => async (dispatch) => {
 		}
 	}
 };
+
+export const deleteComputerRequest =
+	(computerId: string): AppThunk =>
+	async (dispatch) => {
+		try {
+			dispatch(setLoading());
+
+			const config = getAuthConfig();
+			const { data } = await axios.delete<IResponseMessage>(
+				`${BASE_URL}/computers/${computerId}`,
+				config
+			);
+
+			dispatch(getAllComputers());
+			dispatch(showAlert(data.message, "success"));
+		} catch (error) {
+			dispatch(setError());
+
+			const axiosError = error as AxiosErrorMessage;
+			if (axiosError.response) {
+				dispatch(showAlert(axiosError.response.data.message, "error"));
+			}
+		}
+	};
 
 export default computersReducer.reducer;

@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { useParams } from "react-router-dom";
+import { Redirect, useParams } from "react-router-dom";
 import { Box, Typography, Stack, Skeleton } from "@mui/material";
 
 import ComputerInfoSection from "./ComputerInfoSection/ComputerInfoSection";
@@ -15,7 +15,12 @@ import { ReactComponent as ToolsIcon } from "../../../assets/icons/tools.svg";
 import { ReactComponent as CommentIcon } from "../../../assets/icons/comment.svg";
 
 import { useStyles } from "./Computer.styles";
-import { useAppSelector } from "../../../store/hooks/store.hooks";
+import {
+	useAppSelector,
+	useAppDispatch,
+} from "../../../store/hooks/store.hooks";
+
+import { showAlert } from "../../../store/reducers/ui.reducer";
 
 import {
 	COMMON_INFO_TERMS,
@@ -37,6 +42,8 @@ import { IdRouteParam } from "../../../interfaces/id.param.type";
 const Computer: FC = () => {
 	const classes = useStyles();
 
+	const dispatch = useAppDispatch();
+
 	const { id } = useParams<IdRouteParam>();
 
 	const { isLoading, computers } = useAppSelector(
@@ -45,8 +52,10 @@ const Computer: FC = () => {
 
 	const currComputer = computers.find((computer) => computer._id === id);
 
-	// TODO Skeleton while computers === [] & notification (redirect?) if pc not found by id...
-	// if (!currComputer) return null;
+	if (computers.length > 0 && !isLoading && !currComputer) {
+		dispatch(showAlert("Сервер/АРМ не найден", "error"));
+		return <Redirect to="/computers" />;
+	}
 
 	let computerContent: JSX.Element = (
 		<Stack>

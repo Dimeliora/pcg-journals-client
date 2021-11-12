@@ -12,7 +12,10 @@ import {
 } from "@mui/material";
 import { KeyboardReturn, Edit, DeleteForever } from "@mui/icons-material";
 
+import { useAppDispatch } from "../../../../store/hooks/store.hooks";
 import { useStyles } from "./ComputerInfoControls.styles";
+
+import { deleteComputerRequest } from "../../../../store/reducers/computers.reducer";
 
 import { IComputerInfoControlsProps } from "./ComputerInfoControls.interfaces";
 
@@ -20,6 +23,8 @@ const ComputerInfoControls: FC<IComputerInfoControlsProps> = ({ computer }) => {
 	const classes = useStyles();
 
 	const history = useHistory();
+
+	const dispatch = useAppDispatch();
 
 	const [isDeleteOpened, setIsDeleteOpened] = useState<boolean>(false);
 
@@ -40,7 +45,9 @@ const ComputerInfoControls: FC<IComputerInfoControlsProps> = ({ computer }) => {
 	};
 
 	const deleteComputerHandler = (): void => {
+		dispatch(deleteComputerRequest(computer._id));
 		setIsDeleteOpened(false);
+		history.push("/computers");
 	};
 
 	return (
