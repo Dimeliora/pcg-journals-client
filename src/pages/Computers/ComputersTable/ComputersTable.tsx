@@ -1,6 +1,8 @@
 import { FC, ChangeEvent } from "react";
+import { Link } from "react-router-dom";
 import {
 	Box,
+	Button,
 	TableContainer,
 	Table,
 	TableHead,
@@ -11,6 +13,7 @@ import {
 	Stack,
 	Skeleton,
 } from "@mui/material";
+import { Add } from "@mui/icons-material";
 
 import ComputersTableRow from "./ComputersTableRow/ComputersTableRow";
 import SearchField from "../../../components/SearchField/SearchField";
@@ -141,12 +144,23 @@ const ComputersTable: FC<IComputersTableProps> = (props) => {
 
 	return (
 		<Box className={classes.computersTable}>
-			<SearchField
-				value={search}
-				label="Искать по имени / назначению"
-				className={classes.computersTableSearch}
-				onChange={onSearchChange}
-			/>
+			<Box className={classes.computersTablePanel}>
+				<SearchField
+					value={search}
+					label="Искать по имени / назначению"
+					className={classes.computersTableSearch}
+					onChange={onSearchChange}
+				/>
+				<Button
+					variant="contained"
+					size="small"
+					endIcon={<Add />}
+					component={Link}
+					to="/computers/edit"
+				>
+					Добавить
+				</Button>
+			</Box>
 			{computersTableContent}
 		</Box>
 	);

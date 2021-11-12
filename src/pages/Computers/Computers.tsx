@@ -67,14 +67,14 @@ const Computers: FC = () => {
 						exact
 					/>
 					<PrivateRoute
-						path="/computers/:id"
-						component={Computer}
+						path="/computers/edit/:id?"
+						component={ComputerForm}
 						allowedRole={Roles.USER}
 						exact
 					/>
 					<PrivateRoute
-						path="/computers/edit/:id"
-						component={ComputerForm}
+						path="/computers/:id"
+						component={Computer}
 						allowedRole={Roles.USER}
 					/>
 				</Switch>

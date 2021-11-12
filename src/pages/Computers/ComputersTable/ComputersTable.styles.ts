@@ -5,6 +5,11 @@ export const useStyles = makeStyles((theme: Theme) => ({
 	computersTable: {
 		marginTop: theme.spacing(2),
 	},
+	computersTablePanel: {
+		display: "flex",
+		alignItems: "center",
+		justifyContent: "space-between",
+	},
 	computersTablePlaceholder: {
 		transform: "scale(1, 0.9)",
 	},
