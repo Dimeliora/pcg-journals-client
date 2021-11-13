@@ -3,7 +3,7 @@ import { makeStyles } from "@mui/styles";
 
 export const useStyles = makeStyles((theme: Theme) => ({
 	computerInfoSection: {
-		padding: `${theme.spacing(2)} 0`,
+		padding: `${theme.spacing(3)} 0`,
 	},
 	computerInfoSubheading: {
 		display: "flex",

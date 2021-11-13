@@ -22,4 +22,25 @@ export const ADD_COMPUTER_FORM_VALUES = {
 	cpuL3Cache: "",
 	ramType: "",
 	ramTotalModules: "",
+	ramModules: [],
+	raidMode: "",
+	totalDiskSpace: "",
+	disks: [],
+};
+
+export const ADD_COMPUTER_FORM_RAM_MODULE = {
+	ramModuleSize: "",
+};
+
+export const ADD_COMPUTER_FORM_DISK = {
+	hddModel: "",
+	hddSize: "",
+	hddFormFactor: "",
+	hddSmart: "",
+};
+
+export const ADD_COMPUTER_FORM_BACKUP = {
+	backupDate: "",
+	backupSize: "",
+	backupStorage: "",
 };

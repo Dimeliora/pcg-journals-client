@@ -12,6 +12,7 @@ import {
 import { useStyles } from "./ComputerFormSections.styles";
 
 import { IComputerFormSectionsProps } from "./ComputerFormSections.interfaces";
+import { ComputerTypes } from "../../../../interfaces/computer.interface";
 
 const ComputerFormCommon: FC<IComputerFormSectionsProps> = ({
 	values,
@@ -35,16 +36,16 @@ const ComputerFormCommon: FC<IComputerFormSectionsProps> = ({
 					value={values.pcType}
 					onChange={handleChange}
 					labelId="computer-form-pc-type"
-					error={touched.pcType && Boolean(errors.pcType)}
+					error={touched?.pcType && Boolean(errors?.pcType)}
 				>
 					<MenuItem value=""></MenuItem>
-					<MenuItem value="PC">АРМ</MenuItem>
-					<MenuItem value="SERVER">Сервер</MenuItem>
+					<MenuItem value={ComputerTypes.PC}>АРМ</MenuItem>
+					<MenuItem value={ComputerTypes.SERVER}>Сервер</MenuItem>
 				</Select>
 				<FormHelperText
-					error={touched.pcType && Boolean(errors.pcType)}
+					error={touched?.pcType && Boolean(errors?.pcType)}
 				>
-					{touched.pcType && errors.pcType}
+					{touched?.pcType && errors?.pcType}
 				</FormHelperText>
 			</FormControl>
 
@@ -56,8 +57,8 @@ const ComputerFormCommon: FC<IComputerFormSectionsProps> = ({
 				variant="outlined"
 				onChange={handleChange}
 				className={classes.computerFormInput}
-				error={touched.pcName && Boolean(errors.pcName)}
-				helperText={touched.pcName && errors.pcName}
+				error={touched?.pcName && Boolean(errors?.pcName)}
+				helperText={touched?.pcName && errors?.pcName}
 			/>
 
 			<TextField
@@ -68,8 +69,8 @@ const ComputerFormCommon: FC<IComputerFormSectionsProps> = ({
 				variant="outlined"
 				onChange={handleChange}
 				className={classes.computerFormInput}
-				error={touched.pcPurpose && Boolean(errors.pcPurpose)}
-				helperText={touched.pcPurpose && errors.pcPurpose}
+				error={touched?.pcPurpose && Boolean(errors?.pcPurpose)}
+				helperText={touched?.pcPurpose && errors?.pcPurpose}
 			/>
 
 			<TextField
@@ -95,11 +96,13 @@ const ComputerFormCommon: FC<IComputerFormSectionsProps> = ({
 			<TextField
 				name="numOfSockets"
 				value={values.numOfSockets}
+				type="number"
 				label="Число сокетов"
 				size="small"
 				variant="outlined"
 				onChange={handleChange}
 				className={classes.computerFormInput}
+				inputProps={{ min: 0, step: 1 }}
 			/>
 
 			<TextField
@@ -116,10 +119,12 @@ const ComputerFormCommon: FC<IComputerFormSectionsProps> = ({
 				name="maxRamSize"
 				value={values.maxRamSize}
 				label="Макс. объем RAM, Гб"
+				type="number"
 				size="small"
 				variant="outlined"
 				onChange={handleChange}
 				className={classes.computerFormInput}
+				inputProps={{ min: 0, step: 1 }}
 			/>
 
 			<TextField
@@ -136,10 +141,12 @@ const ComputerFormCommon: FC<IComputerFormSectionsProps> = ({
 				name="numOfSataPorts"
 				value={values.numOfSataPorts}
 				label="Число портов SATA"
+				type="number"
 				size="small"
 				variant="outlined"
 				onChange={handleChange}
 				className={classes.computerFormInput}
+				inputProps={{ min: 0, step: 1 }}
 			/>
 
 			<TextField
@@ -156,20 +163,24 @@ const ComputerFormCommon: FC<IComputerFormSectionsProps> = ({
 				name="numOfPsu"
 				value={values.numOfPsu}
 				label="Число БП"
+				type="number"
 				size="small"
 				variant="outlined"
 				onChange={handleChange}
 				className={classes.computerFormInput}
+				inputProps={{ min: 0, step: 1 }}
 			/>
 
 			<TextField
 				name="psuPower"
 				value={values.psuPower}
 				label="Мощность БП, Вт"
+				type="number"
 				size="small"
 				variant="outlined"
 				onChange={handleChange}
 				className={classes.computerFormInput}
+				inputProps={{ min: 0, step: 1 }}
 			/>
 
 			<TextField

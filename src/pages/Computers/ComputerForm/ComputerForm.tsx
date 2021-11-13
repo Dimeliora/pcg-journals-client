@@ -13,6 +13,7 @@ import { ReactComponent as CommentIcon } from "../../../assets/icons/comment.svg
 import ComputerFormCommon from "./ComputerFormSections/ComputerFormCommon";
 import ComputerFormCpu from "./ComputerFormSections/ComputerFormCpu";
 import ComputerFormRam from "./ComputerFormSections/ComputerFormRam";
+import ComputerFormHdd from "./ComputerFormSections/ComputerFormHdd";
 
 import { useStyles } from "./ComputerForm.styles";
 
@@ -71,8 +72,6 @@ const ComputerForm: FC = () => {
 						>
 							<ComputerFormCpu
 								values={values}
-								touched={touched}
-								errors={errors}
 								handleChange={handleChange}
 							/>
 						</ComputerInfoSection>
@@ -83,8 +82,16 @@ const ComputerForm: FC = () => {
 						>
 							<ComputerFormRam
 								values={values}
-								touched={touched}
-								errors={errors}
+								handleChange={handleChange}
+							/>
+						</ComputerInfoSection>
+
+						<ComputerInfoSection
+							title="Жёсткие диски"
+							icon={HDDIcon}
+						>
+							<ComputerFormHdd
+								values={values}
 								handleChange={handleChange}
 							/>
 						</ComputerInfoSection>
