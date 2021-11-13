@@ -78,7 +78,7 @@ const Computer: FC = () => {
 	if (!isLoading && currComputer) {
 		computerContent = (
 			<Box className={classes.computer}>
-				<Typography variant="h5" component="h2">
+				<Typography variant="h5" component="h3">
 					{currComputer.pcName} / {currComputer.pcPurpose}
 				</Typography>
 

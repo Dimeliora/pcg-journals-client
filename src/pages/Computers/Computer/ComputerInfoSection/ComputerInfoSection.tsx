@@ -22,7 +22,7 @@ const ComputerInfoSection: FC<IComputerInfoSectionProps> = (props) => {
 		<Box className={classes.computerInfoSection}>
 			<Typography
 				variant="h6"
-				component="h3"
+				component="h4"
 				className={classes.computerInfoSubheading}
 			>
 				<Icon className={classes.computerInfoIcon} />
