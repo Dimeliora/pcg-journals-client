@@ -69,7 +69,7 @@ const ComputerForm: FC = () => {
 								size="small"
 								variant="contained"
 								className={classes.computerFormControlsBack}
-								endIcon={<KeyboardReturn />}
+								startIcon={<KeyboardReturn />}
 								onClick={backHandler}
 							>
 								Назад
@@ -81,7 +81,7 @@ const ComputerForm: FC = () => {
 								variant="contained"
 								color="success"
 								className={classes.computerFormControlsSave}
-								endIcon={<Save />}
+								startIcon={<Save />}
 							>
 								Сохранить
 							</Button>
@@ -90,7 +90,7 @@ const ComputerForm: FC = () => {
 								type="reset"
 								size="small"
 								variant="contained"
-								endIcon={<RotateLeft />}
+								startIcon={<RotateLeft />}
 							>
 								Сбросить
 							</Button>

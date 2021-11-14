@@ -56,7 +56,7 @@ const ComputerInfoControls: FC<IComputerInfoControlsProps> = ({ computer }) => {
 				size="small"
 				variant="contained"
 				className={classes.computerControlsBack}
-				endIcon={<KeyboardReturn />}
+				startIcon={<KeyboardReturn />}
 				onClick={backToComputersListHandler}
 			>
 				К списку
@@ -66,7 +66,7 @@ const ComputerInfoControls: FC<IComputerInfoControlsProps> = ({ computer }) => {
 				type="button"
 				size="small"
 				variant="contained"
-				endIcon={<Edit />}
+				startIcon={<Edit />}
 				className={classes.computerControlsEdit}
 				onClick={toComputerEditFormHandler}
 			>
@@ -78,7 +78,7 @@ const ComputerInfoControls: FC<IComputerInfoControlsProps> = ({ computer }) => {
 				size="small"
 				color="error"
 				variant="contained"
-				endIcon={<DeleteForever />}
+				startIcon={<DeleteForever />}
 				onClick={openDeleteDialogHandler}
 			>
 				Удалить

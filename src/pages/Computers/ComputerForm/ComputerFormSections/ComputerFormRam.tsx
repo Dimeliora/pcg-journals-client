@@ -47,7 +47,7 @@ const ComputerFormRam: FC<IComputerFormSectionsProps> = ({
 							<Button
 								variant="contained"
 								size="small"
-								endIcon={<Add />}
+								startIcon={<Add />}
 								onClick={() => arrayHelpers.push(ADD_COMPUTER_FORM_RAM_MODULE)}
 							>
 								Добавить модуль

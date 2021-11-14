@@ -72,7 +72,7 @@ const AddUserForm: FC = () => {
 							size="small"
 							color="info"
 							variant="contained"
-							endIcon={<PersonAdd />}
+							startIcon={<PersonAdd />}
 							disabled={isLoading}
 						>
 							Добавить

@@ -145,7 +145,7 @@ const ComputersTable: FC<IComputersTableProps> = (props) => {
 				<Button
 					variant="contained"
 					size="small"
-					endIcon={<Add />}
+					startIcon={<Add />}
 					component={Link}
 					to="/computers/edit"
 				>

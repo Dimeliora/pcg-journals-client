@@ -54,9 +54,7 @@ const UsersTableControl: FC<IUsersTableControlProps> = ({ user }) => {
 				initialValues={USERS_TABLE_CONTROL_FORM_VALUE}
 				validationSchema={usersTableControlFormValidation}
 				onSubmit={(values) => {
-					dispatch(
-						changeUserPasswordRequest(user._id, values.password)
-					);
+					dispatch(changeUserPasswordRequest(user._id, values.password));
 					values.password = "";
 				}}
 			>
@@ -79,7 +77,7 @@ const UsersTableControl: FC<IUsersTableControlProps> = ({ user }) => {
 							size="small"
 							color="info"
 							variant="contained"
-							endIcon={<Edit />}
+							startIcon={<Edit />}
 						>
 							Изменить
 						</Button>
@@ -93,7 +91,7 @@ const UsersTableControl: FC<IUsersTableControlProps> = ({ user }) => {
 						color="error"
 						variant="contained"
 						className={classes.usersTableRemoveButton}
-						endIcon={<PersonRemove />}
+						startIcon={<PersonRemove />}
 						onClick={openDeleteDialogHandler}
 					>
 						Удалить
