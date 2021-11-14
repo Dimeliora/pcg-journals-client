@@ -1,7 +1,8 @@
 import { FC } from "react";
 import { useHistory } from "react-router-dom";
 import { Formik, Form } from "formik";
-import { Box, Typography, Button } from "@mui/material";
+import { Box, Typography, Button, ButtonGroup } from "@mui/material";
+import { KeyboardReturn, Save, RotateLeft } from "@mui/icons-material";
 
 import ComputerInfoHead from "../Computer/ComputerInfoHead/ComputerInfoHead";
 import ComputerFormCommon from "./ComputerFormSections/ComputerFormCommon";
@@ -25,8 +26,14 @@ import { ADD_COMPUTER_FORM_VALUES } from "./ComputerForm.constants";
 const ComputerForm: FC = () => {
 	const classes = useStyles();
 
+	const history = useHistory();
+
+	const backHandler = (): void => {
+		history.goBack();
+	};
+
 	return (
-		<Box>
+		<>
 			<Typography
 				variant="h5"
 				component="h3"
@@ -39,14 +46,16 @@ const ComputerForm: FC = () => {
 				initialValues={ADD_COMPUTER_FORM_VALUES}
 				validationSchema={computerFormValidation}
 				onSubmit={(values) => {
-					const filledFieldsValues = Object.entries(values)
-					.reduce((acc, [key, value]) => {
-						if (typeof value === "string" && value.trim().length === 0) {
-							return acc;
-						}
+					const filledFieldsValues = Object.entries(values).reduce(
+						(acc, [key, value]) => {
+							if (typeof value === "string" && value.trim().length === 0) {
+								return acc;
+							}
 
-						return { ...acc, [key]: value };
-					}, {});
+							return { ...acc, [key]: value };
+						},
+						{}
+					);
 
 					console.log(values);
 					console.log(filledFieldsValues);
@@ -54,6 +63,38 @@ const ComputerForm: FC = () => {
 			>
 				{({ values, touched, errors, handleChange }) => (
 					<Form noValidate>
+						<Box className={classes.computerFormControls}>
+							<Button
+								type="button"
+								size="small"
+								variant="contained"
+								className={classes.computerFormControlsBack}
+								endIcon={<KeyboardReturn />}
+								onClick={backHandler}
+							>
+								Назад
+							</Button>
+
+							<Button
+								type="submit"
+								size="small"
+								variant="contained"
+								className={classes.computerFormControlsSave}
+								endIcon={<Save />}
+							>
+								Сохранить
+							</Button>
+
+							<Button
+								type="reset"
+								size="small"
+								variant="contained"
+								endIcon={<RotateLeft />}
+							>
+								Сбросить
+							</Button>
+						</Box>
+
 						<ComputerInfoHead title="Общая информация" icon={CommonInfoIcon} />
 						<ComputerFormCommon
 							values={values}
@@ -74,11 +115,11 @@ const ComputerForm: FC = () => {
 						<ComputerInfoHead title="Резервные копии" icon={BackupIcon} />
 						<ComputerFormBackup values={values} handleChange={handleChange} />
 
-						<Button type="submit">Save</Button>
+						<ComputerInfoHead title="Комментарии" icon={CommentIcon} />
 					</Form>
 				)}
 			</Formik>
-		</Box>
+		</>
 	);
 };
 

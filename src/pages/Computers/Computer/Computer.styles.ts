@@ -9,7 +9,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
 		transform: "scale(1, 0.9)",
 	},
 	computerInfo: {
-		marginTop: theme.spacing(2),
+		marginTop: theme.spacing(3),
 	},
 	computerComments: {},
 }));

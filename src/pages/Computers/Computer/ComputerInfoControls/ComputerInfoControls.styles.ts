@@ -6,7 +6,10 @@ export const useStyles = makeStyles((theme: Theme) => ({
 		display: "flex",
 		marginTop: theme.spacing(2),
 	},
-	computerControlsRight: {
-		marginLeft: "auto",
+	computerControlsBack: {
+		marginRight: "auto",
+	},
+	computerControlsEdit: {
+		marginRight: theme.spacing(2),
 	},
 }));
