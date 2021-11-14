@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { useHistory } from "react-router-dom";
 import { Formik, Form } from "formik";
-import { Box, Typography, Button, ButtonGroup } from "@mui/material";
+import { Box, Typography, Button } from "@mui/material";
 import { KeyboardReturn, Save, RotateLeft } from "@mui/icons-material";
 
 import ComputerInfoHead from "../Computer/ComputerInfoHead/ComputerInfoHead";
@@ -79,6 +79,7 @@ const ComputerForm: FC = () => {
 								type="submit"
 								size="small"
 								variant="contained"
+								color="success"
 								className={classes.computerFormControlsSave}
 								endIcon={<Save />}
 							>

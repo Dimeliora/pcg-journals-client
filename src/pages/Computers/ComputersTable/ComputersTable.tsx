@@ -97,14 +97,10 @@ const ComputersTable: FC<IComputersTableProps> = (props) => {
 				<TableContainer>
 					<Table sx={{ minWidth: 1050 }} aria-label="Computers table">
 						<TableHead>
-							<TableRow>
+							<TableRow className={classes.computersTableHead}>
 								<TableCell sx={{ width: "5%" }}></TableCell>
-								<TableCell sx={{ width: "10%" }}>
-									Наименование
-								</TableCell>
-								<TableCell sx={{ width: "25%" }}>
-									Назначение
-								</TableCell>
+								<TableCell sx={{ width: "10%" }}>Наименование</TableCell>
+								<TableCell sx={{ width: "25%" }}>Назначение</TableCell>
 								<TableCell sx={{ width: "25%" }}>
 									Операционная система
 								</TableCell>
@@ -117,14 +113,9 @@ const ComputersTable: FC<IComputersTableProps> = (props) => {
 							</TableRow>
 						</TableHead>
 						<TableBody>
-							{getComputersSlice(filteredComputers).map(
-								(computer) => (
-									<ComputersTableRow
-										key={computer._id}
-										computer={computer}
-									/>
-								)
-							)}
+							{getComputersSlice(filteredComputers).map((computer) => (
+								<ComputersTableRow key={computer._id} computer={computer} />
+							))}
 						</TableBody>
 					</Table>
 				</TableContainer>
