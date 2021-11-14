@@ -26,6 +26,7 @@ export const ADD_COMPUTER_FORM_VALUES = {
 	raidMode: "",
 	totalDiskSpace: "",
 	disks: [],
+	pcBackups: [],
 };
 
 export const ADD_COMPUTER_FORM_RAM_MODULE = {

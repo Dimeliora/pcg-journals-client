@@ -8,6 +8,7 @@ import ComputerFormCommon from "./ComputerFormSections/ComputerFormCommon";
 import ComputerFormCpu from "./ComputerFormSections/ComputerFormCpu";
 import ComputerFormRam from "./ComputerFormSections/ComputerFormRam";
 import ComputerFormHdd from "./ComputerFormSections/ComputerFormHdd";
+import ComputerFormBackup from "./ComputerFormSections/ComputerFormBackup";
 import { ReactComponent as CommonInfoIcon } from "../../../assets/icons/common-info.svg";
 import { ReactComponent as CPUIcon } from "../../../assets/icons/cpu.svg";
 import { ReactComponent as RAMIcon } from "../../../assets/icons/ram.svg";
@@ -38,17 +39,16 @@ const ComputerForm: FC = () => {
 				initialValues={ADD_COMPUTER_FORM_VALUES}
 				validationSchema={computerFormValidation}
 				onSubmit={(values) => {
-					const filledFieldsValues = Object.entries(values).reduce(
-						(acc, [key, value]) => {
-							if (value.length > 0) {
-								return { ...acc, [key]: value };
-							}
-
+					const filledFieldsValues = Object.entries(values)
+					.reduce((acc, [key, value]) => {
+						if (typeof value === "string" && value.trim().length === 0) {
 							return acc;
-						},
-						{}
-					);
+						}
 
+						return { ...acc, [key]: value };
+					}, {});
+
+					console.log(values);
 					console.log(filledFieldsValues);
 				}}
 			>
@@ -70,6 +70,9 @@ const ComputerForm: FC = () => {
 
 						<ComputerInfoHead title="Жёсткие диски" icon={HDDIcon} />
 						<ComputerFormHdd values={values} handleChange={handleChange} />
+
+						<ComputerInfoHead title="Резервные копии" icon={BackupIcon} />
+						<ComputerFormBackup values={values} handleChange={handleChange} />
 
 						<Button type="submit">Save</Button>
 					</Form>

@@ -92,12 +92,10 @@ const ComputerFormHdd: FC<IComputerFormSectionsProps> = ({
 									<TextField
 										name={`disks.${idx}.hddSize`}
 										value={disk.hddSize}
-										type="number"
 										label="Объём, Гб"
 										size="small"
 										variant="outlined"
 										onChange={handleChange}
-										inputProps={{ min: 0, step: 1 }}
 									/>
 
 									<FormControl

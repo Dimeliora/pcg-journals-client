@@ -5,10 +5,10 @@ import { Add, DeleteForever } from "@mui/icons-material";
 
 import { useStyles } from "./ComputerFormSections.styles";
 
-import { ADD_COMPUTER_FORM_RAM_MODULE } from "../ComputerForm.constants";
+import { ADD_COMPUTER_FORM_BACKUP } from "../ComputerForm.constants";
 
 import { IComputerFormSectionsProps } from "./ComputerFormSections.interfaces";
-import { IRamModules } from "../../../../interfaces/computer.interface";
+import { IBackups } from "../../../../interfaces/computer.interface";
 
 const ComputerFormRam: FC<IComputerFormSectionsProps> = ({
 	values,
@@ -18,41 +18,19 @@ const ComputerFormRam: FC<IComputerFormSectionsProps> = ({
 
 	return (
 		<Box className={classes.computerFormSection}>
-			<Box className={classes.computerFormSectionStatic}>
-				<TextField
-					name="ramType"
-					value={values.ramType}
-					label="Тип памяти"
-					size="small"
-					variant="outlined"
-					onChange={handleChange}
-					className={classes.computerFormInput}
-				/>
-
-				<TextField
-					name="ramTotalModules"
-					value={values.ramTotalModules}
-					label="Макс. число модулей"
-					size="small"
-					variant="outlined"
-					onChange={handleChange}
-					className={classes.computerFormInput}
-				/>
-			</Box>
-
 			<Box className={classes.computerFormSectionDynamic}>
-				<FieldArray name="ramModules">
+				<FieldArray name="pcBackups">
 					{(arrayHelpers) => (
 						<>
 							<Button
 								variant="contained"
 								size="small"
 								endIcon={<Add />}
-								onClick={() => arrayHelpers.push(ADD_COMPUTER_FORM_RAM_MODULE)}
+								onClick={() => arrayHelpers.push(ADD_COMPUTER_FORM_BACKUP)}
 							>
-								Добавить модуль
+								Добавить копию
 							</Button>
-							{values.ramModules.map((module: IRamModules, idx) => (
+							{values.pcBackups.map((backup: IBackups, idx) => (
 								<Box
 									key={idx}
 									className={classes.computerFormSectionDynamicItem}
@@ -62,13 +40,32 @@ const ComputerFormRam: FC<IComputerFormSectionsProps> = ({
 										component="h4"
 										className={classes.computerFormSectionDynamicHeading}
 									>
-										Модуль #{idx + 1}
+										Копия #{idx + 1}
 									</Typography>
 
 									<TextField
-										name={`ramModules.${idx}.ramModuleSize`}
-										value={module.ramModuleSize}
-										label="Объём, Гб"
+										name={`pcBackups.${idx}.backupDate`}
+										value={backup.backupDate}
+										label="Дата"
+										placeholder="дд.мм.гггг"
+										size="small"
+										variant="outlined"
+										onChange={handleChange}
+									/>
+
+									<TextField
+										name={`pcBackups.${idx}.backupSize`}
+										value={backup.backupSize}
+										label="Размер, Гб"
+										size="small"
+										variant="outlined"
+										onChange={handleChange}
+									/>
+
+									<TextField
+										name={`pcBackups.${idx}.backupStorage`}
+										value={backup.backupStorage}
+										label="Расположение"
 										size="small"
 										variant="outlined"
 										onChange={handleChange}

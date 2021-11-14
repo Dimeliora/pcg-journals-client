@@ -9,13 +9,12 @@ export const useStyles = makeStyles((theme: Theme) => ({
 		display: "grid",
 		gridTemplateColumns: "repeat(auto-fill, minmax(250px, 1fr))",
 		gap: `${theme.spacing(2)} ${theme.spacing(3)}`,
+		marginBottom: theme.spacing(3),
 	},
 	computerFormInput: {
 		width: "100%",
 	},
-	computerFormSectionDynamic: {
-		marginTop: theme.spacing(3),
-	},
+	computerFormSectionDynamic: {},
 	computerFormSectionDynamicItem: {
 		display: "grid",
 		gridTemplateColumns: "100px repeat(auto-fill, minmax(200px, 1fr))",

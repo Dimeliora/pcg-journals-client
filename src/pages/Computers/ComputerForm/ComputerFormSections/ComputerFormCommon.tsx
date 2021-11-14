@@ -95,13 +95,11 @@ const ComputerFormCommon: FC<IComputerFormSectionsProps> = ({
 				<TextField
 					name="numOfSockets"
 					value={values.numOfSockets}
-					type="number"
 					label="Число сокетов"
 					size="small"
 					variant="outlined"
 					onChange={handleChange}
 					className={classes.computerFormInput}
-					inputProps={{ min: 0, step: 1 }}
 				/>
 
 				<TextField
@@ -118,12 +116,10 @@ const ComputerFormCommon: FC<IComputerFormSectionsProps> = ({
 					name="maxRamSize"
 					value={values.maxRamSize}
 					label="Макс. объем RAM, Гб"
-					type="number"
 					size="small"
 					variant="outlined"
 					onChange={handleChange}
 					className={classes.computerFormInput}
-					inputProps={{ min: 0, step: 1 }}
 				/>
 
 				<TextField
@@ -140,12 +136,10 @@ const ComputerFormCommon: FC<IComputerFormSectionsProps> = ({
 					name="numOfSataPorts"
 					value={values.numOfSataPorts}
 					label="Число портов SATA"
-					type="number"
 					size="small"
 					variant="outlined"
 					onChange={handleChange}
 					className={classes.computerFormInput}
-					inputProps={{ min: 0, step: 1 }}
 				/>
 
 				<TextField
@@ -162,24 +156,20 @@ const ComputerFormCommon: FC<IComputerFormSectionsProps> = ({
 					name="numOfPsu"
 					value={values.numOfPsu}
 					label="Число БП"
-					type="number"
 					size="small"
 					variant="outlined"
 					onChange={handleChange}
 					className={classes.computerFormInput}
-					inputProps={{ min: 0, step: 1 }}
 				/>
 
 				<TextField
 					name="psuPower"
 					value={values.psuPower}
 					label="Мощность БП, Вт"
-					type="number"
 					size="small"
 					variant="outlined"
 					onChange={handleChange}
 					className={classes.computerFormInput}
-					inputProps={{ min: 0, step: 1 }}
 				/>
 
 				<TextField
