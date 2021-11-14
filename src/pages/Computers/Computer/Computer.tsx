@@ -2,6 +2,7 @@ import { FC } from "react";
 import { Redirect, useParams } from "react-router-dom";
 import { Box, Typography, Stack, Skeleton } from "@mui/material";
 
+import ComputerInfoHead from "./ComputerInfoHead/ComputerInfoHead";
 import ComputerInfoSection from "./ComputerInfoSection/ComputerInfoSection";
 import ComputerInfoNested from "./ComputerInfoNested/ComputerInfoNested";
 import ComputerInfoComments from "./ComputerInfoComments/ComputerInfoComments";
@@ -46,9 +47,7 @@ const Computer: FC = () => {
 
 	const { id } = useParams<IdRouteParam>();
 
-	const { isLoading, computers } = useAppSelector(
-		({ computers }) => computers
-	);
+	const { isLoading, computers } = useAppSelector(({ computers }) => computers);
 
 	const currComputer = computers.find((computer) => computer._id === id);
 
@@ -85,26 +84,17 @@ const Computer: FC = () => {
 				<ComputerInfoControls computer={currComputer} />
 
 				<Box className={classes.computerInfo}>
+					<ComputerInfoHead title="Общая информация" icon={CommonInfoIcon} />
 					<ComputerInfoSection
-						title="Общая информация"
-						icon={CommonInfoIcon}
 						computer={currComputer}
 						terms={COMMON_INFO_TERMS}
 					/>
 
-					<ComputerInfoSection
-						title="Центральный процессор"
-						icon={CPUIcon}
-						computer={currComputer}
-						terms={CPU_INFO_TERMS}
-					/>
+					<ComputerInfoHead title="Центральный процессор" icon={CPUIcon} />
+					<ComputerInfoSection computer={currComputer} terms={CPU_INFO_TERMS} />
 
-					<ComputerInfoSection
-						title="Оперативная память"
-						icon={RAMIcon}
-						computer={currComputer}
-						terms={RAM_INFO_TERMS}
-					>
+					<ComputerInfoHead title="Оперативная память" icon={RAMIcon} />
+					<ComputerInfoSection computer={currComputer} terms={RAM_INFO_TERMS}>
 						<ComputerInfoNested
 							title="Модуль"
 							items={currComputer[RAM_MODULES]}
@@ -112,12 +102,8 @@ const Computer: FC = () => {
 						/>
 					</ComputerInfoSection>
 
-					<ComputerInfoSection
-						title="Жёсткие диски"
-						icon={HDDIcon}
-						computer={currComputer}
-						terms={HDD_INFO_TERMS}
-					>
+					<ComputerInfoHead title="Жёсткие диски" icon={HDDIcon} />
+					<ComputerInfoSection computer={currComputer} terms={HDD_INFO_TERMS}>
 						<ComputerInfoNested
 							title="Диск"
 							items={currComputer[DISKS]}
@@ -125,10 +111,8 @@ const Computer: FC = () => {
 						/>
 					</ComputerInfoSection>
 
-					<ComputerInfoSection
-						title="Резервные копии"
-						icon={BackupIcon}
-					>
+					<ComputerInfoHead title="Резервные копии" icon={BackupIcon} />
+					<ComputerInfoSection>
 						<ComputerInfoNested
 							title="Копия"
 							items={currComputer[BACKUPS]}
@@ -136,17 +120,15 @@ const Computer: FC = () => {
 						/>
 					</ComputerInfoSection>
 
+					<ComputerInfoHead title="Возможности модернизации" icon={ToolsIcon} />
 					<ComputerInfoSection
-						title="Возможности модернизации"
-						icon={ToolsIcon}
 						computer={currComputer}
 						terms={UPGRADE_INFO_TERMS}
 					/>
 
-					<ComputerInfoSection title="Комментарии" icon={CommentIcon}>
-						<ComputerInfoComments
-							comments={currComputer[COMMENTS]}
-						/>
+					<ComputerInfoHead title="Комментарии" icon={CommentIcon} />
+					<ComputerInfoSection>
+						<ComputerInfoComments comments={currComputer[COMMENTS]} />
 					</ComputerInfoSection>
 				</Box>
 			</Box>

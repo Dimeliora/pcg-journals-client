@@ -11,7 +11,7 @@ import {
 	Button,
 	IconButton,
 } from "@mui/material";
-import { DeleteForever } from "@mui/icons-material";
+import { Add, DeleteForever } from "@mui/icons-material";
 
 import { useStyles } from "./ComputerFormSections.styles";
 
@@ -30,8 +30,8 @@ const ComputerFormHdd: FC<IComputerFormSectionsProps> = ({
 	const classes = useStyles();
 
 	return (
-		<>
-			<Box className={classes.computerFormSection}>
+		<Box className={classes.computerFormSection}>
+			<Box className={classes.computerFormSectionStatic}>
 				<TextField
 					name="raidMode"
 					value={values.raidMode}
@@ -55,30 +55,27 @@ const ComputerFormHdd: FC<IComputerFormSectionsProps> = ({
 				/>
 			</Box>
 
-			<Box className={classes.computerFormDynamic}>
+			<Box className={classes.computerFormSectionDynamic}>
 				<FieldArray name="disks">
 					{(arrayHelpers) => (
 						<>
 							<Button
 								variant="contained"
 								size="small"
-								onClick={() =>
-									arrayHelpers.push(ADD_COMPUTER_FORM_DISK)
-								}
+								endIcon={<Add />}
+								onClick={() => arrayHelpers.push(ADD_COMPUTER_FORM_DISK)}
 							>
 								Добавить диск
 							</Button>
 							{values.disks.map((disk: IDisks, idx) => (
 								<Box
 									key={idx}
-									className={classes.computerFormDynamicItem}
+									className={classes.computerFormSectionDynamicItem}
 								>
 									<Typography
 										variant="h6"
 										component="h4"
-										className={
-											classes.computerFormDynamicHeading
-										}
+										className={classes.computerFormSectionDynamicHeading}
 									>
 										Диск #{idx + 1}
 									</Typography>
@@ -119,16 +116,8 @@ const ComputerFormHdd: FC<IComputerFormSectionsProps> = ({
 											labelId="computer-form-hdd-form-factor"
 										>
 											<MenuItem value=""></MenuItem>
-											<MenuItem
-												value={HddFormFactors.MOBILE}
-											>
-												2.5"
-											</MenuItem>
-											<MenuItem
-												value={HddFormFactors.DESKTOP}
-											>
-												3.5"
-											</MenuItem>
+											<MenuItem value={HddFormFactors.MOBILE}>2.5"</MenuItem>
+											<MenuItem value={HddFormFactors.DESKTOP}>3.5"</MenuItem>
 										</Select>
 									</FormControl>
 
@@ -145,9 +134,7 @@ const ComputerFormHdd: FC<IComputerFormSectionsProps> = ({
 										color="error"
 										aria-label="Удалить"
 										title="Удалить"
-										className={
-											classes.computerFormDynamicDelete
-										}
+										className={classes.computerFormSectionDynamicDelete}
 										onClick={() => arrayHelpers.remove(idx)}
 									>
 										<DeleteForever />
@@ -158,7 +145,7 @@ const ComputerFormHdd: FC<IComputerFormSectionsProps> = ({
 					)}
 				</FieldArray>
 			</Box>
-		</>
+		</Box>
 	);
 };
 

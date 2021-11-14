@@ -3,18 +3,20 @@ import { makeStyles } from "@mui/styles";
 
 export const useStyles = makeStyles((theme: Theme) => ({
 	computerFormSection: {
+		padding: `${theme.spacing(3)} 0 ${theme.spacing(5)}`,
+	},
+	computerFormSectionStatic: {
 		display: "grid",
 		gridTemplateColumns: "repeat(auto-fill, minmax(250px, 1fr))",
 		gap: `${theme.spacing(2)} ${theme.spacing(3)}`,
-		marginTop: theme.spacing(2),
 	},
 	computerFormInput: {
 		width: "100%",
 	},
-	computerFormDynamic: {
+	computerFormSectionDynamic: {
 		marginTop: theme.spacing(3),
 	},
-	computerFormDynamicItem: {
+	computerFormSectionDynamicItem: {
 		display: "grid",
 		gridTemplateColumns: "100px repeat(auto-fill, minmax(200px, 1fr))",
 		columnGap: theme.spacing(3),
@@ -24,11 +26,11 @@ export const useStyles = makeStyles((theme: Theme) => ({
 			justifySelf: "start",
 		},
 	},
-	computerFormDynamicHeading: {
+	computerFormSectionDynamicHeading: {
 		marginRight: theme.spacing(2),
 		fontSize: theme.typography.body1.fontSize,
 	},
-	computerFormDynamicDelete: {
+	computerFormSectionDynamicDelete: {
 		marginLeft: theme.spacing(2),
 	},
 }));

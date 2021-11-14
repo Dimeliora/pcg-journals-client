@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { FieldArray } from "formik";
 import { Box, Typography, TextField, Button, IconButton } from "@mui/material";
-import { DeleteForever } from "@mui/icons-material";
+import { Add, DeleteForever } from "@mui/icons-material";
 
 import { useStyles } from "./ComputerFormSections.styles";
 
@@ -17,8 +17,8 @@ const ComputerFormRam: FC<IComputerFormSectionsProps> = ({
 	const classes = useStyles();
 
 	return (
-		<>
-			<Box className={classes.computerFormSection}>
+		<Box className={classes.computerFormSection}>
+			<Box className={classes.computerFormSectionStatic}>
 				<TextField
 					name="ramType"
 					value={values.ramType}
@@ -42,71 +42,58 @@ const ComputerFormRam: FC<IComputerFormSectionsProps> = ({
 				/>
 			</Box>
 
-			<Box className={classes.computerFormDynamic}>
+			<Box className={classes.computerFormSectionDynamic}>
 				<FieldArray name="ramModules">
 					{(arrayHelpers) => (
 						<>
 							<Button
 								variant="contained"
 								size="small"
-								onClick={() =>
-									arrayHelpers.push(
-										ADD_COMPUTER_FORM_RAM_MODULE
-									)
-								}
+								endIcon={<Add />}
+								onClick={() => arrayHelpers.push(ADD_COMPUTER_FORM_RAM_MODULE)}
 							>
 								Добавить модуль
 							</Button>
-							{values.ramModules.map(
-								(module: IRamModules, idx) => (
-									<Box
-										key={idx}
-										className={
-											classes.computerFormDynamicItem
-										}
+							{values.ramModules.map((module: IRamModules, idx) => (
+								<Box
+									key={idx}
+									className={classes.computerFormSectionDynamicItem}
+								>
+									<Typography
+										variant="h6"
+										component="h4"
+										className={classes.computerFormSectionDynamicHeading}
 									>
-										<Typography
-											variant="h6"
-											component="h4"
-											className={
-												classes.computerFormDynamicHeading
-											}
-										>
-											Модуль #{idx + 1}
-										</Typography>
+										Модуль #{idx + 1}
+									</Typography>
 
-										<TextField
-											name={`ramModules.${idx}.ramModuleSize`}
-											value={module.ramModuleSize}
-											type="number"
-											label="Объём, Гб"
-											size="small"
-											variant="outlined"
-											onChange={handleChange}
-											inputProps={{ min: 0, step: 0.1 }}
-										/>
+									<TextField
+										name={`ramModules.${idx}.ramModuleSize`}
+										value={module.ramModuleSize}
+										type="number"
+										label="Объём, Гб"
+										size="small"
+										variant="outlined"
+										onChange={handleChange}
+										inputProps={{ min: 0, step: 0.1 }}
+									/>
 
-										<IconButton
-											color="error"
-											aria-label="Удалить"
-											title="Удалить"
-											className={
-												classes.computerFormDynamicDelete
-											}
-											onClick={() =>
-												arrayHelpers.remove(idx)
-											}
-										>
-											<DeleteForever />
-										</IconButton>
-									</Box>
-								)
-							)}
+									<IconButton
+										color="error"
+										aria-label="Удалить"
+										title="Удалить"
+										className={classes.computerFormSectionDynamicDelete}
+										onClick={() => arrayHelpers.remove(idx)}
+									>
+										<DeleteForever />
+									</IconButton>
+								</Box>
+							))}
 						</>
 					)}
 				</FieldArray>
 			</Box>
-		</>
+		</Box>
 	);
 };
 

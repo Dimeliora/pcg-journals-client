@@ -14,21 +14,12 @@ import { IComputerInfoSectionProps } from "./ComputerInfoSection.interfaces";
 import { IComputer } from "../../../../interfaces/computer.interface";
 
 const ComputerInfoSection: FC<IComputerInfoSectionProps> = (props) => {
-	const { title, icon: Icon, computer, terms, children } = props;
+	const { computer, terms, children } = props;
 
 	const classes = useStyles();
 
 	return (
 		<Box className={classes.computerInfoSection}>
-			<Typography
-				variant="h6"
-				component="h4"
-				className={classes.computerInfoSubheading}
-			>
-				<Icon className={classes.computerInfoIcon} />
-				{title}
-			</Typography>
-			<Divider />
 			{computer && terms && (
 				<List className={classes.computerInfoList}>
 					{Object.entries(terms).map(([term, descripion]) => (
