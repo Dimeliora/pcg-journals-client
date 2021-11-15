@@ -68,7 +68,7 @@ const ComputerForm: FC = () => {
 		headingText = `Редактирование ${currComputer.pcName}`;
 	}
 
-	if (computers.length === 0) {
+	if (id && !currComputer) {
 		return <Redirect to="/computers" />;
 	}
 
