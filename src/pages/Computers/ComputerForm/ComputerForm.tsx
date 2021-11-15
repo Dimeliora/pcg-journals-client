@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { useHistory, useParams } from "react-router-dom";
+import { useHistory, useParams, Redirect } from "react-router-dom";
 import { Formik, Form } from "formik";
 import { Box, Typography, Button } from "@mui/material";
 import { KeyboardReturn, Save, RotateLeft } from "@mui/icons-material";
@@ -58,14 +58,7 @@ const ComputerForm: FC = () => {
 	let addComputerFormValues = ADD_COMPUTER_FORM_VALUES;
 	if (currComputer) {
 		addComputerFormValues = Object.keys(addComputerFormValues).reduce(
-			(acc, key) => {
-				let value = currComputer[key as keyof IComputer];
-				if (value === "н/д") {
-					value = "";
-				}
-
-				return { ...acc, [key]: value };
-			},
+			(acc, key) => ({ ...acc, [key]: currComputer[key as keyof IComputer] }),
 			{} as AddComputerData
 		);
 	}
@@ -73,6 +66,10 @@ const ComputerForm: FC = () => {
 	let headingText = "Добавление нового сервера / АРМ";
 	if (id && currComputer) {
 		headingText = `Редактирование ${currComputer.pcName}`;
+	}
+
+	if (computers.length === 0) {
+		return <Redirect to="/computers" />;
 	}
 
 	return (

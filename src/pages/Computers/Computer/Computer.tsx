@@ -16,12 +16,7 @@ import { ReactComponent as ToolsIcon } from "../../../assets/icons/tools.svg";
 import { ReactComponent as CommentIcon } from "../../../assets/icons/comment.svg";
 
 import { useStyles } from "./Computer.styles";
-import {
-	useAppSelector,
-	useAppDispatch,
-} from "../../../store/hooks/store.hooks";
-
-import { showAlert } from "../../../store/reducers/ui.reducer";
+import { useAppSelector } from "../../../store/hooks/store.hooks";
 
 import {
 	COMMON_INFO_TERMS,
@@ -43,8 +38,6 @@ import { IdRouteParam } from "../../../interfaces/id.param.type";
 const Computer: FC = () => {
 	const classes = useStyles();
 
-	const dispatch = useAppDispatch();
-
 	const { id } = useParams<IdRouteParam>();
 
 	const { isLoading, computers } = useAppSelector(({ computers }) => computers);
@@ -52,7 +45,6 @@ const Computer: FC = () => {
 	const currComputer = computers.find((computer) => computer._id === id);
 
 	if (computers.length > 0 && !isLoading && !currComputer) {
-		dispatch(showAlert("Сервер/АРМ не найден", "error"));
 		return <Redirect to="/computers" />;
 	}
 

@@ -1,10 +1,5 @@
 import { FC } from "react";
-import {
-	Box,
-	List,
-	ListItem,
-	ListItemText,
-} from "@mui/material";
+import { Box, List, ListItem, ListItemText } from "@mui/material";
 
 import { useStyles } from "./ComputerInfoSection.styles";
 
@@ -24,7 +19,7 @@ const ComputerInfoSection: FC<IComputerInfoSectionProps> = (props) => {
 						<ListItem key={term}>
 							<ListItemText
 								primary={descripion}
-								secondary={computer[term as keyof IComputer]}
+								secondary={computer[term as keyof IComputer] || "н/д"}
 							/>
 						</ListItem>
 					))}
