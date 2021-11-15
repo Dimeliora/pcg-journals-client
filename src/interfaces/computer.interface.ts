@@ -73,3 +73,14 @@ export interface IComputer {
 	updatedAt: string;
 	lastModifier: ILastModifier;
 }
+
+export type AddComputerData = Omit<
+	IComputer,
+	| "_id"
+	| "ramTotalSize"
+	| "cpuUpgrade"
+	| "ramUpgrade"
+	| "hddUpgrade"
+	| "updatedAt"
+	| "lastModifier"
+>;

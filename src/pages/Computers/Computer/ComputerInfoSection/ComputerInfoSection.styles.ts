@@ -3,7 +3,10 @@ import { makeStyles } from "@mui/styles";
 
 export const useStyles = makeStyles((theme: Theme) => ({
 	computerInfoSection: {
-		padding: `${theme.spacing(3)} 0`,
+		marginBottom: theme.spacing(3),
+		"&:last-of-type": {
+			marginBottom: 0,
+		},
 	},
 	computerInfoList: {
 		display: "grid",

@@ -18,16 +18,22 @@ import { ReactComponent as HDDIcon } from "../../../assets/icons/hdd.svg";
 import { ReactComponent as BackupIcon } from "../../../assets/icons/backup.svg";
 import { ReactComponent as CommentIcon } from "../../../assets/icons/comment.svg";
 
+import { useAppDispatch } from "../../../store/hooks/store.hooks";
 import { useStyles } from "./ComputerForm.styles";
 
 import { computerFormValidation } from "./ComputerForm.validation";
+import { createComputerRequest } from "../../../store/reducers/computers.reducer";
 
 import { ADD_COMPUTER_FORM_VALUES } from "./ComputerForm.constants";
+
+import { AddComputerData } from "../../../interfaces/computer.interface";
 
 const ComputerForm: FC = () => {
 	const classes = useStyles();
 
 	const history = useHistory();
+
+	const dispatch = useAppDispatch();
 
 	const backHandler = (): void => {
 		history.goBack();
@@ -55,11 +61,11 @@ const ComputerForm: FC = () => {
 
 							return { ...acc, [key]: value };
 						},
-						{}
+						{} as AddComputerData
 					);
 
-					console.log(values);
-					console.log(filledFieldsValues);
+					dispatch(createComputerRequest(filledFieldsValues));
+					history.push("/computers");
 				}}
 			>
 				{({ values, touched, errors, handleChange }) => (

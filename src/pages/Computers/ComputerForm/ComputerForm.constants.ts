@@ -1,7 +1,6 @@
-import { ComputerTypes } from "../../../interfaces/computer.interface";
-import { AddComputerFormValues } from "./ComputerForm.interfaces";
+import { ComputerTypes, AddComputerData } from "../../../interfaces/computer.interface";
 
-export const ADD_COMPUTER_FORM_VALUES: AddComputerFormValues = {
+export const ADD_COMPUTER_FORM_VALUES: AddComputerData = {
 	pcType: ComputerTypes.PC,
 	pcName: "",
 	pcPurpose: "",

@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 
 import { BASE_URL, getAuthConfig } from "../../configs/axios.configs";
 
@@ -10,7 +10,10 @@ import {
 	AxiosErrorMessage,
 	IResponseMessage,
 } from "../../interfaces/axios.interfaces";
-import { IComputer } from "../../interfaces/computer.interface";
+import {
+	IComputer,
+	AddComputerData,
+} from "../../interfaces/computer.interface";
 import { AppThunk } from "../interfaces/store.types";
 
 const initialState: IComputersState = {
@@ -74,6 +77,30 @@ export const deleteComputerRequest =
 
 			dispatch(getAllComputers());
 			dispatch(showAlert(data.message, "success"));
+		} catch (error) {
+			dispatch(setError());
+
+			const axiosError = error as AxiosErrorMessage;
+			if (axiosError.response) {
+				dispatch(showAlert(axiosError.response.data.message, "error"));
+			}
+		}
+	};
+
+export const createComputerRequest =
+	(computerData: AddComputerData): AppThunk =>
+	async (dispatch) => {
+		dispatch(setLoading());
+
+		const config = getAuthConfig();
+		const { data } = await axios.post<
+			AddComputerData,
+			AxiosResponse<IResponseMessage>
+		>(`${BASE_URL}/computers`, computerData, config);
+
+		dispatch(getAllComputers());
+		dispatch(showAlert(data.message, "success"));
+		try {
 		} catch (error) {
 			dispatch(setError());
 

@@ -8,7 +8,6 @@ import { useStyles } from "./ComputerFormSections.styles";
 import { ADD_COMPUTER_FORM_BACKUP } from "../ComputerForm.constants";
 
 import { IComputerFormSectionsProps } from "./ComputerFormSections.interfaces";
-import { IBackups } from "../../../../interfaces/computer.interface";
 
 const ComputerFormRam: FC<IComputerFormSectionsProps> = ({
 	values,
@@ -30,7 +29,7 @@ const ComputerFormRam: FC<IComputerFormSectionsProps> = ({
 							>
 								Добавить копию
 							</Button>
-							{values.pcBackups.map((backup: IBackups, idx) => (
+							{values.pcBackups.map((backup, idx) => (
 								<Box
 									key={idx}
 									className={classes.computerFormSectionDynamicItem}
