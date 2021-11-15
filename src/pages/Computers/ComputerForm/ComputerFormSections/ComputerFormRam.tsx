@@ -8,7 +8,6 @@ import { useStyles } from "./ComputerFormSections.styles";
 import { ADD_COMPUTER_FORM_RAM_MODULE } from "../ComputerForm.constants";
 
 import { IComputerFormSectionsProps } from "./ComputerFormSections.interfaces";
-import { IRamModules } from "../../../../interfaces/computer.interface";
 
 const ComputerFormRam: FC<IComputerFormSectionsProps> = ({
 	values,
@@ -52,7 +51,7 @@ const ComputerFormRam: FC<IComputerFormSectionsProps> = ({
 							>
 								Добавить модуль
 							</Button>
-							{values.ramModules.map((module: IRamModules, idx) => (
+							{values.ramModules.map((module, idx) => (
 								<Box
 									key={idx}
 									className={classes.computerFormSectionDynamicItem}

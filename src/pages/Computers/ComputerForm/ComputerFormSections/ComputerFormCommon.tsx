@@ -6,7 +6,6 @@ import {
 	InputLabel,
 	Select,
 	MenuItem,
-	FormHelperText,
 } from "@mui/material";
 
 import { useStyles } from "./ComputerFormSections.styles";
@@ -30,22 +29,21 @@ const ComputerFormCommon: FC<IComputerFormSectionsProps> = ({
 					size="small"
 					className={classes.computerFormInput}
 				>
-					<InputLabel id="computer-form-pc-type">Тип</InputLabel>
+					<InputLabel
+						id="computer-form-pc-type"
+					>
+						Тип
+					</InputLabel>
 					<Select
 						name="pcType"
 						label="Тип"
 						value={values.pcType}
 						onChange={handleChange}
 						labelId="computer-form-pc-type"
-						error={touched?.pcType && Boolean(errors?.pcType)}
 					>
-						<MenuItem value=""></MenuItem>
 						<MenuItem value={ComputerTypes.PC}>АРМ</MenuItem>
 						<MenuItem value={ComputerTypes.SERVER}>Сервер</MenuItem>
 					</Select>
-					<FormHelperText error={touched?.pcType && Boolean(errors?.pcType)}>
-						{touched?.pcType && errors?.pcType}
-					</FormHelperText>
 				</FormControl>
 
 				<TextField

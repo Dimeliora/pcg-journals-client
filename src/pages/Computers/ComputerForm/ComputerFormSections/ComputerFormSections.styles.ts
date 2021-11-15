@@ -4,6 +4,9 @@ import { makeStyles } from "@mui/styles";
 export const useStyles = makeStyles((theme: Theme) => ({
 	computerFormSection: {
 		padding: `${theme.spacing(3)} 0 ${theme.spacing(5)}`,
+		"&:last-of-type": {
+			paddingBottom: 0,
+		},
 	},
 	computerFormSectionStatic: {
 		display: "grid",

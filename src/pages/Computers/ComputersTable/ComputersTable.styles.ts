@@ -12,6 +12,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
 		display: "flex",
 		alignItems: "center",
 		justifyContent: "space-between",
+		marginBottom: theme.spacing(3),
 	},
 	computersTablePlaceholder: {
 		transform: "scale(1, 0.9)",
@@ -19,6 +20,5 @@ export const useStyles = makeStyles((theme: Theme) => ({
 	computersTableSearch: {
 		width: "33%",
 		minWidth: 315,
-		marginBottom: theme.spacing(3),
 	},
 }));

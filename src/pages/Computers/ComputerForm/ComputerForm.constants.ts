@@ -1,5 +1,8 @@
-export const ADD_COMPUTER_FORM_VALUES = {
-	pcType: "",
+import { ComputerTypes } from "../../../interfaces/computer.interface";
+import { AddComputerFormValues } from "./ComputerForm.interfaces";
+
+export const ADD_COMPUTER_FORM_VALUES: AddComputerFormValues = {
+	pcType: ComputerTypes.PC,
 	pcName: "",
 	pcPurpose: "",
 	formFactor: "",
@@ -27,6 +30,7 @@ export const ADD_COMPUTER_FORM_VALUES = {
 	totalDiskSpace: "",
 	disks: [],
 	pcBackups: [],
+	pcComments: "",
 };
 
 export const ADD_COMPUTER_FORM_RAM_MODULE = {

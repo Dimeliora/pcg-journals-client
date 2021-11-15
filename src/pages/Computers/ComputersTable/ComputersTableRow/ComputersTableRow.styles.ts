@@ -4,9 +4,6 @@ import { makeStyles } from "@mui/styles";
 export const useStyles = makeStyles((theme: Theme) => ({
 	tableRow: {
 		cursor: "pointer",
-		"&:last-child > td": {
-			border: "none",
-		},
 		"&:hover": {
 			backgroundColor: colors.blue["50"],
 		},

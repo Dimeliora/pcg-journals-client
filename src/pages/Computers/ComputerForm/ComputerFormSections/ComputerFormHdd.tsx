@@ -18,10 +18,7 @@ import { useStyles } from "./ComputerFormSections.styles";
 import { ADD_COMPUTER_FORM_DISK } from "../ComputerForm.constants";
 
 import { IComputerFormSectionsProps } from "./ComputerFormSections.interfaces";
-import {
-	IDisks,
-	HddFormFactors,
-} from "../../../../interfaces/computer.interface";
+import { HddFormFactors } from "../../../../interfaces/computer.interface";
 
 const ComputerFormHdd: FC<IComputerFormSectionsProps> = ({
 	values,
@@ -45,13 +42,11 @@ const ComputerFormHdd: FC<IComputerFormSectionsProps> = ({
 				<TextField
 					name="totalDiskSpace"
 					value={values.totalDiskSpace}
-					type="number"
 					label="Суммарный объём, Гб"
 					size="small"
 					variant="outlined"
 					onChange={handleChange}
 					className={classes.computerFormInput}
-					inputProps={{ min: 0, step: 1 }}
 				/>
 			</Box>
 
@@ -67,7 +62,7 @@ const ComputerFormHdd: FC<IComputerFormSectionsProps> = ({
 							>
 								Добавить диск
 							</Button>
-							{values.disks.map((disk: IDisks, idx) => (
+							{values.disks.map((disk, idx) => (
 								<Box
 									key={idx}
 									className={classes.computerFormSectionDynamicItem}

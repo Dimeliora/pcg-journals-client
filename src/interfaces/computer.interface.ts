@@ -69,7 +69,7 @@ export interface IComputer {
 	ramUpgrade: string;
 	hddUpgrade: string;
 	pcBackups: IBackups[];
-	pcComments: IComment[];
+	pcComments: string;
 	updatedAt: string;
 	lastModifier: ILastModifier;
 }

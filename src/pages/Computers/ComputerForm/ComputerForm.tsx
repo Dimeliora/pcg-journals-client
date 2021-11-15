@@ -10,6 +10,7 @@ import ComputerFormCpu from "./ComputerFormSections/ComputerFormCpu";
 import ComputerFormRam from "./ComputerFormSections/ComputerFormRam";
 import ComputerFormHdd from "./ComputerFormSections/ComputerFormHdd";
 import ComputerFormBackup from "./ComputerFormSections/ComputerFormBackup";
+import ComputerFormComments from "./ComputerFormSections/ComputerFormComments";
 import { ReactComponent as CommonInfoIcon } from "../../../assets/icons/common-info.svg";
 import { ReactComponent as CPUIcon } from "../../../assets/icons/cpu.svg";
 import { ReactComponent as RAMIcon } from "../../../assets/icons/ram.svg";
@@ -117,6 +118,7 @@ const ComputerForm: FC = () => {
 						<ComputerFormBackup values={values} handleChange={handleChange} />
 
 						<ComputerInfoHead title="Комментарии" icon={CommentIcon} />
+						<ComputerFormComments values={values} handleChange={handleChange} />
 					</Form>
 				)}
 			</Formik>

@@ -1,8 +1,6 @@
 import { FC } from "react";
 import {
 	Box,
-	Typography,
-	Divider,
 	List,
 	ListItem,
 	ListItemText,
