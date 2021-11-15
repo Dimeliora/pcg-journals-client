@@ -31,8 +31,8 @@ const ComputersTableRow: FC<IComputersTableRowProps> = ({ computer }) => {
 		.map(({ backupDate }) => new Date(backupDate))
 		.sort((a, b) => b.getTime() - a.getTime());
 
-	let lastBackupDate = "н/д";
-	let isBackupOutdated = false;
+	let lastBackupDate;
+	let isBackupOutdated;
 	if (lastBackup) {
 		lastBackupDate = lastBackup.toLocaleDateString();
 		isBackupOutdated =
@@ -50,12 +50,12 @@ const ComputersTableRow: FC<IComputersTableRowProps> = ({ computer }) => {
 			</TableCell>
 			<TableCell>{computer.pcName}</TableCell>
 			<TableCell>{computer.pcPurpose}</TableCell>
-			<TableCell>{computer.os}</TableCell>
+			<TableCell>{computer.os || "н/д"}</TableCell>
 			<TableCell
 				align="center"
 				className={cn({ [classes.outdated]: isBackupOutdated })}
 			>
-				{lastBackupDate}
+				{lastBackupDate || "н/д"}
 			</TableCell>
 			<TableCell align="center">
 				{updateDate} ({computer.lastModifier.username})

@@ -33,6 +33,7 @@ const Computers: FC = () => {
 
 	const searchChangeHandler = (value: string): void => {
 		setSearch(value);
+		setPage(0);
 	};
 
 	const changePageHandler = (value: number): void => {
