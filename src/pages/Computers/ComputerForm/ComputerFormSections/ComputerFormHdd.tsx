@@ -18,7 +18,7 @@ import { useStyles } from "./ComputerFormSections.styles";
 import { ADD_COMPUTER_FORM_DISK } from "../ComputerForm.constants";
 
 import { IComputerFormSectionsProps } from "./ComputerFormSections.interfaces";
-import { HddFormFactors } from "../../../../interfaces/computer.interface";
+import { HddFormFactors } from "../../../../interfaces/computer.interfaces";
 
 const ComputerFormHdd: FC<IComputerFormSectionsProps> = ({
 	values,

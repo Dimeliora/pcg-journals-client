@@ -14,7 +14,7 @@ import {
 } from "./ComputersTableRow.constants";
 
 import { IComputersTableRowProps } from "./ComputersTableRow.interfaces";
-import { ComputerTypes } from "../../../../interfaces/computer.interface";
+import { ComputerTypes } from "../../../../interfaces/computer.interfaces";
 
 const ComputersTableRow: FC<IComputersTableRowProps> = ({ computer }) => {
 	const classes = useStyles();

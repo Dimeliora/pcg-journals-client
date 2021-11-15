@@ -13,7 +13,7 @@ import {
 import {
 	IComputer,
 	AddComputerData,
-} from "../../interfaces/computer.interface";
+} from "../../interfaces/computer.interfaces";
 import { AppThunk } from "../interfaces/store.types";
 
 const initialState: IComputersState = {

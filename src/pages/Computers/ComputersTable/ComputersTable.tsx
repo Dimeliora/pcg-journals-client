@@ -23,7 +23,7 @@ import { useAppSelector } from "../../../store/hooks/store.hooks";
 
 import { COMPUTERS_PER_PAGE_OPTIONS } from "../Computers.constants";
 
-import { IComputer } from "../../../interfaces/computer.interface";
+import { IComputer } from "../../../interfaces/computer.interfaces";
 import { IComputersTableProps } from "./ComputersTable.interfaces";
 
 const ComputersTable: FC<IComputersTableProps> = (props) => {

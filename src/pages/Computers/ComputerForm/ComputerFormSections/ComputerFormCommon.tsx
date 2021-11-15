@@ -11,7 +11,7 @@ import {
 import { useStyles } from "./ComputerFormSections.styles";
 
 import { IComputerFormSectionsProps } from "./ComputerFormSections.interfaces";
-import { ComputerTypes } from "../../../../interfaces/computer.interface";
+import { ComputerTypes } from "../../../../interfaces/computer.interfaces";
 
 const ComputerFormCommon: FC<IComputerFormSectionsProps> = ({
 	values,

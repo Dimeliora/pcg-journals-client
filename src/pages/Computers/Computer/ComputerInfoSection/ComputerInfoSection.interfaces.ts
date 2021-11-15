@@ -1,4 +1,4 @@
-import { IComputer } from "../../../../interfaces/computer.interface";
+import { IComputer } from "../../../../interfaces/computer.interfaces";
 
 export interface IComputerInfoSectionProps {
 	computer?: IComputer;

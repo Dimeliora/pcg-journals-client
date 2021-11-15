@@ -9,7 +9,7 @@ import {
 import { useStyles } from "./ComputerInfoSection.styles";
 
 import { IComputerInfoSectionProps } from "./ComputerInfoSection.interfaces";
-import { IComputer } from "../../../../interfaces/computer.interface";
+import { IComputer } from "../../../../interfaces/computer.interfaces";
 
 const ComputerInfoSection: FC<IComputerInfoSectionProps> = (props) => {
 	const { computer, terms, children } = props;

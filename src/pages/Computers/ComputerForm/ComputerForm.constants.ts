@@ -1,4 +1,4 @@
-import { ComputerTypes, AddComputerData } from "../../../interfaces/computer.interface";
+import { ComputerTypes, AddComputerData } from "../../../interfaces/computer.interfaces";
 
 export const ADD_COMPUTER_FORM_VALUES: AddComputerData = {
 	pcType: ComputerTypes.PC,

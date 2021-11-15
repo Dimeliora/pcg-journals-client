@@ -26,7 +26,7 @@ import { createComputerRequest } from "../../../store/reducers/computers.reducer
 
 import { ADD_COMPUTER_FORM_VALUES } from "./ComputerForm.constants";
 
-import { AddComputerData } from "../../../interfaces/computer.interface";
+import { AddComputerData } from "../../../interfaces/computer.interfaces";
 
 const ComputerForm: FC = () => {
 	const classes = useStyles();
