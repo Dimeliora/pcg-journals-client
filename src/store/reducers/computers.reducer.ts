@@ -111,4 +111,28 @@ export const createComputerRequest =
 		}
 	};
 
+export const updateComputerRequest =
+	(computerId: string, computerData: AddComputerData): AppThunk =>
+	async (dispatch) => {
+		dispatch(setLoading());
+		
+		const config = getAuthConfig();
+		const { data } = await axios.patch<
+			AddComputerData,
+			AxiosResponse<IResponseMessage>
+		>(`${BASE_URL}/computers/${computerId}`, computerData, config);
+
+		dispatch(getAllComputers());
+		dispatch(showAlert(data.message, "success"));
+		try {
+		} catch (error) {
+			dispatch(setError());
+
+			const axiosError = error as AxiosErrorMessage;
+			if (axiosError.response) {
+				dispatch(showAlert(axiosError.response.data.message, "error"));
+			}
+		}
+	};
+
 export default computersReducer.reducer;

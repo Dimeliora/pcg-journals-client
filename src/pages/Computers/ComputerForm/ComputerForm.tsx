@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { Formik, Form } from "formik";
 import { Box, Typography, Button } from "@mui/material";
 import { KeyboardReturn, Save, RotateLeft } from "@mui/icons-material";
@@ -18,26 +18,62 @@ import { ReactComponent as HDDIcon } from "../../../assets/icons/hdd.svg";
 import { ReactComponent as BackupIcon } from "../../../assets/icons/backup.svg";
 import { ReactComponent as CommentIcon } from "../../../assets/icons/comment.svg";
 
-import { useAppDispatch } from "../../../store/hooks/store.hooks";
+import {
+	useAppSelector,
+	useAppDispatch,
+} from "../../../store/hooks/store.hooks";
 import { useStyles } from "./ComputerForm.styles";
 
 import { computerFormValidation } from "./ComputerForm.validation";
-import { createComputerRequest } from "../../../store/reducers/computers.reducer";
+import {
+	createComputerRequest,
+	updateComputerRequest,
+} from "../../../store/reducers/computers.reducer";
 
 import { ADD_COMPUTER_FORM_VALUES } from "./ComputerForm.constants";
 
-import { AddComputerData } from "../../../interfaces/computer.interfaces";
+import {
+	AddComputerData,
+	IComputer,
+} from "../../../interfaces/computer.interfaces";
+import { IdRouteParam } from "../../../interfaces/id.param.type";
 
 const ComputerForm: FC = () => {
 	const classes = useStyles();
 
 	const history = useHistory();
 
+	const { id } = useParams<IdRouteParam>();
+
 	const dispatch = useAppDispatch();
+
+	const { computers } = useAppSelector(({ computers }) => computers);
 
 	const backHandler = (): void => {
 		history.goBack();
 	};
+
+	const currComputer = computers.find((computer) => computer._id === id);
+
+	let addComputerFormValues = ADD_COMPUTER_FORM_VALUES;
+	if (currComputer) {
+		addComputerFormValues = Object.keys(addComputerFormValues).reduce(
+			(acc, key) => {
+				let value = currComputer[key as keyof IComputer];
+				if (value === "н/д") {
+					value = "";
+				}
+
+				return { ...acc, [key]: value };
+			},
+			{} as AddComputerData
+		);
+	}
+
+	let headingText = "Добавление нового сервера / АРМ";
+	if (id && currComputer) {
+		headingText = `Редактирование ${currComputer.pcName}`;
+	}
 
 	return (
 		<>
@@ -46,11 +82,11 @@ const ComputerForm: FC = () => {
 				component="h3"
 				className={classes.computerFormHeading}
 			>
-				Добавление нового сервера / АРМ
+				{headingText}
 			</Typography>
 
 			<Formik
-				initialValues={ADD_COMPUTER_FORM_VALUES}
+				initialValues={addComputerFormValues}
 				validationSchema={computerFormValidation}
 				onSubmit={(values) => {
 					const filledFieldsValues = Object.entries(values).reduce(
@@ -64,8 +100,13 @@ const ComputerForm: FC = () => {
 						{} as AddComputerData
 					);
 
-					dispatch(createComputerRequest(filledFieldsValues));
-					history.push("/computers");
+					if (id && currComputer) {
+						dispatch(updateComputerRequest(id, filledFieldsValues));
+					} else {
+						dispatch(createComputerRequest(filledFieldsValues));
+					}
+
+					history.goBack();
 				}}
 			>
 				{({ values, touched, errors, handleChange }) => (

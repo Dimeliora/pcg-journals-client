@@ -38,17 +38,13 @@ const ComputersTable: FC<IComputersTableProps> = (props) => {
 
 	const classes = useStyles();
 
-	const { isLoading, computers } = useAppSelector(
-		({ computers }) => computers
-	);
+	const { isLoading, computers } = useAppSelector(({ computers }) => computers);
 
 	const changePageHandler = (e: unknown, newPage: number): void => {
 		onPageChange(newPage);
 	};
 
-	const rowsPerPageChangeHandler = (
-		e: ChangeEvent<HTMLInputElement>
-	): void => {
+	const rowsPerPageChangeHandler = (e: ChangeEvent<HTMLInputElement>): void => {
 		onRowsPerPageChange(Number(e.target.value));
 		onPageChange(0);
 	};
@@ -97,7 +93,7 @@ const ComputersTable: FC<IComputersTableProps> = (props) => {
 				<TableContainer>
 					<Table sx={{ minWidth: 1050 }} aria-label="Computers table">
 						<TableHead>
-							<TableRow className={classes.computersTableHead}>
+							<TableRow>
 								<TableCell sx={{ width: "5%" }}></TableCell>
 								<TableCell sx={{ width: "10%" }}>Наименование</TableCell>
 								<TableCell sx={{ width: "25%" }}>Назначение</TableCell>
