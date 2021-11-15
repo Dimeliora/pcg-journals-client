@@ -66,7 +66,7 @@ const UsersTableControl: FC<IUsersTableControlProps> = ({ user }) => {
 							value={values.password}
 							label="Новый пароль"
 							size="small"
-							variant="standard"
+							variant="outlined"
 							className={classes.usersTablePasswordInput}
 							error={touched.password && Boolean(errors.password)}
 							helperText={touched.password && errors.password}

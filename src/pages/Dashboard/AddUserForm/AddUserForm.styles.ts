@@ -3,10 +3,10 @@ import { makeStyles } from "@mui/styles";
 
 export const useStyles = makeStyles((theme: Theme) => ({
 	addUser: {
-		padding: `${theme.spacing(4)} 0`,
+		margin: `${theme.spacing(4)} 0`,
 	},
 	addUserHeading: {
-		marginBottom: theme.spacing(1),
+		marginBottom: theme.spacing(2),
 	},
 	addUserForm: {
 		display: "flex",

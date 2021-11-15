@@ -47,7 +47,7 @@ const AddUserForm: FC = () => {
 							value={values.username}
 							label="Имя пользователя"
 							size="small"
-							variant="standard"
+							variant="outlined"
 							className={classes.addUserFormField}
 							error={touched.username && Boolean(errors.username)}
 							helperText={touched.username && errors.username}
@@ -60,7 +60,7 @@ const AddUserForm: FC = () => {
 							value={values.password}
 							label="Пароль"
 							size="small"
-							variant="standard"
+							variant="outlined"
 							className={classes.addUserFormField}
 							error={touched.password && Boolean(errors.password)}
 							helperText={touched.password && errors.password}
