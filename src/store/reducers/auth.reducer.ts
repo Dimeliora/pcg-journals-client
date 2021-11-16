@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axios, { AxiosResponse } from "axios";
 
-import { BASE_URL, getAuthConfig } from "../../configs/axios.configs";
+import { getAuthConfig } from "../../configs/axios.configs";
 
 import { showAlert } from "./ui.reducer";
 
@@ -52,10 +52,7 @@ const { setLoading, resetLoading, resetAuth, setUser, logout } =
 export const userAuth = (): AppThunk => async (dispatch) => {
 	try {
 		const config = getAuthConfig();
-		const { data } = await axios.get<ILoginResponseData>(
-			`${BASE_URL}/auth`,
-			config
-		);
+		const { data } = await axios.get<ILoginResponseData>("/auth", config);
 
 		localStorage.setItem("access_token", data.access_token);
 
@@ -76,7 +73,7 @@ export const userLogin =
 			const { data } = await axios.post<
 				ILoginRequestData,
 				AxiosResponse<ILoginResponseData>
-			>(`${BASE_URL}/auth/login`, {
+			>("/auth/login", {
 				username,
 				password,
 			});

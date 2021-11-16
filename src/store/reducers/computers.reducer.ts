@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axios, { AxiosResponse } from "axios";
 
-import { BASE_URL, getAuthConfig } from "../../configs/axios.configs";
+import { getAuthConfig } from "../../configs/axios.configs";
 
 import { showAlert } from "./ui.reducer";
 
@@ -47,10 +47,7 @@ export const getAllComputers = (): AppThunk => async (dispatch) => {
 		dispatch(setLoading());
 
 		const config = getAuthConfig();
-		const { data } = await axios.get<IComputer[]>(
-			`${BASE_URL}/computers`,
-			config
-		);
+		const { data } = await axios.get<IComputer[]>(`computers`, config);
 
 		dispatch(setComputers(data));
 	} catch (error) {
@@ -71,7 +68,7 @@ export const deleteComputerRequest =
 
 			const config = getAuthConfig();
 			const { data } = await axios.delete<IResponseMessage>(
-				`${BASE_URL}/computers/${computerId}`,
+				`computers/${computerId}`,
 				config
 			);
 
@@ -96,7 +93,7 @@ export const createComputerRequest =
 		const { data } = await axios.post<
 			AddComputerData,
 			AxiosResponse<IResponseMessage>
-		>(`${BASE_URL}/computers`, computerData, config);
+		>(`computers`, computerData, config);
 
 		dispatch(getAllComputers());
 		dispatch(showAlert(data.message, "success"));
@@ -115,12 +112,12 @@ export const updateComputerRequest =
 	(computerId: string, computerData: AddComputerData): AppThunk =>
 	async (dispatch) => {
 		dispatch(setLoading());
-		
+
 		const config = getAuthConfig();
 		const { data } = await axios.patch<
 			AddComputerData,
 			AxiosResponse<IResponseMessage>
-		>(`${BASE_URL}/computers/${computerId}`, computerData, config);
+		>(`computers/${computerId}`, computerData, config);
 
 		dispatch(getAllComputers());
 		dispatch(showAlert(data.message, "success"));

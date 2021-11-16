@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axios, { AxiosResponse } from "axios";
 
-import { BASE_URL, getAuthConfig } from "../../configs/axios.configs";
+import { getAuthConfig } from "../../configs/axios.configs";
 import { showAlert } from "./ui.reducer";
 
 import { AppThunk } from "../interfaces/store.types";
@@ -50,7 +50,7 @@ export const getUsersRequest = (): AppThunk => async (dispatch) => {
 		dispatch(setLoading());
 
 		const config = getAuthConfig();
-		const { data } = await axios.get<IUser[]>(`${BASE_URL}/users`, config);
+		const { data } = await axios.get<IUser[]>("users", config);
 
 		dispatch(setUsers(data));
 	} catch (error) {
@@ -74,7 +74,7 @@ export const addUserRequest =
 				IAddUserRequestData,
 				AxiosResponse<IUser>
 			>(
-				`${BASE_URL}/auth/register`,
+				"auth/register",
 				{
 					username,
 					password,
@@ -106,7 +106,7 @@ export const changeUserPasswordRequest =
 			const { data } = await axios.patch<
 				IChangePasswordRequestData,
 				AxiosResponse<IResponseMessage>
-			>(`${BASE_URL}/users/${userId}`, { password }, config);
+			>(`users/${userId}`, { password }, config);
 
 			dispatch(resetLoading());
 			dispatch(showAlert(data.message, "success"));
@@ -128,7 +128,7 @@ export const deleteUserRequest =
 
 			const config = getAuthConfig();
 			const { data } = await axios.delete<IResponseMessage>(
-				`${BASE_URL}/users/${userId}`,
+				`users/${userId}`,
 				config
 			);
 
