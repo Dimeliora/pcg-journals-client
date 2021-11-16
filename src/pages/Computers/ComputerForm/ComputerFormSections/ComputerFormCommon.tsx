@@ -29,11 +29,7 @@ const ComputerFormCommon: FC<IComputerFormSectionsProps> = ({
 					size="small"
 					className={classes.computerFormInput}
 				>
-					<InputLabel
-						id="computer-form-pc-type"
-					>
-						Тип
-					</InputLabel>
+					<InputLabel id="computer-form-pc-type">Тип</InputLabel>
 					<Select
 						name="pcType"
 						label="Тип"
@@ -49,7 +45,7 @@ const ComputerFormCommon: FC<IComputerFormSectionsProps> = ({
 				<TextField
 					name="pcName"
 					value={values.pcName}
-					label="Наименование"
+					label="Наименование*"
 					size="small"
 					variant="outlined"
 					onChange={handleChange}
@@ -61,7 +57,7 @@ const ComputerFormCommon: FC<IComputerFormSectionsProps> = ({
 				<TextField
 					name="pcPurpose"
 					value={values.pcPurpose}
-					label="Назначение"
+					label="Назначение*"
 					size="small"
 					variant="outlined"
 					onChange={handleChange}

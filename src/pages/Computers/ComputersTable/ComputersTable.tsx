@@ -50,7 +50,6 @@ const ComputersTable: FC<IComputersTableProps> = (props) => {
 		e: ChangeEvent<HTMLInputElement>
 	): void => {
 		onRowsPerPageChange(Number(e.target.value));
-		onPageChange(0);
 	};
 
 	const filterComputers = (): IComputer[] => {

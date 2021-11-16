@@ -34,7 +34,9 @@ const AddUserForm: FC = () => {
 				initialValues={ADD_USER_FORM_VALUE}
 				validationSchema={addUserFormValidation}
 				onSubmit={(values) => {
-					dispatch(addUserRequest(values.username, values.password));
+					dispatch(
+						addUserRequest(values.username.trim(), values.password)
+					);
 
 					values.username = "";
 					values.password = "";
