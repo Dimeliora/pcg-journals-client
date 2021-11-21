@@ -8,6 +8,7 @@ import Login from "../pages/Login/Login";
 import Home from "../pages/Home/Home";
 import Dashboard from "../pages/Dashboard/Dashboard";
 import Computers from "../pages/Computers/Computers";
+import NotFound from "../pages/NotFound/NotFound";
 
 import { Roles } from "../interfaces/user.interfaces";
 
@@ -33,6 +34,7 @@ const App: FC = () => {
 					path="/computers"
 					component={Computers}
 				/>
+				<PrivateRoute allowedRole={Roles.USER} component={NotFound} />
 			</Switch>
 		</Layout>
 	);
